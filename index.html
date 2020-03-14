@@ -3,18 +3,44 @@
    <head>
       <meta charset="UTF-8">
       <meta name="description" content="This is Xuxiao's website">
+      <meta name="author" content="Xuxiao Li">
+      <meta name="keywords" content="additive manufacturing, computational mechanics, computational materials">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Xuxiao's Website </title>
+      <style>
+         .column {
+            float: left;
+            width: 50 %;
+         }
+         
+         .row:after {
+            content: "";
+            display: table;
+            clear: both;
+         }
+      </style>
    </head>
 
    <body style="background-color:lightblue">
       <header>
-         <h1>Xuxiao Li <br>
-            李绪逍</h1>
+         <div class="row">
+            <div class="column">
+               <h1>Xuxiao Li <br>
+                  李绪逍</h1>
+               <img width="200" src="https://xuxiaoli-1993.github.io/myPhoto.JPG" alt="my photo"/>
+            </div>
+
+            <div class="column">
+               <br><br>
+               <span>xuxiao.li@utah.edu <br>
+                  801-209-6239 <br>
+               </span>
+               <a href="Xuxiao-resume-03092020.pdf" target="_blank">My resume</a>
+            </div>
+         </div>
       </header>
 
       <main>
-         <img width="200" src="https://xuxiaoli-1993.github.io/myPhoto.JPG" alt="my photo"/>
-         <h2><a href="Xuxiao-resume-03092020.pdf" target="_blank">My resume</a></h2>
          <hr color="red" size="2">
          <a href="#">Reasearch Projects</a><span>&nbsp;&nbsp;&nbsp;</span>
          <a href="#">Publications</a><span>&nbsp;&nbsp;&nbsp;</span>
@@ -29,11 +55,11 @@
          <video src="2DsinglePulseSidebySide.mov" alt="2DsinglePulseSidebySide" loop controls width="800"></video><br><br>
 
          <!-- unordered list
-         <ul>
+            <ul>
             <li>Reasearch Projects</li>
             <li>Publications</li>
             <li>Computational Fluid Dynamics Tutorial</li>
-         </ul>-->
+            </ul>-->
       </main>
 
       <footer>
