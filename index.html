@@ -6,53 +6,44 @@
       <meta name="author" content="Xuxiao Li">
       <meta name="keywords" content="additive manufacturing, computational mechanics, computational materials">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="style.css">
       <title>Xuxiao's Website </title>
-      <style>
-         .column {
-            float: left;
-            width: 50 %;
-         }
-         
-         .row:after {
-            content: "";
-            display: table;
-            clear: both;
-         }
-      </style>
    </head>
 
-   <body style="background-color:lightblue">
+   <body>
       <header>
          <div class="row">
             <div class="column">
-               <h1>Xuxiao Li <br>
-                  李绪逍</h1>
                <img width="200" src="https://xuxiaoli-1993.github.io/myPhoto.JPG" alt="my photo"/>
             </div>
 
             <div class="column">
-               <br><br>
-               <span>xuxiao.li@utah.edu <br>
-                  801-209-6239 <br>
-               </span>
-               <a href="Xuxiao-resume-03092020.pdf" target="_blank">My resume</a>
+               <h1>Xuxiao Li</h1>
+               <p>Ph.D. Student at University of Utah <br>
+               Mechanical Engineering Department</p>
+               <p>xuxiao.li@utah.edu</p>
+               <p>801-209-6239</p>
+               <a href="Xuxiao-resume-03092020.pdf" target="_blank" class="mylink">Resume</a>
             </div>
          </div>
       </header>
 
       <main>
          <hr color="red" size="2">
-         <a href="#">Reasearch Projects</a><span>&nbsp;&nbsp;&nbsp;</span>
-         <a href="#">Publications</a><span>&nbsp;&nbsp;&nbsp;</span>
-         <a href="#">Tutorials</a><span>&nbsp;&nbsp;&nbsp;</span>
-         <a href="chinese_version.html">中文版</a>
+         <a href="#" class="mylink">Reasearch Projects</a><span>&nbsp;&nbsp;&nbsp;</span>
+         <a href="#" class="mylink">Publications</a><span>&nbsp;&nbsp;&nbsp;</span>
+         <a href="#" class="mylink">Tutorials</a><span>&nbsp;&nbsp;&nbsp;</span>
+         <a href="chinese_version.html" class="mylink">中文版</a>
          <hr color="red" size="2">
 
-         <p>I am currently a PhD student at the mechanical engineering department of Univeristy of Utah. I am working in <a href="https://tanlab.mech.utah.edu" target="_blank">laboratory of laser-based manufacturing</a> under the supervision of Dr. Wenda Tan. 
+         <p>I am currently a PhD student at the mechanical engineering department of Univeristy of Utah. I am working in <a href="https://tanlab.mech.utah.edu" target="_blank" class="mylink">laboratory of laser-based manufacturing</a> under the supervision of Dr. Wenda Tan. 
          My research focuses on the multiphyscis simulations for the process and microstructure evolution in
          metal additive manufacturing (AM/3d printing) processes. </p>
 
-         <video src="2DsinglePulseSidebySide.mov" alt="2DsinglePulseSidebySide" loop controls width="800"></video><br><br>
+         <figure class="fig-SidebySide">
+            <video src="2DsinglePulseSidebySide.mov" alt="2DsinglePulseSidebySide" loop controls width="800"></video><br><br>
+            <figcaption> A side by side comparison between multi-physics simualtion (left) and X-ray synchrontron imaging (right) for a single laser pulse shining on powderbed of Ti-6Al-4V. The simulation reveals quantitative information regarding the fundamental physical phenomenon in a typical laser powder bed fusion process.</figcaption>
+         </figure>
 
          <!-- unordered list
             <ul>
