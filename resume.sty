@@ -1,6 +1,9 @@
 % Xuxiao's Resume Style
 
 \usepackage{ragged2e}
+\usepackage{array}
+
+\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
 
 
 
@@ -73,7 +76,7 @@
 % space between paragraphs
 \def\paraspace{\vspace{11pt}}
 \def\probspace{\vspace{0.5in}}
-\def\fullrule{\nointerlineskip\vskip2pt\rule{\textwidth}{0.5pt}}
+\def\fullrule{\nointerlineskip\vskip2pt\rule{\textwidth}{0.5pt}\vskip2pt}
 
 % color
 \usepackage{xcolor}

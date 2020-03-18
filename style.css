@@ -1,9 +1,13 @@
 body {
-   background: lightblue;
+   background: snow;
+}
+
+.myh1 {
+   color: darkslategray;
 }
 
 .mylink:link {
-   color: blue;
+   color: royalblue;
 }
 
 .mylink:visited {
@@ -22,9 +26,13 @@ body {
    clear: both;
 }
 
+.catalog {
+   background: darksalmon;
+}
+
 .fig-SidebySide {
    margin: 0.5em;
-   border: 2px solid purple;
+   border: 2px solid black;
    padding: 20px;
    width: 60%;
    font-style: italic;
