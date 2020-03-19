@@ -7,7 +7,7 @@ body {
 }
 
 .mylink:link {
-   color: royalblue;
+   color: blue;
 }
 
 .mylink:visited {
@@ -27,12 +27,21 @@ body {
 }
 
 .catalog {
-   background: lightyellow;
+   background: linear-gradient(to right, rgba(255,255,224,1.0), rgb(240,230,140));
+   /* lightyellow transitions to khaki*/
 }
 
 .fig-SidebySide {
    margin: 0.5em;
    border: 2px solid black;
+   padding: 20px;
+   width: 60%;
+   font-style: italic;
+   min-width: 800px;
+}
+
+.myfig {
+   margin: 0.5em;
    padding: 20px;
    width: 60%;
    font-style: italic;
