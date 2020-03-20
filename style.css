@@ -1,5 +1,14 @@
 body {
    background: snow;
+   font-size: 12pt;
+   text-align: justify;
+   font-family: "Times New Roman", serif;
+}
+
+footer {
+   background: palegreen;
+   margin: 2em;
+   text-align: right;
 }
 
 .myh1 {
@@ -41,11 +50,10 @@ body {
 }
 
 .myfig {
+   display: table;
    margin: 0.5em;
-   padding: 20px;
-   width: 60%;
    font-style: italic;
-   min-width: 800px;
+   width: 50%;
 }
 
 
