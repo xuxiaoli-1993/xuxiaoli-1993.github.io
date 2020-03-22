@@ -23,6 +23,11 @@ h3 {
    color: navy;
 }
 
+li {
+   font-size: 14pt;
+   margin: 1em 0 1em 0;
+}
+
 .mylink:link {
    color: blue;
 }
@@ -37,7 +42,7 @@ h3 {
    margin: 10px;
 }
 
-.row:after {
+.row {
    content: "";
    display: table;
    clear: both;
@@ -45,27 +50,42 @@ h3 {
 
 .catalog {
    background: linear-gradient(to right, rgba(255,255,224,1.0), rgb(240,230,140));
+   margin: 0.5em 0 0.5em 0;
+   display: flex;
+   flex-direction: row;
+   /* border: 0.2em solid red; */
+   /* justify-content: center */
    /* lightyellow transitions to khaki*/
 }
 
+.catalog-item {
+   font-size: 14pt;
+   text-align: center;
+   line-height: 2em;
+   margin: 0.5em 2em 0.5em 2em;
+}
+
 .fig-SidebySide {
-   margin: 0.5em;
-   border: 2px solid black;
-   padding: 20px;
-   width: 60%;
+   display: table;
+   border: 0.2em solid black;
+   width: 50%;
    font-style: italic;
-   min-width: 800px;
+   padding: 1em;
+   /* margin: 2em auto 1em auto; */
 }
 
 .myfig {
    display: table;
-   margin-left: 0.5em;
-   margin-bottom: 3em;
-   margin-top: 1em;
+   margin: 1em auto 2em auto; /* top, right, bottom, left */
    font-style: italic;
    width: 50%;
 }
 
-
+.myimg {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+   margin-bottom: 0.5em;
+}
 
 
