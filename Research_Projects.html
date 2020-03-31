@@ -13,10 +13,10 @@
          repeated melted by an energy source (e.g., laser) and solidified (when disengaged from the
          laser) to become the 3-dimensional build.
          My research is to simulate the physical phenomena in this process with computational
-         techniques. The simualtion, by "reproduce" the physical phenomena, can contribute to the
+         techniques. The simualtion, by "reproducing" the physical phenomena, can contribute to the
          maturation of MAM in two ways:
          (1) the underlying science can be quantitatively understood, which informs better process
-         design. (2) the simulation can partially replace the trial-and-error tests to expediate the
+         design. (2) the simulation can partially replace the trial-and-error tests to expedite the
          optimization of process parameters. </p>
          <hr color="red" size="2">
       </header>
@@ -24,9 +24,9 @@
       <main>
          <h3>Background</h3>
          <p>Metal Additive Manufacturing (MAM) is an emerging manufacturing technique which has the
-         potentail to revolutionalize the manufaturing industry credited to its geometric
-         flexiblity. Typically, an energy source (laser, electron beam, etc.) melts metal powders to form a molten pool. When the
-         laser is disengaged from the powders, the molten pool cools down to form the solid part.
+         potentail to revolutionalize the manufaturing industry credited to its capabilities of
+         producing parts with flexbile geometries. Typically, an energy source (laser, electron beam, etc.) melts metal powders to form a molten pool. When the
+         laser is disengaged from the metal, the molten pool cools down to form the solid part.
          This process can be repeated layer-by-layer, and only the powders undergoing the
          melting-solification process will contribute to the bulk part. Therefore, the build
          geometry can be easily manipulated by controlling the interaction between the laser and the
@@ -52,14 +52,47 @@
                subsequently ejected from the laser-illuminated region in LPBF processes. Source of the
                video: <a
                   href=https://www.sciencedirect.com/science/article/pii/S1359645417308170
-                  target="_blank" class="mylink">Heriot-Watt University</a>.</figcaption>
+                  target="_blank" class="mylink">Bidare, P., et al. Acta Materialia (2018)</a>.</figcaption>
+         </figure>
+
+         <p>Let's first consider the interaction of laser and a bare metal plate (no powder
+         involved). This "simpler" setup resembles that of a laser welding process. The in-situ
+         high-speed X-ray imaging technique reveals more details on the multiphysics phenemena,
+         specificaly, the metal vaporization and the formation of keyhole.</p>
+
+         <figure class="myfig">
+            <video width="600" src="Science-2019-pulsePlate.mov" alt="Pulse Welding" controls class="myvideo"></video>
+            <figcaption>High-speed X-ray video for a stationary laser illuminating on a bare plate
+               made of Ti-6Al-4V. The depression zone is referred to as the "Keyhole" where the
+               local metal vaporization exerts a recoil pressure on the molten pool. Interestingly,
+               the keyhole is subject to a seemingly periodic oscillation. At this point of time,
+               this phenomenon has not been fully understood. Source of the video:
+               <a href=https://science.sciencemag.org/content/363/6429/849.abstract
+                  target="_blank" class="mylink">Cunningham, R, et al. Science (2019)</a>.</figcaption>
+         </figure>
+
+         <p>When a layer of powder is deposited on the metal substrate, the laser-metal interaction
+         is further complicated. The metal vaporization form a vapor jet which then entrains the
+         surrounding powders towards the laser-illuminated region. This is known as a classic fluid
+         mechanics phenomenon referred to as the "entrainment". Once entrained, the powders have the
+         chance of being incorporated into the molten pool or ejected away by the vapor jet.</p>
+         <figure class="myfig">
+            <video width="600" src="Zhao-2017-P340.mov" alt="Pulse Powder" controls class="myvideo"></video>
+            <figcaption>High-speed X-ray video for a stationary laser illuminating on a
+               pre-deposited powder bed. As we can see the powder-gas interaction is dynamic and difficult to quantify by
+               experiments. Fortunately, multiphysics simulation is ready tool to complement with
+               experiments to deepen our understandings regarding these complex physics. Source of the video: 
+               <a href=https://www.nature.com/articles/s41598-017-03761-2
+                  target="_blank" class="mylink">Zhao, C., et al. Scientific Report (2017)</a>.</figcaption>
          </figure>
 
 
          <h3>Powder Bed Generation and Ray Tracing</h3>
          <p>This project is aimed to simulate the laser absorption distribution among a powder bed, as typically in
-         a laser powder bed fusion process. A randomly packed powder bed is generated by the PACKS algorithm (stands 
-         for Probabilistic-Analytic Consecutive Kinetic Simulation). The powder bed is then represented by the level-set 
+         a laser powder bed fusion process. A randomly packed powder bed is generated by a
+         "rain-dropping" algorithm (<a
+                  href=https://journals.sagepub.com/doi/abs/10.1177/003754977903200102
+                  target="_blank" class="mylink">Jodrey, W., et al. Simulation (1979)</a>). The powder bed is then represented by the level-set 
          function. The ray-tracing algorithm is implemented to calculate the absorbed distribution.</p>
          <figure class="myfig">
             <img width="400" src="pb1.png" alt="powderbed 1" class="myimg"/>
