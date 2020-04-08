@@ -1,6 +1,6 @@
 body {
    background: snow;
-   font-size: 12pt;
+   font-size: 16pt;
    text-align: justify;
    font-family: "Times New Roman", serif;
 }
@@ -59,7 +59,8 @@ li {
 }
 
 .catalog-item {
-   font-size: 14pt;
+   font-size: 18pt;
+   font-weight: bold;
    text-align: center;
    line-height: 2em;
    margin: 0.5em 2em 0.5em 2em;
