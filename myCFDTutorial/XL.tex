@@ -1,0 +1,110 @@
+\documentclass[11pt, letterpaper]{report}
+\usepackage{XL}  % use my awesome template
+
+% \fancyhead[L]{\footnotesize \bfseries Homework 1 \quad \bfseries CS6530 Machine Learning} % set footer
+% \fancyfoot[R]{\footnotesize \thepage\ of \pageref{LastPage}} % set footer
+\renewcommand{\headrulewidth}{0.0pt} % horizontal line in header
+\renewcommand{\footrulewidth}{0.0pt} % horizontal line in footer
+\geometry{head=1in, bottom=1in, footskip=25pt} % set margin
+\allowdisplaybreaks  % allow cross-page equations
+
+
+%--------- document starts here -------------------------
+\begin{document}
+
+\thispagestyle{tpstyle} % set the style of title page
+{\centering
+\vspace*{3.5in}  % force some space
+\textbf{\Huge Computational Fluid Dynamics (CFD) with General Equation Mesh Solver (GEMS): A
+Tutorial}\vspace{10pt}
+
+\textbf{\Large by Xuxiao Li}\vspace{10pt}
+
+\textit{\large May 3, 2020}
+\vspace{8pt}
+\centerline{\rule{0.5\linewidth}{0.5pt}}
+\vspace{8pt}
+\clearpage
+\pagenumbering{arabic}  % Number page from the next page
+}
+
+\tableofcontents{}
+
+\chapter*{Prologue}
+\pagestyle{plain}
+In this tutorial, I will cover multiple topics on both the theoretical and practical aspects of
+computational fluid dynamics (CFD). With such a rich range of contents in CFD, I will only focus on
+the certain methods that I am specialized in, while general concepts will also be discussed. The
+major method discussed in this tutorial will be the Finite Volume Method (FVM). FVM is a somewhat
+``old school'' method compared to the more recent and advanced variants of the Finite Element Method
+(FEM). However, each method has its own advantages and disadvantages when applied to specific
+problems. FVM served for a long period of time as the workhorse in solving the fluid mechanics problems, while FEM was
+born to solve solid mechanics problems. This is a big gap between the ``fluid'' and the ``solid''
+community. Although the trend is to merge the merits from both methods (e.g., discontinuous
+Galerkin), but that is still an ongoing research topic and indeed, old habits die hard.
+\paraspace
+
+Within the ``fluid'' community, there is a division between those studying compressible flow
+problems and those studying incompressible flow problems. Accordingly, the CFD methods can be
+divided into the density-based methods (suitable for compressible flow) and pressure-based methods
+(suitable for incompressible flow). The major difference here is that the fluid velocity in
+compressible flow is typically very large (large Mach number), while fluid velocity is relative
+small for incompressible flows. This gap has already been filled through years of efforts.
+Density-based methods can also solve incompressible flow problems using the preconditioning
+technique, which gives a unified framework for solving fluid dynamics problems. This approach will
+be the focus of this tutorial. 
+\paraspace
+
+In the 80's, there were several pioneers who contributed significantly to the preconditioning
+methods, e.g., Eli Turkel, Bram Van Leer, and Charles Merckle. This tutorial will be focused on
+Merckle's preconditioning system, and in fact, the practical part of the tutorial is made based on
+one of the in-house codes developed at Merckle's research group. The in-house code is named as the
+General Equation Mesh Solver (GEMS) whose main creator is Dr. Ding Li. He worked as a research
+associate with Prof. Merckle, initially at the University of Tennessee, and later at Purdue
+University. Dr. Li embarked on the development of GEMS about early 1999. In 2002, the version 1.0 is
+completed. In 2005, he has added the Maxwell equation into GEMS and also refined multiple features
+to improve the generality of the code. In a paper Dr. Li published in 2006, he demonstrated the
+capability of GEMS with impressing results.
+\paraspace
+
+I feel obliged to mention how I can have the access to the GEMS code. During the time Dr. Ding Li
+was at Purdue university, there was a PhD student named Shaoyi Wen who worked with Dr. Li. Shaoyi
+was then advised by Prof. Yung Shin whose research group had some collaborations with Prof.
+Merckle's group. Shaoyi modified GEMS code for his needs with the help of Dr. Li and published a
+paper in 2010 using GEMS to solve thermal-fluid problems in direct laser deposition processes.
+Thereafter, the GEMS code seemed to be made available to Prof. Shin's group. Before Shaoyi graduated
+from Shin's group, he passed the GEMS code to another PhD student at Shin's group, Wenda Tan. At
+this time, Dr. Li has left Purdue (I actually don't know where he went). Wenda has never made
+acquaintance with Dr. Li. However, he managed to exploit the GEMS code and have three papers
+published in 2013, 2014 and 2015 with it. In these papers, Wenda simulated the laser keyhole welding
+processes, and with GEMS, his model incorporated multiple physics and has high fidelity. In 2015,
+Wenda ceremoniously graduated from Purdue and became an assistant professor at the University of
+Utah. In the fall of 2015, I was registered as a PhD student at the University of Utah and I was
+advised by Wenda (Dr. Tan) since then. Therefore, I have the privilege to study the GEMS code and
+apply it for my PhD research. The practical part of this tutorial will be based on the GEMS code.
+
+
+\chapter{Mesh}
+% spacing between equations and text
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+
+
+
+
+
+
+
+
+
+
+
+\clearpage
+\bibliographystyle{IEEEtran}
+\bibliography{./ref.bib}
+\end{document}
+
+
+
+
+
