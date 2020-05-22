@@ -37,8 +37,8 @@
 \captionsetup[sub]{aboveskip=0pt, belowskip=0pt}
 \captionsetup[table]{belowskip=0pt} % spacing between text and table caption
 \captionsetup[table]{aboveskip=3pt} % spacing between table caption and table
-\captionsetup[figure]{belowskip=-10pt} % spacing between figure caption and text below
-\captionsetup[figure]{aboveskip=0pt} % spacing between figure caption and figure above
+\captionsetup[figure]{belowskip=-5pt} % spacing between figure caption and text below
+\captionsetup[figure]{aboveskip=5pt} % spacing between figure caption and figure above
 
 % Header and Footer
 \setlength{\headsep}{10pt}
@@ -74,7 +74,7 @@
 
 % list
 \usepackage[shortlabels]{enumitem}
-\setenumerate{itemsep=1pt, topsep=1pt, parsep=1pt}
+\setenumerate{itemsep=3pt, topsep=3pt, parsep=3pt}
 \setitemize{itemsep=3pt, topsep=3pt, parsep=3pt}
 
 % bibliography
@@ -103,13 +103,17 @@
 
 % control title spacing
 \usepackage{titlesec}
-\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titlespacing*{\section}{0pt}{0pt}{11pt}
 \titlespacing*{\subsection}{0pt}{0pt}{0pt}
 
 % control title font size and bold/italic
 \titleformat{\chapter}[hang]
   {\huge\bfseries}{\chaptertitlename \ \thechapter}{10pt:}{}
-\titleformat{\section}{\large\bfseries}
-\titleformat{\subsection}{\normalsize\bfseries}
+% \titleformat{\section}{\large\bfseries}
+% \titleformat{\subsection}{\normalsize\bfseries}
+
+% code blocks
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily}  % font
 
 
