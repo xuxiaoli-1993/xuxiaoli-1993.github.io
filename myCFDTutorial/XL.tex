@@ -13,14 +13,13 @@
 \begin{document}
 
 % spacing between equations and text
-\setlength{\abovedisplayskip}{3pt}
-\setlength{\belowdisplayskip}{3pt}
+\setlength{\abovedisplayskip}{-6pt}
+\setlength{\belowdisplayskip}{6pt}
 
 \thispagestyle{tpstyle} % set the style of title page
 {\centering
 \vspace*{3.5in}  % force some space
-\textbf{\Huge Computational Fluid Dynamics (CFD) with General Equation Mesh Solver (GEMS): A
-Tutorial}\vspace{10pt}
+\textbf{\Huge Computational Fluid Dynamics (CFD) with General Equation Mesh Solver (GEMS)}\vspace{10pt}
 
 \textbf{\Large by Xuxiao Li}\vspace{10pt}
 
@@ -36,10 +35,10 @@ Tutorial}\vspace{10pt}
 
 \chapter*{Prologue}
 \pagestyle{plain}
-In this tutorial, I will cover multiple topics on both the theoretical and practical aspects of
+In this document, I will cover multiple topics on both the theoretical and practical aspects of
 computational fluid dynamics (CFD). With such a rich range of contents in CFD, I will only focus on
 the certain methods that I am specialized in, while general concepts will also be discussed. The
-major method discussed in this tutorial will be the Finite Volume Method (FVM). FVM is a somewhat
+major method discussed in this document will be the Finite Volume Method (FVM). FVM is a somewhat
 ``old school'' method compared to the more recent and advanced variants of the Finite Element Method
 (FEM). However, each method has its own advantages and disadvantages when applied to specific
 problems. FVM served for a long period of time as the workhorse in solving the fluid mechanics problems, while FEM was
@@ -56,12 +55,12 @@ compressible flow is typically very large (large Mach number), while fluid veloc
 small for incompressible flows. This gap has already been filled through years of efforts.
 Density-based methods can also solve incompressible flow problems using the preconditioning
 technique, which gives a unified framework for solving fluid dynamics problems. This approach will
-be the focus of this tutorial. 
+be the focus of this document. 
 \paraspace
 
 In the 80's, there were several pioneers who contributed significantly to the preconditioning
-methods, e.g., Eli Turkel, Bram Van Leer, and Charles Merckle. This tutorial will be focused on
-Merckle's preconditioning system, and in fact, the practical part of the tutorial is made based on
+methods, e.g., Eli Turkel, Bram Van Leer, and Charles Merckle. This document will be focused on
+Merckle's preconditioning system, and in fact, the practical part of the document is made based on
 one of the in-house codes developed at Merckle's research group. The in-house code is named as the
 General Equation Mesh Solver (GEMS) whose main creator is Dr. Ding Li. He worked as a research
 associate with Prof. Merckle, initially at the University of Tennessee, and later at Purdue
@@ -90,10 +89,10 @@ things about it today. So far I only touched upon the ``basic'' functions in GEM
 the basic equations: mass, momentum, energy, and species conservation equations. The unexplored part
 is: turbulence modeling and incorporation of Maxwell equations. In the definitive version of the
 GEMS, all the equations could be solved and can be customized such that multiple sets of equations
-can be assigned to different partitions of the domain. In this tutorial, I will focus on the
+can be assigned to different partitions of the domain. In this document, I will focus on the
 ``basic'' package which I feel the most comfortable with.  \paraspace
 
-The philosophy of this tutorial will be that more focus is put on the theoretical side. By that I
+The philosophy of this document will be that more focus is put on the theoretical side. By that I
 do not mean that I will linger on derivations of equations, as ``computational'' fluid dynamics
 should emphasize on {\bf data structure} and {\bf algorithm} and not on mathematical
 reasoning. However, I will not go into details such as ``this subroutine does this'', or ``this
@@ -103,9 +102,9 @@ done. With this global picture, you should be able to ``code it up'' by any lang
 want. In situations where practical guide is necessary, I will try to separate it by distinct
 sections.
 
-\chapter{Mesh}
+\chapter{Mesh} \label{c1}
 
-\section{Definition of Basic Mesh}
+\section{Definition of Basic Mesh} \label{c1s1}
 
 The mesh describes the data structure of carrying out CFD simulations. Mesh is a discretization of a
 calculation domain (a physical domain in which CFD simulations is conducted). For example, we have a
@@ -235,7 +234,7 @@ way convenient for finite volume method. As we will see, additional data types c
 based on the basic mesh and be used to facilitate finite-volume computation. 
 \paraspace
 
-\section{Finite Volume Mesh}
+\section{Finite Volume Mesh} \label{c1s2}
 
 We establish the data type \verb+face+ from the basic mesh to form the ``finite volume mesh''. The
 \verb+face+ type has much more emphasis in the finite volume method as the fluxes on the faces need
@@ -338,7 +337,7 @@ Notice that the information about BC's can be fully described by the \verb+bc(:)
 \verb+itype+ in \verb+face+.
 \paraspace
 
-\section{Partitioning of Mesh}
+\section{Partitioning of Mesh} \label{c1s3}
 
 Now we have got a finite volume mesh, with three essential data types, \verb+node+, \verb+cell+, and
 \verb+face+. It is no problem to plug this mesh into some CFD code. However, today's computation
@@ -485,7 +484,7 @@ Also, we record the number of partitioning faces in the type \verb+itf+ by addin
 \end{lstlisting}
 \paraspace
 
-With the mesh partitioning, we will generate sepearate mesh files for each partition. Let us now
+With the mesh partitioning, we will generate separate mesh files for each partition. Let us now
 summarize the information contained in each mesh file:
 
 \begin{enumerate}
@@ -495,8 +494,8 @@ summarize the information contained in each mesh file:
    \item Sending information: No. of sending-to partitions, No. of total sending cells. For each
       sending-to partition,
       \begin{enumerate}
-         \item sending-to partition id, No. of to-be-sent iterior cells, No. of to-be-sent boundary cells
-         \item for to-be-sent iterior cells, store those cell id
+         \item sending-to partition id, No. of to-be-sent interior cells, No. of to-be-sent boundary cells
+         \item for to-be-sent interior cells, store those cell id
          \item for to-be-sent boundary cells, store those boundary face id
       \end{enumerate}
    \item Receiving information: No. of receive-from partitions, No. of total receiving (container)
@@ -509,7 +508,7 @@ summarize the information contained in each mesh file:
 \end{enumerate}
 \paraspace
 
-\section{Periodic Boundary Condition}
+\section{Periodic Boundary Condition} \label{c1s4}
 
 The treatment of periodic BC deserves a separate section to describe. The difficulty in treating
 periodic BC arises when information in the boundary cells for periodic BC cannot be directly
@@ -627,14 +626,565 @@ cells, some of which can then be sent out via the partitioning communication.
 \paraspace
 
 \section{Practical Guide}
+We shall give some practical instructions in the section regarding the generation and use of mesh
+files. The action items are summarized by the flow chart shown in Fig. \ref{fig-mesh7}. 
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[height=6in]{Mesh7.png}
+   \caption{Flow chart of generating and using mesh files.}
+   \label{fig-mesh7}
+\end{figure}
+
+The first step is to generate a finite element mesh as described in section \ref{c1s1}. We note that
+the mesh file is defined by three components: geometry entities, physical entities, and meshing
+parameters. The geometry entities refer to the point, lines, curves, etc. that define the geometry
+of the calculation domain. This is analogous to the CAD drawing you use for a design. Second, you
+associate the geometry entities with physical entities. For example, the geometry entities in Fig.
+\ref{fig-mesh1}(a) is 4 points, 4 lines and a rectangle. The lines that form the rectangle are
+associated with physical entities BC batch 1 (e.g., periodic boundaries), BC batch 2 (e.g., solid
+wall) and BC batch 3 (e.g., another solid wall). Finally, the meshing parameters that specify the
+way to ``seed'' the domain with nodes are defined. That can be how many nodes should be seeded along
+the lines, etc. The geometry entities, physical entities, and meshing parameters are then fed into
+the meshing algorithm to generate a finite element mesh like that in Fig. \ref{fig-mesh1}(b).
+\paraspace
+
+The meshing algorithm itself is a totally different science. We simply rely on ready-for-use
+toolboxes to generate the finite element mesh, rather than implement the mesh algorithm ourselves.
+\verb+Gmsh+ seems to be a good option for doing this, as it gives flexible automation with Gmsh
+scripts. However, you still need to learn how to draw points and lines, associated them with physical
+entities, as well as control the meshing schemes with meshing parameters. For \verb+Gmsh+, those are
+specified in the \verb+.geo+ files, which are inputted into \verb+Gmsh+ to obtain the mesh
+(\verb+.msh+) files.
+\paraspace
+
+Once we have the FE mesh file, we feed it into the code \verb+pgrid.f90+ which is a part of GEMS
+code and functions as a pre-processor to convert a FE mesh to the mesh file GEMS recognizes
+(referred to as the GEMS mesh). In \verb+pgrid.f90+, the first task is to read in the FE mesh
+generated by other software (e.g. \verb+Gmsh+). Unfortunately, the software usually writes a mesh
+file in complicated ways, and different software writes the mesh file differently. \verb+pgrid.f90+
+has different interfaces for reading FE mesh files with different format, but mostly of them are
+obsolete. For example, the \verb+GAMBIT+ format was used in the past which is generated by
+\verb+FLUENT+. But since \verb+FLUENT+ was acquired by \verb+ANSYS+, we have lost the way to
+generate \verb+GAMBIT+ files.  As of today, two formats are actively used: (1) Cartesian mesh
+format, which is generated without using any software, and (2) SU2 format, which is generated by
+\verb+Gmsh+ (choose \verb+SU2+ format when exporting).  \paraspace
+
+The Cartesian mesh format is a simple format and it can be written in the following way (in
+FORTRAN, and use a 2D mesh as example):
+
+\begin{lstlisting}{language=[90]Fortran}
+   do j=1, Nj
+      do i=1, Ni
+         write xn(i)
+      end do
+   end do
+
+   do j=1, Nj
+      do i=1, Ni
+         write yn(j)
+      end do
+   end do
+\end{lstlisting}
+
+Here \verb+Ni+ and \verb+Nj+ are the number of {\bf nodes} (not cells) along each dimension. \verb+xn(:)+ and
+\verb+yn(:)+ are 1D arrays that contains the nodal coordinates along X and Y dimension,
+respectively. Besides this, the boundary condition information must be written in a separate file in
+the following way:
+
+\begin{lstlisting}{language=[90]Fortran}
+   write ndim*2
+   write 1,Ni,1,1,0,0,label1
+   write 1,Ni,Nj,Nj,0,0,label2
+   write 1,1,1,Nj,0,0,label3
+   write Ni,Ni,1,Nj,0,0,label4
+\end{lstlisting}
+
+where \verb+ndim+ is the number of dimensions, and \verb+label1+ - \verb+label4+ are the labels for
+BC's on the four edges of the rectangle. Note that the edge is specified by the starting and ending
+indices of the 1D arrays, and the zeros indicates that the third dimension is turned off in the 2D
+mesh. GEMS will then convert the Cartesian mesh into an essentially an unstructured mesh (in the
+code \verb+pgrid.f90+ by creating nodal coordinates and cell-node connectivity, etc.). This is because
+GEMS treats all the meshes as unstructured mesh to achieve its generality.
+\paraspace
+
+After the FE mesh is read in, the data type \verb+face+ will be used to generate the finite volume
+mesh, as described in section \ref{c1s2}. After that, the mesh is partitioned to enable parallel
+computing. We note that this partitioning action includes both domain decomposition (described in
+section \ref{c1s3}) and creating the ghost cells for the periodic BC's if there is any (described in
+section \ref{c1s4}). These are all done in \verb+pgrid.f90+ and separate files will be generated for
+each partition. The GEMS mesh files are named as \verb+meshname.XX+ where \verb+XX+ stands for the
+indices of the partition (starting from 1, and then 2, 3, etc.).
+\paraspace
+
+A list of parameters that needs to be given in \verb+pgrid.f90+ are given in Table \ref{tb-mesh1}.
+
+\begin{table}[H]
+   \small
+   \centering
+   \caption{List of key input parameters in pgrid.f90.}
+   \label{tb-mesh1}
+   \renewcommand{\arraystretch}{1.2}
+   \begin{tabularx}{\textwidth}{lX}
+      \mytoprule
+      \bf variable name & \bf meaning \\ \mymiddlerule
+      \verb+gridfile+ & the address of FE mesh files \\
+      \verb+iftm+ & the format of FE mesh file (structured, SU2, etc.)\\
+      \verb+ndim+ & dimension of the mesh\\
+      \verb+nparts+ & number of desired partitions\\
+      \verb+im+ & which partitioning algorithm\\
+      \verb+npartsX, npartsY, npartsZ+ & number of partitions along each dimension, if \verb+im=7+ is selected\\
+      \verb+boundfile+ & address of boundary condition file, if \verb+iftm=1+ is selected\\
+      \verb+id+ & specify which type of periodic BC is desired (0 means no periodic BC)\\
+      \verb+npbc+ & number of periodic BC labels (later will merge into one label for all periodic
+      BC)\\
+      \verb+lab_period,iax+ & pair of periodic BC label and along which direction the periodicity is\\
+      \verb+ngeom+ & which mesh geometry to specify in TECPLOT file (1=triangle, etc.)\\
+      \mybottomrule
+   \end{tabularx}
+\end{table}
+
+Couple of notes, (1) the ideal partitioning algorithm should the \verb+METIS+ algorithm which
+distributes the number of cells evenly among partitions. However, the FORTRAN interface of
+\verb+METIS+ has been lost and a poor man's partitioning algorithm \verb+im = 7+ is commonly used
+now. The poor man's partitioning algorithm divides the domain evenly according to the length along
+the X, Y and Z dimensions. Uneven distribution of cells will be caused if, for example, a
+non-uniform mesh size is applied. (2) When specifying multiple periodic BC's, a loop will be used to
+scan all the periodic BC's labels. Each label corresponds to a type of periodicity (cylindrical, 2D
+planar and 3D planar), and with each type of periodicity, the direction along which the periodicity
+occurs must also be specified. (3) a tecplot file will be generated for the GEMS mesh after the main
+programs of \verb+pgrid.f90+ are finished. In tecplot, the mesh geometry needs to be explicitly
+specified (by \verb+ngeom+), whether it be triangle, quadrilateral, tetrahedron, or brick. If the
+mesh is of other geometries, specify \verb+ngeom+ as 5 which basically treats all 2D meshes as
+quadrilaterals and all 3D meshes as bricks. This sometimes causes messy visualizations but this is
+the best that tecplot can do.
+\paraspace
+
+Now let's move on to the tasks after the GEMS mesh is generated (Fig. \ref{fig-mesh7}). The mesh
+files and the input data are fed into the GEMS code, after which the GEMS ouptut, i.e., the results
+of the CFD simulation can be obtained. The input data is specified in the file \verb+gems.inp+. This
+is a manually written file in which a group of FORTRAN namelists are specified. These namelists
+record the material properties, numerical parameters, etc. used for the GEMS computation. The GEMS
+code consists of about 20 \verb+f90+ files with the suffix \verb+gems_+. These files are different
+modules of GEMS and form the main programs of the CFD simulation. The output files are TECPLOT files
+with the name \verb+gems2plot_XX.plt.YY.dat+ where \verb+XX+ stands for the time strand and
+\verb+YY+ stands for the id of the partition. Note that each partition outputs independently, and
+therefore, if there are 4 partitions, 4 output files will be written (\verb+YY+ from 0 to 3) for one
+time strand \verb+XX+. The data become difficult to manage when a large number of partition is used
+(e.g., 80). To deal with this, a python script is used to concatenate the 80 files for each time
+strand. Also, the tecplot script \verb+preplot+ is used convert all the \verb+.dat+ ASCII files into
+binary files to reduce the file size as well as the time it takes to load data into tecplot.
 
 \chapter{Fundamentals of Fluid Mechanics}
 
-\section{Governing Equations}
+For a topic having such a variety of different facets like fluid mechanics, even the fundamentals
+are different in different contexts. Here we will introduce the fundamentals from the
+``computational'' perspective. The essence is a set of partial differential equations that we are
+going to numerically solving. We shall properly define these PDE's and prepare them in a format ready
+for numerical computation. 
+\paraspace
 
-\section{Thermodynamic Relations}
+\section{Viewpoints of Describing Fluid Mechanics}
+
+The PDE's we are going to solve are the so-called conservation laws. That is, some {\bf conservative
+variable} such as mass, momentum and energy should be conserved. Let's take the mass
+conservation for example. Here we focus our attention on a {\bf material region}. That is a
+selection of particles (atoms, molecules) of material, and we track the same particles over time.
+The conservation of mass states that the mass of the tracked material region shall not be changed
+over time, as shown in \ref{fig-fund1}.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[height=2in]{Fund1.png}
+   \caption{Material region and control volume. Black-dashed and red-circled region are the
+   two material region at two time moments. The gray area overlaps with the material region at $t_1$
+   and represents the control volume which is fixed regardless of time.}
+   \label{fig-fund1}
+\end{figure}
+
+Let's express the mass conservation in the format of {\bf integral equation}:
+
+\begin{align}\label{eq-massMR}
+   \frac{\partial}{\partial t}\int_{\Omega_M(t)}\rho d\Omega = 0
+\end{align}
+
+Here $\Omega_M$ stands the volume of the material region which can be changing with time $t$. $\rho$
+is the density and a function of time and space, and $d\Omega$ is a infinitesimal volume in 3D.
+Next, we want to re-write Eqn. \ref{eq-massMR} in the context of {\bf control volume}, instead of
+the material region. A control volume is a fixed volume of space and
+do not change with time. Mass can flow into or out of the control volume. Typically, we only care a
+specific type of control volume. That is the cells we introduced in chapter \ref{c1}. We will be
+dealing with tons of control volumes as each cell represents a fixed volume of space and is viewed
+as one control volume. The difference of control volume and material region should be emphasized.
+The material region is the volume of space that encompasses a certain set of particles being
+tracked, so the material region changes with time depending on the velocities of the particles. The
+control volume is a fixed volume of space, and particles can freely flow into or out of the control
+volume. Technically, the control volume can also be set to be moving, but let's just set it to be
+stationary all the time. These two concepts represent two perspectives of describing the mechanics
+of particles. The material region is called the {\bf Lagrangian point of view} and the control
+volume is referred to as the {\bf Eulerian point of view}.
+\paraspace
+
+How to bridge the two point of views of describing mechanics? Let's find a time moment where the
+material region and control volume are overlaid on one another, as shown in Fig. \ref{fig-fund1}.
+If we take the Eulerian perspective, the mass within the {\bf control volume} should be changing
+and the rate should be equal to the net mass rate flowing into/out of the control volume. Therefore,
+writing in the format of integral equation, we have:
+
+\begin{align}\label{eq-massCV}
+   \int_{\Omega}\frac{\partial \rho}{\partial t}d\Omega + \int_{\partial \Omega}\rho (V\cdot n)
+   d\sigma = 0
+\end{align}
+
+Here $\Omega$ is the control volume (we dropped the subscript $M$ to differentiate control volume
+and material region). Note that we can move the partial derivative inside the integral since
+$\Omega$ does not change with time. $\rho$ is still density as a function of time and space. $V$ is
+the velocity (a 3D vector) and $n$ is the normal unit vector (also a 3D vector) on the 2D boundary
+of the 3D control volume (written as $\partial \Omega$. The dot product $V\cdot n$ represents the
+normal component of velocity on the boundary $\partial \Omega$. Finally, $d\sigma$ stands for the
+infinitesimal surface area on $\partial \Omega$. One note regarding notation, we do not use the
+arrow or bold font to differentiate vector, tensor and scalar. This clarity of the notation is
+sacrificed to trade for conciseness in our equations.  \paraspace
+
+The two equations Eqn. \ref{eq-massMR} and \ref{eq-massCV} are equivalent to each other. They
+describe the same conservation law of mass but with two point of views. Eqn.
+\ref{eq-massMR} is the Lagrangian view and Eqn. \ref{eq-massCV} is the Eulerian view. We will only use
+the Eulerian point of view of describe fluid mechanics. The equivalence of the two point of views
+can be proved mathematically based on the Leibnitz's theorem \cite{panton2013incompressible}. The
+Leibnitz's theorem states that for any quantity $Q$:
+
+\begin{align}\label{eq-Leib}
+   \frac{\partial}{\partial t}\int_{\Omega_M(t)}Q d\Omega = \int_\Omega \frac{\partial Q}{\partial
+   t}d\Omega + \int_{\partial\Omega}Q (V\cdot n)d\sigma
+\end{align}
+
+In the context of fluid mechanics, $Q$ can be mass, momentum and energy.
+\paraspace
+
+\section{Governing equations}
+
+For now on, we will be focusing on using control volume to describe the conservation equations
+(Eulerian viewpoint). We have already introduced the mass conservation equation as Eqn.
+\ref{eq-massCV}. Next, momentum conservation. In 3D, the momentum along the three dimensions should
+all be ``conserved'' which gives 3 momentum conservation equations. Unlike the mass conservation,
+the momentum of the control volume can be changed by forces. This is Newton's second law. We write
+the integral form of momentum conservation equation as:
+
+
+\begin{align}\label{eq-mom}
+   \int_\Omega \frac{\partial(\rho V_i)}{\partial t}d\Omega + \int_{\partial\Omega}(\rho
+   V_i)(V\cdot n)d\sigma = \int_\Omega \rho f_i d\Omega + \int_{\partial\Omega}R_i d\sigma
+\end{align}
+
+On the left-hand-side (LHS), the first term is the temporal rate of the momentum along the $i$ dimension
+($i = x, y, z$), integrated over the control volume.  The second term is the momentum flowing into
+or out of the control volume. Note that the entire left-hand-side can be interpreted in the
+Lagrangian viewpoint as the temporal rate of momentum of the {\bf material region}. Use Leibnitz's
+theorem, Eqn. \ref{eq-Leib}. The right-hand-side stands for the force. The first term on the
+right-hand-side (RHS) is the {\bf body force} (the component along the $i$ direction), while the second
+term is the {\bf surface force}. We note that the body force has the unit of $\textrm{N/kg}$ or the
+unit of acceleration $\mathrm{m^2/s}$. The surface force has the unit of $\mathrm{N/m^2}$. The most
+common body force is the gravitational force $g = [0, -9.81, 0]^T$
+\paraspace
+
+The surface force needs our special attention. To describe a surface force, we need to use {\bf
+stress tensor}. Surface force can be alternatively referred to as the surface stress. Stress tensor
+is a matrix $T$, and the surface force is given by $R = Tn$. This is a matrix multiplication where
+$n$ and $R$ are column vectors. We will assume throughout this document a vector is a column vector,
+unless otherwise specified. This can also be written as $R = (n\cdot T)^T$. I will avoid using
+matrix multiplications and instead use dot products (inner product) or outer product in this
+document. Note the dot (inner) product of matrices $A$ and $B$ are defined as $A \cdot B = A^T B$.
+The multiplication of two matrices can be expressed as $AB = A^T \cdot B$. The outer product of two
+matrices are defined as: $A\mathop{\otimes}B = AB^T$. \paraspace
+
+The stress tensor has two components, pressure and viscous stress, expressed as:
+
+\begin{align*}
+   T = -p I + \tau
+\end{align*}
+
+where $p$ is the {\bf thermodynamic pressure}, $I$ is a 3 by 3 unit matrix (in 3D), and $\tau$ is the
+viscous stress tensor which is a matrix as a function of the gradient of velocities. This
+relationship is referred to as {\bf constitutive relations} which will be discussed later.
+\paraspace
+
+Next, let's consider the conservation of energy. Again, writing as integral equation:
+
+\begin{align}\label{eq-eng}
+   \int_\Omega\frac{\partial(\rho e_{tot})}{\partial t} d\Omega + \int_{\partial\Omega}(\rho
+   e_{tot}) (V \cdot n) d\sigma = \int_\Omega \rho f \cdot V d\Omega + \int_{\partial\Omega} (n\cdot
+   T)^T \cdot V d\sigma - \int_{\partial\Omega}(n \cdot q) d\sigma
+\end{align}
+
+Here $e_{tot}$ is the {\bf total energy}, $e_{tot} = e + \tfrac{1}{2}V^2$, where $e$ is the
+{\bf specific} internal energy, or energy per unit mass. The two terms combined on the LHS stands
+for the temporal rate of total energy of the mass region, again, Leibnitz's theorem (Eqn
+.\ref{eq-Leib}). The first two terms on the RHS stand for the {\bf work} done by the body force and
+surface force per unit time, or the {\bf power}. The last term of the RHS stands for the heat
+transfer, or heat flux flowing into or out of the control volume, where $q$ is the heat flux vector
+(with the unit of $W/m^2$. The heat flux is a function of temperature gradient. Such a relationship
+is also part of the constitutive relations. The long equation (Eqn. \ref{eq-eng}) is nothing other
+than the {\bf first law of thermodynamics}, written as ``$dU = \delta Q - \delta W$'' in typical
+thermodynamic textbooks.
+\paraspace
+
+Eqn. \ref{eq-massCV}, \ref{eq-mom}, and \ref{eq-eng} constitutes the {\bf governing equations} of
+fluid mechanics, written in the form of integral equations. This set of equations is the basic set
+while more governing equations need to be included when considering additional physics, e.g.,
+conservation of chemical species. That being said, we limit our discussion to this set of basic
+equations in this chapter.
+\paraspace
+
+\section{Constitutive Relations}
+
+There are essentially five equations from Eqn. \ref{eq-massCV}, \ref{eq-mom}, and \ref{eq-eng}.
+Therefore, we need to pick five independent variables, referred to as the {\bf primitive variables},
+and express all the variables in Eqn.  \ref{eq-massCV}, \ref{eq-mom}, and \ref{eq-eng} as functions
+of the independent. Such relations are generally referred to as the {\bf constitutive relations}. We
+will be exclusively using $(p, V, T)$ as the primitive variables in this document. Note that the
+choice of primitive variables can be arbitrary, but different choice may lead to entirely different
+constitutive relations. The choice of $(p, V, T)$ is because that it is a convention to express
+other properties of a material as functions of $p, V, T$ in, for example, material handbooks and
+databases.
+\paraspace
+
+The {\bf thermodynamic relations} include $e = e(p, T)$ (internal energy), $\rho = \rho(p, T)$, and
+sometimes the {\bf enthalpy}, $h = e + p/\rho$. The {\bf total enthalpy} can be expressed as
+$h_{tot} = h + \tfrac{1}{2}V^2$. These relations are for the ``state functions'' and are often
+referred to as the {\bf equation of state} (EOS).
+\paraspace
+
+The {\bf kinetic relations} describe the ``transfer'' of some quantity. For example, the transfer of
+heat is described by the {\bf Fourier's law}:
+
+\begin{align*}
+   q = -k\nabla T
+\end{align*}
+
+where $k$ is the thermal conductivity. Note that $k$ is referred to as (one of) the {\bf transport
+properties} and can be a function of primitive variables, $k = k(p,T)$. Also, Fourier's law only
+governs the {\bf conduction} of heat transfer. Convection and radiation can be introduced by
+including additional kinetic relations. But this is beyond the scope of the current discussion. The
+transfer of momentum is described by the {\bf Newton's viscosity law}:
+
+\begin{align*}
+   \tau = \left(-\frac{2}{3}\mu \nabla \cdot V\right) I + 2 \mu S
+\end{align*}
+
+where $\mu$ is the viscosity and can be a function of primitive variables, $\mu = \mu(p, T)$.
+$\nabla \cdot V$ is the divergence of velocity. Note that the nabla operator can be also treated as
+a column vector: $\nabla = [\partial/\partial x, \partial/\partial y, \partial/\partial z]^T$.
+Again, $I$ is a 3 by 3 unit matrix, and $S$ is the {\bf strain rate tensor}:
+
+\begin{align*}
+   S = \frac{1}{2}
+   \begin{bmatrix}
+      2\frac{\partial u}{\partial x} & \frac{\partial v}{\partial x}+\frac{\partial u}{\partial y} &
+      \frac{\partial w}{\partial x} + \frac{\partial u}{\partial z} \\
+      \frac{\partial u}{\partial y} + \frac{\partial v}{\partial x} & 2\frac{\partial v}{\partial y} &
+      \frac{\partial w}{\partial y} + \frac{\partial v}{\partial z} \\
+      \frac{\partial u}{\partial z} + \frac{\partial x}{\partial w} & \frac{\partial w}{\partial y}
+      + \frac{\partial v}{\partial z} &   2\frac{\partial w}{\partial z} \\
+   \end{bmatrix}
+\end{align*}
+
+where $(u,v,w)$ are the three components of the velocity vector $V$. One final note regarding the
+thermodynamic and kinetic relations. The term ``thermodynamic'' and ``kinetic'' are from material
+science. Basically, ``thermodynamic'' is associated with the states of equilibrium while
+``kinetic'' is associated with the states in between equilibrium, and therefore, with the gradient
+of thermodynamic properties. This is a hand-wavy distinction of these two categories of constitutive
+relations, based on concepts in material science.
+\paraspace
+
+Up to now, we can express all the quantities in Eqn. \ref{eq-massCV}, \ref{eq-mom}, and \ref{eq-eng}
+as functions of the primitive variables $(p,V,T)$. The body force $f$ may be the exception, but for
+now we can simply view it as a constant as for the gravitational force.
+\paraspace
+
+\section{Differential Governing Equations}
+
+In this section we brief discuss the differential form of governing equations. Although this form is
+not our focus in numerical implementations, it can be convenient to use this form in analysis. To
+derive the differential form, we need to use Gauss's theorem
+
+\begin{subequations}\label{eq-Gaussthm}
+   \begin{align}
+      &\int_\Omega \nabla \phi \; d\Omega = \int_{\partial\Omega} n\phi \; d\sigma, \quad \phi \textrm{
+         is scalar} \\
+      &\int_\Omega \nabla \cdot v \; d\Omega = \int_{\partial\Omega} n \cdot v \; d\sigma, \quad v \textrm{
+         is vector} \\
+      &\int_\Omega \nabla \cdot T \; d\Omega = \int_{\partial\Omega} n \cdot T \; d\sigma, \quad T \textrm{
+         is matrix (tensor)}
+   \end{align}
+\end{subequations}
+
+Again, the nabla operator is treated as a column vector $\nabla = [\partial/\partial x,
+\partial/\partial y, \partial/\partial z]^T$, and note the LHS and RHS of Eqn. \ref{eq-Gaussthm}c
+are both row vectors. Eqn. \ref{eq-Gaussthm}c can be transposed to give the column vector form.
+\paraspace
+
+Now, we can use Eqn. \ref{eq-Gaussthm} to transform the surface integrals to volume integrals in
+Eqn. \ref{eq-massCV}, \ref{eq-mom}, and \ref{eq-eng}. Then, we can drop the integral and keep the
+intergrand to obtain the differential equations. For example, the mass conservation can be written
+as:
+
+\begin{align}\label{eq-massDf}
+   \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho V) = 0
+\end{align}
+
+by applying Eqn. \ref{eq-Gaussthm}b and let $v = \rho V$. To derive momentum conservation equation,
+we need to group the terms inside the surface integral to form tensors. First, we write Eqn.
+\ref{eq-mom} as:
+
+\begin{align}\label{eq-momTs}
+   \int_\Omega \frac{\partial(\rho V)}{\partial t}d\Omega + \int_{\partial\Omega} \left(n \cdot (\rho
+   V \mathop{\otimes} V)\right)^T d\sigma = \int_\Omega \rho f d\Omega + \int_{\partial\Omega} (n
+   \cdot T)^T d\sigma
+\end{align}
+
+where $T = -pI + \tau$, and note that $\rho V \mathop{\otimes} V$ is a matrix. Then, apply Eqn.
+\ref{eq-Gaussthm}c to the surface integrals to get:
+
+\begin{align}\label{eq-momDf}
+   \frac{\partial (\rho V)}{\partial t} + \left(\nabla \cdot (\rho V \mathop{\otimes} V)\right)^T = \rho f
+   + (-\nabla p) + (\nabla \cdot \tau)^T
+\end{align}
+
+Note that we applied the transpose operation to keep very vector as a column vector. Finally, to
+derive the energy conservation equation, we observe that the work done by the surface force can be
+rewritten as $(n \cdot T)^T \cdot V = n \cdot (T^T \cdot V)$. That is, the dot product of $n$ and
+some matrix. Therefore, we can apply Eqn. \ref{eq-Gaussthm}c and obtain:
+
+\begin{align}\label{eq-engDf}
+   \frac{\partial (\rho e_{tot})}{\partial t} + \nabla \cdot (\rho e_{tot} V) = \rho f \cdot V +
+   (-\nabla \cdot (pV)) + \nabla \cdot (\tau^T \cdot V) - \nabla \cdot q
+\end{align}
+
+Now we have the set of differential equations, Eqn. \ref{eq-massDf}, \ref{eq-momDf}, and
+\ref{eq-engDf}, that governs the conservation of mass, momentum and
+energy.
+\paraspace
 
 \section{Matrix Representation}
+
+In this section, we will prepare the set of governing equations in integral form, Eqn.
+\ref{eq-massCV}, \ref{eq-momTs}, and \ref{eq-eng} in a format that is more suitable for numerical
+computation. Let's first seperate the pressure and the viscous stress from the surface stress tensor
+$T$, and rewrite the equations as follows:
+
+\begin{subequations}\label{eq-matgov1}
+   \begin{align}
+      \int_{\Omega}\frac{\partial \rho}{\partial t}d\Omega + \int_{\partial \Omega} n \cdot (\rho V)
+      d\sigma &= 0 \\
+      \int_\Omega \frac{\partial(\rho V)}{\partial t}d\Omega + \int_{\partial\Omega} \left(n \cdot
+      (\rho V \mathop{\otimes} V)\right)^T d\sigma & = \int_{\partial\Omega} (n \cdot (-p I))^T d\sigma +
+      \int_{\partial\Omega} (n \cdot \tau)^T + \int_\Omega \rho f d\Omega \\
+      \begin{split}
+         \int_\Omega\frac{\partial(\rho e_{tot})}{\partial t} d\Omega + \int_{\partial\Omega} n \cdot
+         (\rho e_{tot} V) d\sigma & = \int_{\partial\Omega} n\cdot (-p V) d\sigma + \int_{\partial\Omega}
+         n \cdot (\tau^T \cdot V) d\sigma - \int_{\partial\Omega}(n \cdot q) d\sigma \\
+         & + \int_\Omega \rho f
+         \cdot V d\Omega 
+      \end{split}
+   \end{align}
+\end{subequations}
+
+Notice that for the energy equation Eqn. \ref{eq-eng}, we used:
+
+\begin{align*}
+   (n \cdot T)^T = n \cdot (T^T \cdot V) = n \cdot ((-p I + \tau^T) \cdot V) = n \cdot (-pV) + n
+   \cdot (\tau^T \cdot V)
+\end{align*}
+
+We observe a similarity in Eqns \ref{eq-matgov1} that all the surface integrals has the form of the
+norm vector $n$, dot product with some vector or tensor. Also, we want to distinguish the terms
+related to gradients (e.g., $\tau$ and $q$) from those which does not. For that, we can move the
+pressure-related terms from the RHS to the LHS to give:
+
+\begin{subequations}\label{eq-matgov2}
+   \begin{align}
+      \int_{\Omega}\frac{\partial \rho}{\partial t}d\Omega + \int_{\partial \Omega} n \cdot (\rho V)
+      d\sigma &= 0 \\ \int_\Omega \frac{\partial(\rho V)}{\partial t}d\Omega + \int_{\partial\Omega}
+      \left(n \cdot (\rho V \mathop{\otimes} V + pI)\right)^T d\sigma & = \int_{\partial\Omega} (n
+      \cdot \tau)^T + \int_\Omega \rho f d\Omega \\ \int_\Omega\frac{\partial(\rho e_{tot})}{\partial
+      t} d\Omega + \int_{\partial\Omega} n \cdot (\rho h_{tot} V) d\sigma & = \int_{\partial\Omega} n
+      \cdot (\tau^T \cdot V) d\sigma - \int_{\partial\Omega}(n \cdot q) d\sigma  + \int_\Omega \rho f
+      \cdot V d\Omega 
+   \end{align}
+\end{subequations}
+
+Note that for Eqn. \ref{eq-matgov2}c, we used $\rho e_{tot} + p = \rho h_{tot}$. Now, with the form
+of Eqn. \ref{eq-matgov2}, we can group terms together to give the {\bf matrix representation} of the
+governing equations:
+
+\begin{align}\label{eq-matgov3}
+   \int_{\Omega}\frac{\partial Q_c}{\partial t}d\Omega +  \int_{\partial \Omega} (n \cdot F_c)^T
+   d\sigma = \int_{\partial \Omega} (n \cdot F_v)^T d\sigma + \int_{\Omega} S d\Omega
+\end{align}
+
+where the terms in Eqn. \ref{eq-matgov3} are as follows:
+
+\begin{align*}
+   &Q_c = \begin{bmatrix} 
+      \rho \\
+      \rho V \\
+      \rho e_{tot}
+   \end{bmatrix}_{5\times1} \quad 
+   F_c = \begin{bmatrix} \rho V & \rho V\mathop{\otimes}V + pI & \rho h_{tot} V
+      \end{bmatrix}_{3\times5} \\
+      &F_v = \begin{bmatrix}0 & \tau & \tau^T \cdot V -
+   q\end{bmatrix}_{3\times5} \quad S = \begin{bmatrix}
+      0 \\
+      \rho f \\
+      \rho f \cdot V
+      \end{bmatrix}_{5\times1}
+\end{align*}
+
+Again, all the vectors are expressed as column vectors. Eqn. \ref{eq-matgov3} can also be succinctly
+written as:
+
+\begin{align}\label{eq-matgov}
+   \int_{\Omega}\frac{\partial Q_c}{\partial t}d\Omega +  \int_{\partial \Omega} (n \cdot (F_c -
+   F_v))^T d\sigma = \int_{\Omega} S d\Omega
+\end{align}
+
+The corresponding differential form of the matrix representation can be derived by simply applying
+Eqn. \ref{eq-Gaussthm}c:
+
+\begin{align}\label{eq-matgovDf}
+   \frac{\partial Q_c}{\partial t} + (\nabla \cdot (F_c - F_v))^T = S
+\end{align}
+
+Eqn. \ref{eq-matgovDf} is the one used in \cite{li2006unified}, but the integral form will be the
+foundation for numerical computation. \paraspace 
+
+Now let's briefly discuss the importance of such matrix representation Eqn. \ref{eq-matgov}. Here,
+$Q_c$ is referred to as the {\bf conservative variables}, $F_c$ the {\bf convective flux}, $F_v$ the
+{\bf viscous flux} and $S$ the source term. It is a succinct representation of a general form of
+conservation law. It states that the temporal rate of a vector variable $Qc$  is due to the fluxes
+due to translation of such variable ($F_c$), the gradient of such variable ($F_v$) as well as the
+external source addition/destruction of such variable ($S$). With this form, we can conveniently add
+more conservative variables to the vector $Q_c$ and modify accordingly the convective flux, viscous
+flux and the source term. \paraspace
+
+The control volume $\Omega$ in Eqn. \ref{eq-matgov} will be millions of cells in the mesh. For each
+cell, we write down Eqn. \ref{eq-matgov}, with 5 unknowns in $Q_c$. Then, we will have millions of
+unknowns and millions of equations for the entire calculation domain. Notice that the boundary of
+the cell $\partial \Omega$ will be composed of faces. This foreshadows the surface integrals on the
+boundary of a cell will be approximated by summations over the faces of the cell. \paraspace
+
+It is more convenient to deal with the primitive variables $Q_p = [p, V, T]^T$, rather than the
+conservative variables $Q_c$. Therefore, we can express Eqn. \ref{eq-matgov} as:
+
+\begin{align*}
+   &\int_{\Omega}\Gamma \frac{\partial Q_p}{\partial t}d\Omega + \int_{\partial \Omega} (n \cdot
+   (F_c(Q_p) - F_v(Q_p)))^T = \int_{\Omega} S(Q_p) d\Omega, \; \textrm{where }\Gamma = \frac{\partial Q_c}{\partial Q_p}
+\end{align*}
+
+That is, expressing every term as functions of the primitive variable $Q_p$. Here, $\Gamma$ is referred
+to as the {\bf conservative jacobian} which connects primitive variable and conservative variable.
+\paraspace
+
 
 \section{Preconditioning: Motivation}
 

@@ -5,24 +5,26 @@
 \BOOKMARK [1][-]{section.1.4}{Periodic Boundary Condition}{chapter.1}% 5
 \BOOKMARK [1][-]{section.1.5}{Practical Guide}{chapter.1}% 6
 \BOOKMARK [0][-]{chapter.2}{Fundamentals of Fluid Mechanics}{}% 7
-\BOOKMARK [1][-]{section.2.1}{Governing Equations}{chapter.2}% 8
-\BOOKMARK [1][-]{section.2.2}{Thermodynamic Relations}{chapter.2}% 9
-\BOOKMARK [1][-]{section.2.3}{Matrix Representation}{chapter.2}% 10
-\BOOKMARK [1][-]{section.2.4}{Preconditioning: Motivation}{chapter.2}% 11
-\BOOKMARK [0][-]{chapter.3}{Algorithm}{}% 12
-\BOOKMARK [1][-]{section.3.1}{Spatial and Temporal Discretization}{chapter.3}% 13
-\BOOKMARK [1][-]{section.3.2}{Preconditioning: Implementation}{chapter.3}% 14
-\BOOKMARK [1][-]{section.3.3}{Gradient Computation}{chapter.3}% 15
-\BOOKMARK [1][-]{section.3.4}{Construction of Flux Function}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.5}{Solving Linear Systems}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.6}{Boundary Conditions}{chapter.3}% 18
-\BOOKMARK [0][-]{chapter.4}{Benchmark Tests}{}% 19
-\BOOKMARK [1][-]{section.4.1}{One-Dimensional Euler Equation}{chapter.4}% 20
-\BOOKMARK [1][-]{section.4.2}{Propagation of Vortex}{chapter.4}% 21
-\BOOKMARK [1][-]{section.4.3}{Flow Around a Cylinder}{chapter.4}% 22
-\BOOKMARK [1][-]{section.4.4}{Decay of Isotropic Turbulence*}{chapter.4}% 23
-\BOOKMARK [0][-]{chapter.5}{Awkward Level-Set GEMS}{}% 24
-\BOOKMARK [1][-]{section.5.1}{The Level-Set Function}{chapter.5}% 25
-\BOOKMARK [1][-]{section.5.2}{Hamilton-Jacobi Equations}{chapter.5}% 26
-\BOOKMARK [1][-]{section.5.3}{Ghost Fluid Method}{chapter.5}% 27
-\BOOKMARK [1][-]{section.5.4}{Lagrangian Particle Tracking*}{chapter.5}% 28
+\BOOKMARK [1][-]{section.2.1}{Viewpoints of Describing Fluid Mechanics}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.2}{Governing equations}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.3}{Constitutive Relations}{chapter.2}% 10
+\BOOKMARK [1][-]{section.2.4}{Differential Governing Equations}{chapter.2}% 11
+\BOOKMARK [1][-]{section.2.5}{Matrix Representation}{chapter.2}% 12
+\BOOKMARK [1][-]{section.2.6}{Preconditioning: Motivation}{chapter.2}% 13
+\BOOKMARK [0][-]{chapter.3}{Algorithm}{}% 14
+\BOOKMARK [1][-]{section.3.1}{Spatial and Temporal Discretization}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.2}{Preconditioning: Implementation}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.3}{Gradient Computation}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.4}{Construction of Flux Function}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.5}{Solving Linear Systems}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.6}{Boundary Conditions}{chapter.3}% 20
+\BOOKMARK [0][-]{chapter.4}{Benchmark Tests}{}% 21
+\BOOKMARK [1][-]{section.4.1}{One-Dimensional Euler Equation}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.2}{Propagation of Vortex}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.3}{Flow Around a Cylinder}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.4}{Decay of Isotropic Turbulence*}{chapter.4}% 25
+\BOOKMARK [0][-]{chapter.5}{Awkward Level-Set GEMS}{}% 26
+\BOOKMARK [1][-]{section.5.1}{The Level-Set Function}{chapter.5}% 27
+\BOOKMARK [1][-]{section.5.2}{Hamilton-Jacobi Equations}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.3}{Ghost Fluid Method}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.4}{Lagrangian Particle Tracking*}{chapter.5}% 30
