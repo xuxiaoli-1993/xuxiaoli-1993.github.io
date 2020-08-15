@@ -1,30 +1,34 @@
 \contentsline {chapter}{\numberline {1}Mesh}{4}{chapter.1}
 \contentsline {section}{\numberline {1.1}Definition of Basic Mesh}{4}{section.1.1}
-\contentsline {section}{\numberline {1.2}Finite Volume Mesh}{6}{section.1.2}
-\contentsline {section}{\numberline {1.3}Partitioning of Mesh}{8}{section.1.3}
-\contentsline {section}{\numberline {1.4}Periodic Boundary Condition}{12}{section.1.4}
-\contentsline {section}{\numberline {1.5}Practical Guide}{16}{section.1.5}
-\contentsline {chapter}{\numberline {2}Fundamentals of Fluid Mechanics}{20}{chapter.2}
-\contentsline {section}{\numberline {2.1}Viewpoints of Describing Fluid Mechanics}{20}{section.2.1}
-\contentsline {section}{\numberline {2.2}Governing equations}{21}{section.2.2}
-\contentsline {section}{\numberline {2.3}Constitutive Relations}{22}{section.2.3}
-\contentsline {section}{\numberline {2.4}Differential Governing Equations}{23}{section.2.4}
-\contentsline {section}{\numberline {2.5}Matrix Representation}{24}{section.2.5}
-\contentsline {section}{\numberline {2.6}Preconditioning: Motivation}{26}{section.2.6}
-\contentsline {chapter}{\numberline {3}Algorithm}{27}{chapter.3}
-\contentsline {section}{\numberline {3.1}Spatial and Temporal Discretization}{27}{section.3.1}
-\contentsline {section}{\numberline {3.2}Preconditioning: Implementation}{27}{section.3.2}
-\contentsline {section}{\numberline {3.3}Gradient Computation}{27}{section.3.3}
-\contentsline {section}{\numberline {3.4}Construction of Flux Function}{27}{section.3.4}
-\contentsline {section}{\numberline {3.5}Solving Linear Systems}{27}{section.3.5}
-\contentsline {section}{\numberline {3.6}Boundary Conditions}{27}{section.3.6}
-\contentsline {chapter}{\numberline {4}Benchmark Tests}{28}{chapter.4}
-\contentsline {section}{\numberline {4.1}One-Dimensional Euler Equation}{28}{section.4.1}
-\contentsline {section}{\numberline {4.2}Propagation of Vortex}{28}{section.4.2}
-\contentsline {section}{\numberline {4.3}Flow Around a Cylinder}{28}{section.4.3}
-\contentsline {section}{\numberline {4.4}Decay of Isotropic Turbulence*}{28}{section.4.4}
-\contentsline {chapter}{\numberline {5}Awkward Level-Set GEMS}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}The Level-Set Function}{29}{section.5.1}
-\contentsline {section}{\numberline {5.2}Hamilton-Jacobi Equations}{29}{section.5.2}
-\contentsline {section}{\numberline {5.3}Ghost Fluid Method}{29}{section.5.3}
-\contentsline {section}{\numberline {5.4}Lagrangian Particle Tracking*}{29}{section.5.4}
+\contentsline {section}{\numberline {1.2}Finite Volume Mesh}{7}{section.1.2}
+\contentsline {section}{\numberline {1.3}Partitioning of Mesh}{9}{section.1.3}
+\contentsline {section}{\numberline {1.4}Periodic Boundary Condition}{13}{section.1.4}
+\contentsline {section}{\numberline {1.5}Practical Guide}{17}{section.1.5}
+\contentsline {chapter}{\numberline {2}Fundamentals of Fluid Mechanics}{22}{chapter.2}
+\contentsline {section}{\numberline {2.1}Viewpoints of Describing Fluid Mechanics}{22}{section.2.1}
+\contentsline {section}{\numberline {2.2}Governing equations}{24}{section.2.2}
+\contentsline {section}{\numberline {2.3}Constitutive Relations}{25}{section.2.3}
+\contentsline {section}{\numberline {2.4}Differential Governing Equations}{26}{section.2.4}
+\contentsline {section}{\numberline {2.5}Matrix Representation}{27}{section.2.5}
+\contentsline {section}{\numberline {2.6}Preconditioning: Motivation}{29}{section.2.6}
+\contentsline {chapter}{\numberline {3}Algorithm}{33}{chapter.3}
+\contentsline {section}{\numberline {3.1}Spatial and Explicit Temporal Discretization}{33}{section.3.1}
+\contentsline {section}{\numberline {3.2}Gradient Computation}{37}{section.3.2}
+\contentsline {subsubsection}{Cell Gradient, Method 1: Least Mean Square}{37}{section.3.2}
+\contentsline {subsubsection}{Constructing Neighbor Structure}{39}{lstnumber.-14.71}
+\contentsline {subsubsection}{Cell Gradient, Method 2: Gauss-Green Approach}{40}{Item.24}
+\contentsline {section}{\numberline {3.3}Construction of Flux Function}{40}{section.3.3}
+\contentsline {section}{\numberline {3.4}Implicit Temporal Discretization}{40}{section.3.4}
+\contentsline {section}{\numberline {3.5}Preconditioning: Implementation}{40}{section.3.5}
+\contentsline {section}{\numberline {3.6}Solving Linear Systems}{40}{section.3.6}
+\contentsline {section}{\numberline {3.7}Boundary Conditions}{40}{section.3.7}
+\contentsline {chapter}{\numberline {4}Benchmark Tests}{41}{chapter.4}
+\contentsline {section}{\numberline {4.1}One-Dimensional Euler Equation}{41}{section.4.1}
+\contentsline {section}{\numberline {4.2}Propagation of Vortex}{41}{section.4.2}
+\contentsline {section}{\numberline {4.3}Flow Around a Cylinder}{41}{section.4.3}
+\contentsline {section}{\numberline {4.4}Decay of Isotropic Turbulence*}{41}{section.4.4}
+\contentsline {chapter}{\numberline {5}Awkward Level-Set GEMS}{42}{chapter.5}
+\contentsline {section}{\numberline {5.1}The Level-Set Function}{42}{section.5.1}
+\contentsline {section}{\numberline {5.2}Hamilton-Jacobi Equations}{42}{section.5.2}
+\contentsline {section}{\numberline {5.3}Ghost Fluid Method}{42}{section.5.3}
+\contentsline {section}{\numberline {5.4}Lagrangian Particle Tracking*}{42}{section.5.4}

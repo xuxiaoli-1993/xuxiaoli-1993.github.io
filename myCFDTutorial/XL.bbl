@@ -30,4 +30,17 @@ D.~Li and C.~L. Merkle, ``A unified framework for incompressible and
   compressible fluid flows,'' \emph{Journal of Hydrodynamics, Ser. B}, vol.~18,
   no.~3, pp. 113--119, 2006.
 
+\bibitem{toro2013riemann}
+E.~F. Toro, \emph{Riemann solvers and numerical methods for fluid dynamics: a
+  practical introduction}.\hskip 1em plus 0.5em minus 0.4em\relax Springer
+  Science \& Business Media, 2013.
+
+\bibitem{trefethen1997numerical}
+L.~N. Trefethen and D.~Bau~III, \emph{Numerical linear algebra}.\hskip 1em plus
+  0.5em minus 0.4em\relax Siam, 1997, vol.~50.
+
+\bibitem{golub2013matrix}
+G.~Golub and C.~Van~Loan, ``Matrix computations 4th edition the johns hopkins
+  university press,'' \emph{Baltimore, MD}, 2013.
+
 \end{thebibliography}

@@ -12,19 +12,20 @@
 \BOOKMARK [1][-]{section.2.5}{Matrix Representation}{chapter.2}% 12
 \BOOKMARK [1][-]{section.2.6}{Preconditioning: Motivation}{chapter.2}% 13
 \BOOKMARK [0][-]{chapter.3}{Algorithm}{}% 14
-\BOOKMARK [1][-]{section.3.1}{Spatial and Temporal Discretization}{chapter.3}% 15
-\BOOKMARK [1][-]{section.3.2}{Preconditioning: Implementation}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.3}{Gradient Computation}{chapter.3}% 17
-\BOOKMARK [1][-]{section.3.4}{Construction of Flux Function}{chapter.3}% 18
-\BOOKMARK [1][-]{section.3.5}{Solving Linear Systems}{chapter.3}% 19
-\BOOKMARK [1][-]{section.3.6}{Boundary Conditions}{chapter.3}% 20
-\BOOKMARK [0][-]{chapter.4}{Benchmark Tests}{}% 21
-\BOOKMARK [1][-]{section.4.1}{One-Dimensional Euler Equation}{chapter.4}% 22
-\BOOKMARK [1][-]{section.4.2}{Propagation of Vortex}{chapter.4}% 23
-\BOOKMARK [1][-]{section.4.3}{Flow Around a Cylinder}{chapter.4}% 24
-\BOOKMARK [1][-]{section.4.4}{Decay of Isotropic Turbulence*}{chapter.4}% 25
-\BOOKMARK [0][-]{chapter.5}{Awkward Level-Set GEMS}{}% 26
-\BOOKMARK [1][-]{section.5.1}{The Level-Set Function}{chapter.5}% 27
-\BOOKMARK [1][-]{section.5.2}{Hamilton-Jacobi Equations}{chapter.5}% 28
-\BOOKMARK [1][-]{section.5.3}{Ghost Fluid Method}{chapter.5}% 29
-\BOOKMARK [1][-]{section.5.4}{Lagrangian Particle Tracking*}{chapter.5}% 30
+\BOOKMARK [1][-]{section.3.1}{Spatial and Explicit Temporal Discretization}{chapter.3}% 15
+\BOOKMARK [1][-]{section.3.2}{Gradient Computation}{chapter.3}% 16
+\BOOKMARK [1][-]{section.3.3}{Construction of Flux Function}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.4}{Implicit Temporal Discretization}{chapter.3}% 18
+\BOOKMARK [1][-]{section.3.5}{Preconditioning: Implementation}{chapter.3}% 19
+\BOOKMARK [1][-]{section.3.6}{Solving Linear Systems}{chapter.3}% 20
+\BOOKMARK [1][-]{section.3.7}{Boundary Conditions}{chapter.3}% 21
+\BOOKMARK [0][-]{chapter.4}{Benchmark Tests}{}% 22
+\BOOKMARK [1][-]{section.4.1}{One-Dimensional Euler Equation}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.2}{Propagation of Vortex}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.3}{Flow Around a Cylinder}{chapter.4}% 25
+\BOOKMARK [1][-]{section.4.4}{Decay of Isotropic Turbulence*}{chapter.4}% 26
+\BOOKMARK [0][-]{chapter.5}{Awkward Level-Set GEMS}{}% 27
+\BOOKMARK [1][-]{section.5.1}{The Level-Set Function}{chapter.5}% 28
+\BOOKMARK [1][-]{section.5.2}{Hamilton-Jacobi Equations}{chapter.5}% 29
+\BOOKMARK [1][-]{section.5.3}{Ghost Fluid Method}{chapter.5}% 30
+\BOOKMARK [1][-]{section.5.4}{Lagrangian Particle Tracking*}{chapter.5}% 31

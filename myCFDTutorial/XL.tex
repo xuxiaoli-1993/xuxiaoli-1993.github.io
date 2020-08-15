@@ -1,4 +1,4 @@
-\documentclass[11pt, letterpaper]{report}
+\documentclass[12pt, letterpaper]{report}
 \usepackage{XL}  % use my awesome template
 
 % \fancyhead[L]{\footnotesize \bfseries Homework 1 \quad \bfseries CS6530 Machine Learning} % set footer
@@ -33,19 +33,17 @@
 
 \tableofcontents{}
 
-\chapter*{Prologue}
-\pagestyle{plain}
-In this document, I will cover multiple topics on both the theoretical and practical aspects of
-computational fluid dynamics (CFD). With such a rich range of contents in CFD, I will only focus on
-the certain methods that I am specialized in, while general concepts will also be discussed. The
-major method discussed in this document will be the Finite Volume Method (FVM). FVM is a somewhat
-``old school'' method compared to the more recent and advanced variants of the Finite Element Method
-(FEM). However, each method has its own advantages and disadvantages when applied to specific
-problems. FVM served for a long period of time as the workhorse in solving the fluid mechanics problems, while FEM was
-born to solve solid mechanics problems. This is a big gap between the ``fluid'' and the ``solid''
-community. Although the trend is to merge the merits from both methods (e.g., discontinuous
-Galerkin), but that is still an ongoing research topic and indeed, old habits die hard.
-\paraspace
+\chapter*{Prologue} \pagestyle{plain} In this document, I will cover multiple topics on both the
+theoretical and practical aspects of computational fluid dynamics (CFD). With such a rich range of
+contents in CFD, I will only focus on the certain methods that I am specialized in, while general
+concepts will also be discussed. The major method discussed in this document will be the Finite
+Volume Method (FVM). FVM is a somewhat ``old school'' method compared to the more recent and
+advanced variants of the Finite Element Method (FEM). However, each method has its own advantages
+and disadvantages when applied to specific problems. FVM served for a long period of time as the
+workhorse in solving the fluid mechanics problems, while FEM was born to solve solid mechanics
+problems. This is a big gap between the ``fluid'' and the ``solid'' community. Although the trend is
+to merge the merits from both methods (e.g., discontinuous Galerkin), but that is still an ongoing
+research topic and indeed, old habits die hard.  \paraspace
 
 Within the ``fluid'' community, there is a division between those studying compressible flow
 problems and those studying incompressible flow problems. Accordingly, the CFD methods can be
@@ -775,7 +773,7 @@ time strand \verb+XX+. The data become difficult to manage when a large number o
 strand. Also, the tecplot script \verb+preplot+ is used convert all the \verb+.dat+ ASCII files into
 binary files to reduce the file size as well as the time it takes to load data into tecplot.
 
-\chapter{Fundamentals of Fluid Mechanics}
+\chapter{Fundamentals of Fluid Mechanics}\label{c2}
 
 For a topic having such a variety of different facets like fluid mechanics, even the fundamentals
 are different in different contexts. Here we will introduce the fundamentals from the
@@ -1092,7 +1090,7 @@ $T$, and rewrite the equations as follows:
 Notice that for the energy equation Eqn. \ref{eq-eng}, we used:
 
 \begin{align*}
-   (n \cdot T)^T = n \cdot (T^T \cdot V) = n \cdot ((-p I + \tau^T) \cdot V) = n \cdot (-pV) + n
+   (n \cdot T)^T \cdot V = n \cdot (T^T \cdot V) = n \cdot ((-p I + \tau^T) \cdot V) = n \cdot (-pV) + n
    \cdot (\tau^T \cdot V)
 \end{align*}
 
@@ -1176,27 +1174,677 @@ boundary of a cell will be approximated by summations over the faces of the cell
 It is more convenient to deal with the primitive variables $Q_p = [p, V, T]^T$, rather than the
 conservative variables $Q_c$. Therefore, we can express Eqn. \ref{eq-matgov} as:
 
-\begin{align*}
+\begin{align}\label{eq-govready}
    &\int_{\Omega}\Gamma \frac{\partial Q_p}{\partial t}d\Omega + \int_{\partial \Omega} (n \cdot
-   (F_c(Q_p) - F_v(Q_p)))^T = \int_{\Omega} S(Q_p) d\Omega, \; \textrm{where }\Gamma = \frac{\partial Q_c}{\partial Q_p}
-\end{align*}
+   (F_c(Q_p) - F_v(Q_p)))^T d\sigma = \int_{\Omega} S(Q_p) d\Omega, \; \textrm{where }\Gamma = \frac{\partial Q_c}{\partial Q_p}
+\end{align}
 
 That is, expressing every term as functions of the primitive variable $Q_p$. Here, $\Gamma$ is referred
 to as the {\bf conservative jacobian} which connects primitive variable and conservative variable.
 \paraspace
 
-
 \section{Preconditioning: Motivation}
+
+In this section, we introduce some analysis on the system of governing equations Eqn.
+\ref{eq-matgov} or \ref{eq-matgovDf} and reveal its properties. Importantly, the governing equations
+can be viewed as a superimposition of wave equations, each with its propagation speed. We shall see
+that the propagation speed of different waves can have drastically different magnitude under certain
+circumstances (subsonic flow). In this scenario, the different wave speeds give difficulties in
+numerically solving the governing equations. This problem is referred to as the {\bf
+ill-conditioning} of the system, and we will introduce the {\bf preconditioning} method to such
+difficulties.  \paraspace
+
+First, let's reveal the wave-nature of the governing equations by considering the differential form
+of the {\bf one-dimensional Euler equation} which is often used for analysis. Starting from Eqn.
+\ref{eq-matgovDf}, we make the equations 1D, and remove the viscous flux (inviscid flow) and the
+source term (neglected gravity), and obtain the following equation:
+
+\begin{align}\label{eq-1DEuler}
+   \frac{\partial Q_c}{\partial t} + \frac{\partial E}{\partial x} = 0; \quad Q_c =
+   \begin{bmatrix}\rho \\ \rho u \\ \rho h_{tot} - p\end{bmatrix}; \quad E =
+      \begin{bmatrix}\rho u \\ \rho u^2 + p \\ \rho h_{tot} u\end{bmatrix}
+\end{align}
+
+Here, $E$ is the 1D convective flux and $u$ is the 1D velocity. Notice that we used $\rho h_{tot} -
+p = \rho e_{tot}$ to replace any internal energy related terms with enthalpy related terms. This is
+simply a convention that enthalpy is more popular than internal energy in material properties
+handbooks. It should be pointed out that although the 1D Euler equation Eqn. \ref{eq-1DEuler} is
+significantly simplified from the original differential governing equation Eqn. \ref{eq-matgovDf},
+the essence of the governing equation is retained. It will be straightforward to show that the 1D
+Euler equation is a superimposition of wave equations.\paraspace
+
+Now let's use primitive variable $Q_p = [p, u, T]^T$ to express the 1D Euler equation as:
+
+\begin{align}\label{eq-1DEulerP1}
+   \Gamma \frac{\partial Q_p}{\partial t} + A_c \frac{\partial Q_p}{\partial x} = 0; \quad \Gamma =
+   \frac{\partial Q_c}{\partial Q_p}, \; A_c = \frac{\partial E}{\partial Q_p}
+\end{align}
+
+where $A_c$ is the {\bf convective flux jacobian} and $\Gamma$ is the conservative jacobian. These
+jacobians can be explicitly evaluated by taking the partial derivatives of material properties with
+respect to the primitive variables, as follows:
+
+\begin{align*}
+   &\Gamma = \begin{bmatrix}
+      \rho_p & 0 & \rho_T \\
+      \rho_p u & \rho & \rho_T u \\
+      \rho_p h_{tot} + \rho h_p - 1 & \rho u & \rho_T h_{tot} + \rho h_T
+   \end{bmatrix} \\
+   &A_c = \begin{bmatrix}
+      \rho_p u & \rho & \rho_T u \\
+      \rho_p u^2 + 1 & 2\rho u & \rho_T u^2 \\
+      (\rho_p h_{tot} + \rho h_p)u & \rho h_{tot} + \rho u^2 & (\rho_T h_{tot} + \rho h_T)u
+      \end{bmatrix}
+\end{align*}
+
+Here we used subscript notation $a_b$ to represent the partial derivative of $b$ with respect to
+$a$. We point out that there are in total 4 partial derivatives in $\Gamma$ and $A_c$ which are
+$\rho_p$, $\rho_T$, $h_p$ and $h_T$. They all have significant physical meanings and are fairly
+accessible in material property handbooks.\paraspace
+
+We can further simply Eqn. \ref{eq-1DEulerP1} by multiplying the LHS with $\Gamma^{-1}$ and group
+$\Gamma^{-1}A_c$ to be a matrix $A$:
+
+\begin{align}\label{eq-1DEulerP2}
+   \frac{\partial Q_p}{\partial t} + A \frac{\partial Q_p}{\partial x} = 0; \quad A = \Gamma^{-1}A_c
+\end{align}
+
+Eqn. \ref{eq-1DEulerP2} already has the ``form'' of a wave equation. Notice that the three
+components of $Q_p$ are intertwined through the matrix $A$, typically referred to as the {\bf
+system matrix} of a wave equation. This coupling can be removed by performing the diagonalization of
+the system matrix $A$:
+
+\begin{align*}
+   A = M \Lambda M^{-1}; \quad \Lambda = \textrm{diag}\{\lambda_1, \lambda_2, \lambda_3\}
+\end{align*}
+
+Here $\Lambda$ is a diagonal matrix storing the eigenvalues of $A$ and $M$ stores the eigenvectors
+in its column vectors. Note that both $\Lambda$ and $M$ are analytical expression that can be
+explicitly evaluated. Next, we manufacture a variable $\widehat{Q}$, such that:
+
+\begin{align*}
+   M = \frac{\partial Q_p}{\partial \widehat{Q}}
+\end{align*}
+
+This is to transform Eqn. \ref{eq-1DEulerP2} to:
+
+\begin{align*}
+   M\frac{\partial \widehat{Q}}{\partial t} + AM\frac{\partial \widehat{Q}}{\partial x} = 0
+\end{align*}
+
+Then, multiply the LHS by $M^{-1}$ and realize $\Lambda = M^{-1}AM$ to obtain:
+
+\begin{align}\label{eq-1DEulerCh}
+   \frac{\partial \widehat{Q}}{\partial t} + \Lambda\frac{\partial \widehat{Q}}{\partial x} = 0
+\end{align}
+
+We refer $\widehat{Q}$ as the {\bf characteristic variable}. Note that $\widehat{Q}$ is purely
+manufactured and does not necessarily have any physical meaning. It is defined by a differential
+relation with $Q_p$ and in most of the cases, does not even have a closed-form expression. However,
+by transforming $Q_p$ to $\widehat{Q}$, the wave nature of the governing equation can be better
+revealed as in Eqn. \ref{eq-1DEulerCh}. We can also write it as: 
+
+\begin{align*}
+   \begin{cases}
+      \frac{\partial \widehat{Q}_1}{\partial t} + \lambda_1 \frac{\partial \widehat{Q}_1}{\partial
+      x} = 0 \\ 
+      \frac{\partial \widehat{Q}_2}{\partial t} + \lambda_2 \frac{\partial
+      \widehat{Q}_2}{\partial x} = 0 \\
+      \frac{\partial \widehat{Q}_3}{\partial t} + \lambda_3 \frac{\partial
+      \widehat{Q}_3}{\partial x} = 0 \\
+   \end{cases}
+\end{align*}
+
+As we can see, each component of the characteristic variable, $\widehat{Q}_i$ ($i=1,2,3$) propagates
+like a wave with the propagation speed of $\lambda_i$. If $\lambda_i$ were constant (or
+approximately as constant), these would have been 1D linear wave equations with analytical solution.
+In such a case, Eqn. \ref{eq-1DEulerP2} can be solved (or approximately solved) by transforming back
+from $\widehat{Q}$ to $Q_p$.\paraspace
+
+In reality, $\lambda_i$'s are not constant. They can be expressed as some functions of the primitive
+variable. These functions can be derived by diagonalizing the system matrix $\Gamma^{-1}A_c$.
+Unfortunately, such a derivation will be extremely tedious as the system matrix is composed of long
+expressions of the primitive variable. Therefore, this task is usually done by symbolic
+operations of some computer program such as MATLAB. After doing so, the wave propagation speeds
+$\lambda_i$'s are found out to be:
+
+\begin{subequations}\label{eq-wavespeed}
+   \begin{align}
+      &\lambda_1 = u \\
+      &\lambda_2 = u + \sqrt{\frac{\rho h_T}{\rho_T + \rho h_T \rho_p - \rho h_p \rho_T}} \\
+      &\lambda_3 = u - \sqrt{\frac{\rho h_T}{\rho_T + \rho h_T \rho_p - \rho h_p \rho_T}}
+   \end{align}
+\end{subequations}
+
+The {\bf acoustic speed}, or {\bf sound speed} can be defined as:
+
+\begin{align}\label{eq-soundspeed}
+   c = \sqrt{\frac{\rho h_T}{\rho_T + \rho h_T \rho_p - \rho h_p \rho_T}}
+\end{align}
+
+such that the three wave speeds are:
+
+\begin{align*}
+   \lambda_1 = u, \; \lambda_2 = u+c, \; \lambda_3 = u-c
+\end{align*}
+
+We refer to the wave associated with $\lambda_1$ as the {\bf particle wave} because its propagation
+speed is equal to the transnational velocity of particles of the material, $u$. We refer to the
+waves associated with $\lambda_2$ and $\lambda_3$ as the {\bf acoustic waves} as they involves the
+intrinsic acoustic property of the material, the sound speed $c$. \paraspace
+
+It follows from Eqn. \ref{eq-wavespeed} that, when the particle speed $u$ is comparable to the
+acoustic speed $c$, all the wave speeds are comparable. This is the case in transonic and supersonic
+flows typically studied in aerodynamics. However, if the particle speed $u$ is small compared to
+$c$, as typical in subsonic flows, there can be a large difference between the wave speeds. Since
+wave speeds are the eigenvalues of the system matrix $\Gamma^{-1}A_c$, the term ``ill-conditioned''
+is borrowed from linear algebra to describe this situation, where the magnitude of eigenvalues of
+a matrix is drastically different. \paraspace
+
+The ill-conditioning of the system brings a variety of difficulties when numerically solving the
+governing equation Eqn. \ref{eq-1DEulerP1}. As we have not discussed any aspects regarding
+numerical computation, we only qualitatively describe the difficulties here. One of the difficulties
+is that the numerical errors tend to be magnified in an ill-conditioned system, which often
+causes the code to crash. To avoid the crash, more incremental steps must be taken in the solution
+process such that the errors in each step is small and can be contained. But this can significantly
+increases the computational cost, or in other words, ``the code runs too slow''. These difficulties
+are intrinsic due to the system eigenvalues having disparate magnitude. \paraspace
+
+The philosophy of preconditioning is to alter the eigenvalues of the system such that all the
+eigenvalues have comparable magnitude. To do that we modify the temporal term in the original
+governing equation Eqn. \ref{eq-1DEulerP1} to write:
+
+\begin{align*}
+   \Gamma_p \frac{\partial Q_p}{\partial t} + A_c \frac{\partial Q_p}{\partial x} = 0
+\end{align*}
+
+Note that the original conservative jacobian $\Gamma$ is modified as $\Gamma_p$. By doing so, the
+new system matrix $\Gamma_p^{-1}A_c$ will have a new set of eigenvalues $\{\lambda_1, \lambda_2,
+\lambda_3\}$ different than those in Eqn. \ref{eq-wavespeed}. The new eigenvalues will have
+comparable magnitude and make the system properly conditioned. \paraspace
+
+One may be wondering whether the preconditioning has changed the governing equation, and therefore,
+gives unphysical solutions. Not for the {\bf steady state solution} which does not change with time.
+Indeed, for a steady state problem, the governing equation in Eqn. \ref{eq-1DEulerP1} could be
+written as:
+
+\begin{align}\label{eq-1DEulerss}
+   A_c \frac{\partial Q_p}{\partial x} = 0
+\end{align}
+
+since $\partial Q_p / \partial t = 0$ for steady state solution. Therefore, altering the
+conservative jacobian in the temporal term will not have any effects on the steady state solution.
+For a steady state problem, the time evolution does not have to be physical, as long as the temporal
+rate eventually vanishes and Eqn. \ref{eq-1DEulerss} is satisfied. In this sense, the time evolution
+in steady state problems can be understood as a {\bf pseudo time} evolution. We often use $\tau$
+instead of the $t$ to emphasize this fact:
+
+\begin{align*}
+   \Gamma_p \frac{\partial Q_p}{\partial \tau} + A_c \frac{\partial Q_p}{\partial x} = 0
+\end{align*}
+
+and this strategy of solving steady state problems is referred to as the {\bf time marching
+method}.\paraspace
+
+But what if the solution is unsteady as $Q_p$ can evolve with time? The same philosophy can be
+elegantly applied. We can introduce a second set of time evolution which, in its steady state,
+approaches to the original unsteady governing equation. Such scheme is referred to as the {\bf dual
+time scheme}. For example, we can write the governing equation as:
+
+\begin{align*}
+   \Gamma_p \frac{\partial Q_p^{n+1}}{\partial \tau} + \Gamma \frac{Q_p^{n+1} - Q_p^n}{\Delta t} + A_c
+   \frac{\partial Q_p^{n+1}}{\partial x} = 0
+\end{align*}
+
+where $Q_p^n$ is the solution at the $n^{th}$ time moment $t^n$, which is assumed to be known.
+$Q_p^{n+1}$ is the unknown to be solved at the next time moment $t^{n+1}$, and $\Delta t = t^{n+1} -
+t^n$ is the time step size. Note that $Q_p^{n+1}$ is a function of $x$ and $\tau$ but is independent
+of the physical time $t$, $Q_p^{n+1} = Q_p^{n+1} (x,\tau)$. In its steady state solution (of pseudo
+time $\tau$), the temporal term vanishes, $\partial Q_p^{n+1} / \partial \tau = 0$, and the
+governing equation goes back to:
+
+\begin{align*}
+   \Gamma \frac{Q_p^{n+1} - Q_p^n}{\Delta t} + A_c \frac{\partial Q_p^{n+1}}{\partial x} = 0
+\end{align*}
+
+Once we find the solution $Q_p^{n+1}$, we can proceed to the next physical time step. In the next
+physical time step, again, we need to solve a steady state problem in the pseudo time $\tau$ to
+obtain a solution $Q_p^{n+2}$, etc. The detailed discussion regarding the dual time scheme will be
+given the next chapter.\paraspace
+
 
 \chapter{Algorithm}
 
-\section{Spatial and Temporal Discretization}
+\section{Spatial and Explicit Temporal Discretization}
 
-\section{Preconditioning: Implementation}
+In this chapter, we will be using the data structure introduced in chapter \ref{c1} to solve the
+governing equations introduced in chapter \ref{c2}. Specifically, the physical domain is discretized
+by the mesh, e.g., in Fig. \ref{fig-mesh3}. Each cell is a control volume in which we can write the
+governing equation, e.g., Eqn. \ref{eq-govready} by applying the cell volume as $\Omega$ and the
+cell boundary (surrounding faces) as $\partial\Omega$. By doing so, the number of governing
+equations we can write down is equal to the number of cells in the mesh. Now, we need to {\bf
+discretize} the governing equation in order to produce numerical solutions. Let's first rewrite the
+governing equations as (based on Eqn. \ref{eq-matgov3}, \ref{eq-matgov}, and \ref{eq-govready}):
+
+\begin{align}\label{eq-govalg}
+\begin{split}
+   &\int_{\Omega} \Gamma \frac{\partial Q_p}{\partial t} d\Omega + \int_{\partial\Omega}
+   [F_{cn}(Q_p, n) - F_{vn}(Q_p, n)] d\sigma = \int_{\Omega} S(Q_p) d\Omega \\
+   &\textrm{where  } F_{cn} = \begin{bmatrix}\rho V_n \\ \rho V_n V + pn \\ \rho V_n
+      h_{tot}\end{bmatrix}, \quad F_{vn} = \begin{bmatrix}0 \\ \tau \cdot n \\ n \cdot (\tau^T \cdot
+   V) - n \cdot q\end{bmatrix}, \quad V_n = V \cdot n
+\end{split}
+\end{align}
+
+Here we created the terms $F_{cn}$ and $F_{vn}$ for the convective and viscous flux along the normal
+direction $n$ of the control volume surface. Note that we have two volume integrals and one surface
+integral. We can use the {\bf volume-average} of primitive variable of each cell to approximate the
+volume integrals:
+
+\begin{subequations}\label{eq-disc1}
+   \begin{align}
+      &\int_{\Omega_I} \Gamma \frac{\partial Q_p}{\partial t} d\Omega \approx \Gamma(Q_{p,I}) \frac{\partial
+      Q_{p,I}}{\partial t} \Omega_I \\
+      &\int_{\Omega_I} S(Q_p) d\Omega \approx S(Q_{p,I}) \Omega_I
+   \end{align}
+\end{subequations}
+
+Here we use capital letter $I$ to index the cells. $\Omega_I$ is the volume of the cell and
+$Q_{p,I}$ is the volume-average of the primitive variable for cell $I$. For the surface integrals,
+we want to use the volume-average of cell primitive variable to provide an approximation:
+
+\begin{subequations}\label{eq-disc2}
+   \begin{align}
+      &\int_{\partial\Omega_I} F_{cn}(Q_p, n) d\sigma \approx \sum_{i \in I_{sf}} \mathcal{F}(Q_{pL,i},
+      Q_{pR,i}, n_{Ii}) \sigma_i \\
+      &\int_{\partial\Omega_I} F_{vn}(Q_p, n) d\sigma \approx \sum_{i \in I_{sf}} F_{vn}(Q_{p,i},
+      (\nabla \mathop{\otimes} Q_p)_i, n_{Ii}) \sigma_i
+   \end{align}
+\end{subequations}
+
+We use lower case letter $i$ to index the faces. Here, $I_{sf}$ is the set of faces surrounding cell
+$I$, $Q_{pL,i}$ is referred to as the {\bf left state} of face $i$, $Q_{pR,i}$ is the {\bf right
+state} of face $i$, $Q_{p,i}$ is the {\bf face-average} of primitive variable on the face $i$,
+$(\nabla \mathop{\otimes} Q_p)_i$ is the {\bf face gradient} of primitive variable on the face $i$,
+$n_{Ii}$ is the normal vector of face $i$ pointing {\bf out of} cell $I$, and finally, $\sigma_i$ is
+the area of face $i$. Notice that there is a significant difference in the calculation of convective
+and viscous flux. For the convective flux, a {\bf numerical flux function}, $\mathcal{F}$, is
+defined which is different from the analytical expressions of $F_{cn}$ as in Eqn. \ref{eq-govalg}.
+The computation of $\mathcal{F}$ will rely on the determination of the left and right state. For the
+viscous flux, the analytical expression $F_{vn}$ as in Eqn. \ref{eq-govalg} is kept, and the
+face-based terms, $Q_{p,i}$ and $(\nabla \mathop{\otimes} Q_p)_i$ need to be determined before the
+viscous flux can be computed. We note that the approximation in Eqn. \ref{eq-disc2} utilizes the
+face-based terms with a subscript $i$ while the approximation in Eqn. \ref{eq-disc1} utilizes the
+cell-based terms with a subscript $I$. We emphasize that the cell-based terms will be first
+calculated, and then, the face-based terms can be {\bf interpolated} from the cell-based terms.
+\paraspace
+
+The numerical flux function deserves some extra comments. To compute a numerical (convective) flux,
+we first need to construct the left and right state with respect to a face. Next, the state
+variables are plugged into the flux function $\mathcal{F}$ to produce the approximation of the
+surface integrals in Eqn.  \ref{eq-disc2}.  The state variables can be simply the volume-average of
+the left and right cells with respect to face $i$, denoted by $Q_{pl,i}$ and $Q_{pr,i}$. Notice we
+use the lower case letter $l$ and $r$ to differentiate the state variables and the cell-average
+variables. The more sophisticated choice of state variables involves some extrapolation from cells
+to faces, which we will introduce later. The concept of left and right state comes from {\bf the
+Riemann problem} \cite{toro2013riemann} and we will not expand here.  One can simply understand the
+concept by relating to the fact that, to compute the face flux, we need both the information from
+left and right side of the face. One should keep in mind that no matter how sophisticated the
+construction of the state variables is, given all the cell-average $Q_{p,I}$'s, the left and right
+state at every face $i$, $(Q_{pL,i}, Q_{pR,i})$ can be obtained. A final comment about the numerical
+flux function $\mathcal{F}$. The design of such function is to approximate the face flux such that
+the numerical solutions of $Q_p$ approaches the real solutions.  There can be many choices of such
+flux functions and the design of numerical flux functions is an important topic of CFD. \paraspace
+
+Through the spatial discretization in Eqn. \ref{eq-disc1} and \ref{eq-disc2}, we have replaced the
+integrals in the governing equation by a bunch of summations. However, there is still a temporal
+differentiation in the governing equation, which is not yet fully discretized. To perform the
+temporal discretization, we approximate the differentiation by finite differences:
+
+\begin{align}\label{eq-disct1}
+   \Gamma(Q_{p,I})\frac{\partial Q_{p,I}}{\partial t} \approx \Gamma(Q_{p,I}^n) \frac{Q_{p,I}^{n+1} -
+   Q_{p,I}^n}{\Delta t}
+\end{align}
+
+Notice that we add the superscript $n$ and indicate the discretized solution for cell $I$ at the
+$n^{th}$ time moment as $Q_{p,I}^n$. $\Delta t$ is referred to as the {\bf time step} of the
+numerical solution. We assume the time step size is constant although technically it can be changing
+between the $n^{th}$ and the $(n+1)^{th}$ time moment. We point out that, by applying the temporal
+discretization (Eqn. \ref{eq-disct1}), the numerical solution will consists of a time sequence
+$\{Q_{p,I}^0, Q_{p,I}^1, Q_{p,I}^2, \cdots\}$ for each cell $I$. The {\bf initial condition} for
+each cell, $Q_{p,I}^0$ is given, and based on the initial condition, the temporal evolution of
+primitive variables in every cell will be solved incrementally by the numerical scheme.  \paraspace
+
+The time discretization given by Eqn. \ref{eq-disct1} is of only first order in terms of finite
+difference approximation. A second order approximation can be written as:
+
+\begin{align}\label{eq-disct2}
+   \Gamma(Q_{p,I})\frac{\partial Q_{p,I}}{\partial t} \approx \Gamma(Q_{p,I}^n) \frac{2Q_{p,I}^{n+1} -
+   3Q_{p,I}^n + Q_{p,I}^{n-1}}{2\Delta t}
+\end{align}
+
+For the second order approximation, $Q_p$ at time moment $n$ and $(n-1)$ is given to compute $Q_p$
+at time moment $(n+1)$. Accordingly, we need two initial conditions, we typically assume $Q_{p,I}^1
+= Q_{p,I}^1$ to proceed to solve $Q_{p,I}^2$, $Q_{p,I}^3$, etc. In a more general context, we can
+apply the $m^{th}$ order finite difference to the temporal discretization as:
+
+\begin{align*}
+   \Gamma(Q_{p,I})\frac{\partial Q_{p,I}}{\partial t} \approx \Gamma(Q_{p,I}^n) \sum_{j=n-m+1}^{1}
+   g_j Q_{p,I}^{n+j}
+\end{align*}
+
+The coefficients $g_j$'s are referred to as the {\bf Gear's coefficients} for temporal
+discretization. \paraspace
+
+So far we only applied the temporal discretization to Eqn. \ref{eq-disc1}a, now we want to add the
+superscript to the other terms in Eqn. \ref{eq-disc1}b and Eqn. \ref{eq-disc2} to complete the
+spatial and temporal discretization. In the {\bf explicit time discretization}, we simply evaluate the
+terms in Eqn. \ref{eq-disc1}b and Eqn. \ref{eq-disc2} at the current time moment, i.e., time moment
+$n$, resulting in the fully discretized equation as:
+
+\begin{align}\label{eq-exp1}
+   \begin{split}
+      \Gamma(Q_{p,I}^n) \frac{2Q_{p,I}^{n+1} - 3Q_{p,I}^n + Q_{p,I}^{n-1}}{2\Delta t} \Omega_I +
+      &\sum_{i \in I_{sf}} \mathcal{F}(Q_{pL,i}^n, Q_{pR,i}^n, n_{Ii}) \sigma_i - \\ &\sum_{i \in
+      I_{sf}} F_{vn}(Q_{p,i}^n, (\nabla \mathop{\otimes} Q_p)_i^n, n_{Ii}) \sigma_i = S(Q_{p,I}^n)
+      \Omega_I
+   \end{split}
+\end{align}
+
+In Eqn. \ref{eq-exp1}, the {\bf known} variables will be the primitive variables in each cell $I$,
+at time $n$ and $n-1$, i.e., $Q_{p,I}^n$ and $Q_{p,I}^{n-1}$. The face-related variables (with
+subscript $i$) can be interpolated/extrapolated based on the cell primitive variables. The {\bf
+unknown} variables we aim to solve is the cell primitive variables at the next time step $n+1$,
+$Q_{p,I}^{n+1}$. We can manoeuvre Eqn. \ref{eq-exp1} such that all the unknowns are put on the LHS and
+all the knowns are put on the RHS:
+
+\begin{align}\label{eq-lh1}
+   \begin{split}
+      & \L(\vec{Q}_p^n) \Delta \vec{Q}_p^n = \R(\vec{Q}_p^n), \\ & \textrm{where} \; \L_{II} =
+      \frac{\Gamma(Q_{p,I}^n)\Omega_I}{\Delta t}, \; \L_{IJ} = 0 \; (I \neq J), \; \Delta \Q_p^n =
+      \Q_p^{n+1} - \Q_p^n, \; \textrm{and } \\
+      & \R_I = -\left(-\frac{\Gamma(Q_{p,I}^n) \Delta Q_{p,I}^{n-1}\Omega_I}{\Delta t} + \sum_{i \in
+            I_{sf}}\left[\mathcal{F}(Q_{pL,i}^n, Q_{pR,i}^n, n_{Ii}) - F_{vn}(Q_{p,i}^n, (\nabla
+\mathop{\otimes} Q_p)_i^n, n_{Ii})\right]\sigma_i\right) \\ & + S(Q_{p,I}^n)\Omega_I
+   \end{split}
+\end{align}
+
+Here, the arrow on the variable, e.g., $Q_p^n$ indicates a vector containing $Q_p^n$ for all the
+cells, and therefore, the subscript $I$ is dropped. For example, if the number of cells is 20, the
+vector $\Q_p^n$ is a column vector with have 20 components: $[Q_{p,1}^n, \cdots Q_{p,20}^n]^T$, and
+each component itself is a vector. For example, the 10\th component is $[p_{10}, V_{10}, T_{10}]^T$,
+which is the pressure, velocity and temperature for the 10\th cell. In this case, the unknown vector
+in Eqn.  \ref{eq-lh1}, $\vec{Q}_p^n$, would have a length of 100 (in three dimension). To solve this
+vector, we are basically dealing with a linear system where a matrix $\L$, multiples the unknown
+vector $\vec{Q}_p^n$, equals to another vector $\R$. Again, assume $\vec{Q}_p^n$ has a length of 100
+as an example, the matrix $\L$ would be $100 \times 100$ and the RHS vector $\R$ would be $100
+\times 1$. We refer to $\L$ as the {\bf left-hand-side matrix}, or {\bf left-hand-side operator},
+and refer to $\R$ as the {\bf right-side-side residual}, or simply the {\bf residual}. As indicated
+in Eqn. \ref{eq-lh1}, the LHS matrix in this case is a block diagonal matrix, while the residual is
+a complex function of $\vec{Q}_p^n$ and $\vec{Q}_p^{n-1}$. However, since the LHS matrix is block
+diagonal, we can simply invert $\L$ to solve $\Delta \Q_p^n$:
+
+\begin{align*}
+   \Delta \Q_p^n = \L^{-1}(\Q_p^n) \R(\Q_p^n)
+\end{align*}
+
+We can see that the original governing equations Eqn. \ref{eq-govalg}, which are integral equations, have
+become a system of linear equations, after the spatial and temporal discretization. \paraspace
+
+To close this section, let's briefly revisit the data structure and discuss how information
+regarding Eqn. \ref{eq-lh1} is stored. We add the following attributes to the \verb+cell+ type:
+
+\begin{lstlisting}{language=[90]Fortran}
+   type cell
+      ...
+      type(vector) :: qv, dqv
+      type(matrix) :: dm
+      type(vector) :: res
+      type(vector) :: qvn(:)
+   end type cell
+\end{lstlisting}
+
+where the type \verb+vector+ is another derived data type:
+
+\begin{lstlisting}{language=[90]Fortran}
+   type vector
+      real :: v(neq)
+   end type vector
+\end{lstlisting}
+
+The \verb+vector+ has one attribute which is a 1D array of floating point numbers. The variable
+\verb+neq+ is a global variable indicating the number of governing equations in Eqn.
+\ref{eq-govalg}. E.g., \verb+neq = 5+ in 3D and \verb+neq = 4+ in 2D, etc. The type \verb+matrix+ is
+also a derived data type:
+
+\begin{lstlisting}{language=[90]Fortran}
+   type matrix
+      real :: e(neq, neq)
+   end type matrix
+\end{lstlisting}
+
+The \verb+matrix+ type has one attribute which is a 2D array of floating numbers. In the added
+attributes of \verb+cell+, we will use \verb+qv+ to store the updated primitive variable
+$Q_{p,I}^{n+1}$, \verb+dqv+ to store the increment $\Delta Q_{p,I}^n = Q_{p,I}^{n+1} -
+Q_{p,I}^{n}$, and \verb+qvn+ to store the primitive variables in the previous time steps,
+$Q_{p,I}^{n}$ and $Q_{p,I}^{n-1}$. Notice that \verb+qvn+ is an array of \verb+vector+. Its length
+will depend on the order of the temporal discretization. In the case of second order as in Eqn.
+\ref{eq-exp1}, we need two previous time moments and the length of \verb+qvn+ will be two. Finally,
+the attribute \verb+dm+ stores the diagonal terms of the LHS matrix $\L_{II}$ and the attribute
+\verb+res+ stores the residual for the cell, $\R_I$. \paraspace
 
 \section{Gradient Computation}
 
+From now on, our discussion will be built on the key equation \ref{eq-lh1} which is that a LHS
+matrix $\L$ multiplies the unknown vector $\Delta Q_p$ equals to the residual $\R$. This chapter
+will be devoted to the computation of gradients for both cells and faces. The gradients will be used
+in the residual when calculating the left and right states, as well as in the viscous flux.
+Specially, we are aiming at computing the following matrix:
+
+\begin{align*}
+   \nabla \mathop{\otimes} Q_p = \begin{bmatrix} \partial_x \\ \partial_y \\ \partial_z \end{bmatrix}
+   \begin{bmatrix}p & u & v & w & T\end{bmatrix} = 
+   \begin{bmatrix}
+      \partial_x p &\partial_x u &\partial_x v &\partial_x w &\partial_x T \\
+      \partial_y p &\partial_y u &\partial_y v &\partial_y w &\partial_y T \\
+      \partial_z p &\partial_z u &\partial_z v &\partial_z w &\partial_z T 
+   \end{bmatrix}
+\end{align*}
+
+Note that we use the short-hand notation $\partial_x p$ for $\partial p/\partial x$, etc. Also, $(u,
+v, w)$ are the $(x,y,z)$ components of the velocity vector $V$. The gradient matrix $\nabla \o Q_p$
+in this case is a $3 \times 5$ matrix. We will be computing such a matrix for each cell and face
+given the primitive variable at each cell $Q_{p,I}$.
+
+\subsubsection{Cell Gradient, Method 1: Least Mean Square}
+
+Let's consider the pentagon cell $I$ shown in Fig. \ref{fig-cellg}. To include more generality, we
+assume cell $I$ has 5 triangle neighboring cells, indexed as $I1, \cdots, I5$. The centroid of
+the cells are labeled with $C$. We also draw 5 vectors from the centroid of cell $I$ to its
+neighboring cells' centroid as $d_{I1}, \cdots, d_{I5}$. The objective is to compute the gradient
+matrix at cell $I$, given that the primitive variables $Q_p$ are known at cell $I, I1, \cdots,
+I5$.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[height=3in]{Algorithm1.png}
+   \caption{Illustration of cell gradient computation.}
+   \label{fig-cellg}
+\end{figure}
+
+Let's take the gradient of pressure for example. Knowing $p_I, p_{I1}, \cdots, p_{I5}$, we can write
+down the following approximation:
+
+\begin{align}\label{eq-lms1}
+   \begin{split}
+      &\begin{bmatrix}
+         \Delta x_{I1} & \Delta y_{I1} & \Delta z_{I1} \\
+         \Delta x_{I2} & \Delta y_{I2} & \Delta z_{I2} \\
+         \Delta x_{I3} & \Delta y_{I3} & \Delta z_{I3} \\
+         \Delta x_{I4} & \Delta y_{I4} & \Delta z_{I4} \\
+         \Delta x_{I5} & \Delta y_{I5} & \Delta z_{I5}
+      \end{bmatrix} \begin{bmatrix}\partial_x p \\ \partial_y p \\ \partial_z p\end{bmatrix} \approx
+      \begin{bmatrix}\Delta p_{I1} \\\Delta p_{I2} \\\Delta p_{I3} \\\Delta p_{I4} \\\Delta p_{I5}
+         \end{bmatrix} \\ &\textrm{where} \quad \begin{bmatrix}\Delta x_{IJ} & \Delta y_{IJ} &
+      \Delta z_{IJ}\end{bmatrix} = d_{IJ}^T, J = 1,2,\cdots,5, \; \textrm{ and} \\ &\Delta p_{IJ} =
+      p_{IJ} - p_I, J = 1,2,\cdots,5
+   \end{split}
+\end{align}
+
+We can understand the task of computing the gradient of $p$ as the follows: find the gradient of $p$
+such that the difference (error) between the LHS and RHS of Eqn. \ref{eq-lms1} is minimized. This is
+a {\bf Least Mean Square} (LMS) problem. That is, find the best vector $x$ that minimizes the
+approximation $Ax \approx b$. In the case of Eqn. \ref{eq-lms1}, $x$ is a $3\times1$ vector, $A$ is a
+$5\times3$ matrix and $b$ is a $5\times1$ vector. The solution to the LMS problem is to find the
+{\bf pseudo inverse} of matrix $A$, $A^+$, such that $x = A^+b$ produces the optimal $x$ minimizing
+the approximation error. In the case of Eqn. \ref{eq-lms1}, we can express the solution as:
+
+\begin{align}\label{eq-lms2}
+   \begin{bmatrix}\partial_x p \\ \partial_y p \\ \partial_z p\end{bmatrix} = 
+   \begin{bmatrix}
+      s_{x1} &s_{x2} &s_{x3} &s_{x4} &s_{x5} \\ 
+      s_{y1} &s_{y2} &s_{y3} &s_{y4} &s_{y5} \\ 
+      s_{z1} &s_{z2} &s_{z3} &s_{z4} &s_{z5}
+   \end{bmatrix}
+   \begin{bmatrix}\Delta p_{I1} \\\Delta p_{I2} \\\Delta p_{I3} \\\Delta p_{I4} \\\Delta p_{I5}\end{bmatrix}
+\end{align}
+
+where the matrix with components $s$'s is the pseudo inverse of the matrix on the LHS on Eqn.
+\ref{eq-lms1}. For reasons to be illustrated, we shall refer to this matrix as the {\bf SVD} matrix.
+The subscripts of $s$'s can be understood as some contributing weights. For example, $s_{y3}$ is the
+contributing weights of the {\bf third} neighboring cell to the {\bf y} direction of the gradients,
+etc. We note that the SVD matrix is only determined by the directional vectors $d_{IJ}$ in Fig.
+\ref{fig-cellg} and Eqn. \ref{eq-lms2} can be applied to any primitive variables besides $p$.
+\paraspace
+
+Now we shall present a general expression for computing the gradients of all primitive variables,
+given that the pseudo inverse, i.e., the SVD matrix, is known, as follows:
+
+\begin{align}\label{eq-lms3}
+   \begin{split}
+   &\begin{bmatrix}\partial_x Q_{p} &\partial_y Q_{p} &\partial_z Q_{p}\end{bmatrix} = 
+   \begin{bmatrix}\Delta Q_{p,I1} &\Delta Q_{p,I2} &\Delta Q_{p,I3} &\Delta Q_{p,I4} &\Delta
+      Q_{p,I5}\end{bmatrix}
+   \begin{bmatrix}
+      s_{x1} & s_{y1} & s_{z1} \\
+      s_{x2} & s_{y2} & s_{z2} \\
+      s_{x3} & s_{y3} & s_{z3} \\
+      s_{x4} & s_{y4} & s_{z4} \\
+      s_{x5} & s_{y5} & s_{z5}
+   \end{bmatrix} \\
+    &\textrm{where } \partial_x Q_p = \begin{bmatrix}\partial_x p &\partial_x u &\partial_x v
+    &\partial_x w &\partial_x T \end{bmatrix}^T, \textrm{same for } y \textrm{ and } z, \; \textrm{
+    and}\\ &\Delta Q_{p,IJ} = \begin{bmatrix}\Delta p_{IJ} &\Delta u_{IJ} &\Delta v_{IJ} &\Delta
+    w_{IJ} &\Delta T_{IJ}\end{bmatrix}^T, J = 1,2,\cdots,5
+   \end{split}
+\end{align}
+
+Note that we transposed the SVD matrix to match its contributing weights. We now briefly discuss how
+the SVD can be obtained by solving the LMS problem Eqn. \ref{eq-lms1}. The task is to find the
+pseudo inverse the matrix containing all the directional vectors $d_{IJ}$. Finding the pseudo
+inverse, or solving the LMS problem, falls in the knowledge of {\bf Numerical Linear Algebra}
+\cite{trefethen1997numerical}. The most general way of solving a LMS problem is via the {\bf
+Singular Value Decomposition} (SVD). The numerical implementation of SVD is somewhat involved and is
+the ``crown'' of numerical linear algebra \cite{golub2013matrix}. We shall not discuss the algorithm
+of SVD here. Most of the times, the SVD algorithm can be viewed as a black-box subroutine whose
+input is the $A$ matrix and output is the pseudo inverse $A^+$. Technically, the pseudo inverse
+matrix is not the SVD itself, but we still refer to the pseudo inverse matrix as the SVD matrix,
+which will be the matrix with components $s$'s in Eqn. \ref{eq-lms3}. Finally, we point out that
+new attributes need to be added to the type \verb+cell+ for the computation of Eqn. \ref{eq-lms3}:
+
+\begin{lstlisting}{language=[90]Fortran}
+   type cell
+      ...
+      real, pointer :: gradient(:,:)
+      real, pointer :: svd(:,:)
+   end type cell
+\end{lstlisting}
+
+Note that both matrices of \verb+gradient+ and \verb+svd+ has undefined lengths as they depend on
+the dimension of the problem, etc. In the case of Eqn. \ref{eq-lms3}, the \verb+gradient+ has a
+dimension of $5\times3$ and \verb+svd+ has a dimension of $5\times3$.
+
+
+\subsubsection{Constructing Neighbor Structure}
+
+With Eqn. \ref{eq-lms3} we can compute the gradients at cell $I$ given the primitive variables of
+the neighboring cells of cell $I$. We need to construct data structures to store the connectivity
+information between cell $I$ and its neighboring cells. We shall achieve this via the
+\verb+left_cell+ and the \verb+right_cell+ pointers at the faces. First, we add the attribute in the
+\verb+cell+ type:
+
+\begin{lstlisting}{language=[90]Fortran}
+   type cell
+      ...
+      type(neighbour), pointer :: sface(:)
+      type(neighbour_cell), pointer :: scell(:)
+   end type cell
+\end{lstlisting}
+
+The data type \verb+neighbour+ and \verb+neighbour_cell+ are the nested data type:
+
+\begin{lstlisting}{language=[90]Fortran}
+   type neighbour
+      type(face), pointer :: to_face
+   end type neighbour
+
+   type neighbour_cell
+      type(face), pointer :: to_cell
+   end type neighbour_cell
+\end{lstlisting}
+
+The nested data structure is to indicate that the pointers are already allocated. The attribute
+\verb+sface(:)+ is a list of face pointers (already allocated) referencing to the neighboring faces
+of the current cell. The attribute \verb+scell(:)+ is a list of cell pointers (already allocated)
+referencing to the neighboring cells of the current cell. The list \verb+sface(:)+ can be obtained in
+the following way:
+
+\begin{lstlisting}{language=[90]Fortran}
+   loop faces
+      for each face cf:
+      lc => cf % left_cell
+      rc => cf % right_cell
+      append cf to the sface(:) of lc
+      append cf to the sface(:) of rc
+   end loop
+\end{lstlisting}
+
+With \verb+sface(:)+, the list \verb+scell(:)+ can be readily obtained:
+
+\begin{lstlisting}{language=[90]Fortran}
+   loop cells
+      for each cell cc
+      loop cc % sface
+         for each face, cf, in cc % face(:)
+         lc => cf % left_cell
+         rc => cf % right_cell
+         if lc is cc
+            append rc to the scell(:) of cc
+         else
+            append lc to the scell(:) to cc
+         end if
+      end loop
+   end loop
+\end{lstlisting}
+
+With these connectivity structures, we can design the pipeline of gradients computation as follows:
+
+\begin{enumerate}
+   \item For each cell, find the directional vectors $d_{IJ}$ from its neighboring cells as in Fig.
+      \ref{fig-cellg}.
+   \item Based on the directional vectors, calculate the SVD matrix for each cell.
+   \item For each cell, gather the primitive variables from its neighboring cells.
+   \item Compute the gradients according to Eqn. \ref{eq-lms3}.
+\end{enumerate}
+
+\subsubsection{Cell Gradient, Method 2: Gauss-Green Approach}
+
+\paraspace
 \section{Construction of Flux Function}
+
+\section{Implicit Temporal Discretization}
+
+\section{Preconditioning: Implementation}
 
 \section{Solving Linear Systems}
 
@@ -1221,8 +1869,6 @@ to as the {\bf conservative jacobian} which connects primitive variable and cons
 \section{Ghost Fluid Method}
 
 \section{Lagrangian Particle Tracking*}
-
-
 
 
 
