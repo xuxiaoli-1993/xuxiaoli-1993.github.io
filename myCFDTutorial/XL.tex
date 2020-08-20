@@ -35,13 +35,13 @@
 
 \chapter*{Prologue} \pagestyle{plain} In this document, I will cover multiple topics on both the
 theoretical and practical aspects of computational fluid dynamics (CFD). With such a rich range of
-contents in CFD, I will only focus on the certain methods that I am specialized in, while general
-concepts will also be discussed. The major method discussed in this document will be the Finite
+contents in CFD, I will only focus on certain methods that I am specialized in, while general
+concepts will only be briefly discussed. The major method discussed in this document will be the Finite
 Volume Method (FVM). FVM is a somewhat ``old school'' method compared to the more recent and
 advanced variants of the Finite Element Method (FEM). However, each method has its own advantages
 and disadvantages when applied to specific problems. FVM served for a long period of time as the
 workhorse in solving the fluid mechanics problems, while FEM was born to solve solid mechanics
-problems. This is a big gap between the ``fluid'' and the ``solid'' community. Although the trend is
+problems. This is a big gap between the ``fluid'' and the ``solid'' community. The trend is
 to merge the merits from both methods (e.g., discontinuous Galerkin), but that is still an ongoing
 research topic and indeed, old habits die hard.  \paraspace
 
@@ -49,12 +49,11 @@ Within the ``fluid'' community, there is a division between those studying compr
 problems and those studying incompressible flow problems. Accordingly, the CFD methods can be
 divided into the density-based methods (suitable for compressible flow) and pressure-based methods
 (suitable for incompressible flow). The major difference here is that the fluid velocity in
-compressible flow is typically very large (large Mach number), while fluid velocity is relative
-small for incompressible flows. This gap has already been filled through years of efforts.
-Density-based methods can also solve incompressible flow problems using the preconditioning
-technique, which gives a unified framework for solving fluid dynamics problems. This approach will
-be the focus of this document. 
-\paraspace
+compressible flow is typically large and comparable to the sound speed, while fluid velocity is
+relative small for incompressible flows (small Mach number). This gap has already been filled
+through years of efforts.  Specifically, density-based methods can also solve incompressible flow
+problems using the preconditioning technique, which gives a unified framework for solving fluid
+dynamics problems. This approach will be the focus of this document.  \paraspace
 
 In the 80's, there were several pioneers who contributed significantly to the preconditioning
 methods, e.g., Eli Turkel, Bram Van Leer, and Charles Merckle. This document will be focused on
@@ -139,7 +138,7 @@ Equation Mesh Solver''.  Now with the tessellation, we divide the domain into tr
 ``elements'', from which the name ``Finite Element Method'' is originated. However, we will only
 focus on the Finite Volume Method in this document, and the elements will be referred to as the
 ``{\bf cells}''. We have 22 cells in the domain and they are indexed with the red numbers. It should
-be mentioned that the indexing of the nodes and cells does not matter in the definition of the mesh.
+be mentioned that the indexing order of the nodes and cells does not matter in the definition of the mesh.
 \paraspace
 
 Now we can define the ``{\bf cell-node connectivity}'' by associating cells with its corresponding
@@ -1839,16 +1838,261 @@ With these connectivity structures, we can design the pipeline of gradients comp
 
 \subsubsection{Cell Gradient, Method 2: Gauss-Green Approach}
 
+We introduce the second method of calculating the cell gradient. The gradient of any scalar
+variable, taking pressure as an example, can be expressed using the Gauss's theorem (refer back to
+Eqn. \ref{eq-Gaussthm}a) as:
+
+\begin{align*}
+   \int_{\Omega} \nabla p \, d\Omega = \int_{\partial\Omega} p \, n \, d\sigma
+\end{align*}
+
+Note here $\Omega$ is the cell as a control volume and $\partial\Omega$ is the surrounding faces
+(\verb+sface(:)+) of the cell as the boundary of the control volume. We can approximation the
+integrations as:
+
+\begin{align*}
+   (\nabla p)_I \Omega_I = \sum_{i \in I_{sf}} p_i n_{Ii} \sigma_i
+\end{align*}
+
+where $n_{Ii}$ is the face norm of face $i$ pointing {\bf out of} cell $I$. Therefore, we can simply
+compute the gradient of cell $I$ by:
+
+\begin{align}\label{eq-Green}
+   \nabla p = \sum_{i \in I_{sf}} p_i n_{Ii} \frac{\sigma_i}{\Omega_I}
+\end{align}
+
+This method of computing gradient can be applied all the primitive variables of cell $I$. There are
+two following issues with Eqn. \ref{eq-Green}. First, the averaged primitive variables at each
+surrounding face $i$, $Q_{p,i}$, need to be precomputed, and second, the normal vector $n_{Ii}$
+needs to be pointing out of cell $I$ to ensure its correct direction. \paraspace
+
+Let's tackle the first issue. We can define the {\bf face average} primitive variables at each
+face $i$, $Q_{p,i}$, as the average of the {\bf nodal primitive variables} for face $i$, i.e.:
+
+\begin{align}\label{eq-f2n}
+   Q_{p,i} = \frac{1}{|i_{f2n}|} \sum_{N \in i_{f2n}} Q_{p,N}
+\end{align}
+
+Here, $i_{f2n}$ is the set of node indices which is associated with face $i$ (recall that we already
+have this information as the {\bf face-node connectivity} when we generate the mesh back in chapter
+\ref{c1}). $Q_{p,N}$ is the primitive variables at node $N$. We only explicit store the primitive
+variables at nodes and compute the face primitive variables with Eqn. \ref{eq-f2n} when needed.
+Thus, we add the attribute to the \verb+node+ type:
+
+\begin{lstlisting}{language=[90]Fortran}
+   type node
+      ...
+      type(vector) :: qv
+   end type node
+\end{lstlisting}
+
+The question now becomes how to compute the nodal primitive variables $Q_{p,N}$. This is achieved by
+a {\bf weighted inverse distance} interpolation based on the cell primitive variables $Q_{p,I}$.
+Let's redraw the mesh for partition 1 in Fig. \ref{fig-mesh4} below as Fig. \ref{fig-alg2}.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[height=3in]{Algorithm2.png}
+   \caption{Illustration of nodal interpolation by the mesh in one of the partitions.}
+   \label{fig-alg2}
+\end{figure}
+
+We have 12 nodes in this partition labeled blue. They are connected to cells via the cell-node
+connectivity stored in the structure \verb+c2n+. Let's review the types of cells that connect to the
+nodes:
+
+\begin{enumerate}
+   \item {\bf Interior cells}: labeled by red from 1 to 20. They are stored in the \verb+cells(:)+
+      array.
+   \item {\bf Partition (ghost) cells}: labeled by orange from 1 to 7. They are stored in the
+      \verb+pcell(:)+ array in the structure \verb+itf+ (named as \verb+interf+).
+   \item{\bf Boundary (ghost) cells}: there is no label. They are the \verb+right_cell+ of the
+      boundary faces labeled from 3 to 9.
+\end{enumerate}
+
+All of the cells have the attributes \verb+c2n(:)+ that stores the indices of nodes (1 to 20) that
+associated with the cell. Therefore, we can find the distance between any cell center to its
+associated nodal coordinates. We add the \verb+weight+ attribute to the type \verb+cell+:
+
+\begin{lstlisting}{language=[90]Fortran}
+   type cell
+      ...
+      real, pointer :: weight(:)
+   end type cell
+\end{lstlisting}
+
+The length of the \verb+weight+ will be equal to the length of the integer pointer \verb+c2n+. We
+can assign the weights by:
+
+\begin{lstlisting}{language=[90]Fortran}
+   loop cells
+      for each cell cc
+      loop c2n of cc
+         find node by nodes(cc(c2n(:)))
+         for each node cn
+         compute inverse distance between cc % centp to cn % xyz
+         and save it to cc % weight
+      end loop
+
+      normalize cc % weight
+   end loop
+
+   looping parition cells, same
+   looping boundary cells, same
+\end{lstlisting}
+
+and the nodal interpolation can be done by:
+
+\begin{lstlisting}{language=[90]Fortran}
+   nodes % qv = zero
+   loop cells
+      for each cell cc
+      loop c2n of cc
+         find node by nodes(cc(c2n(:)))
+         for each node cn, get the weights for this node
+         cn % qv = cn % qv + cc % qv * this weight 
+      end loop
+   end loop
+
+   looping parition cells, same
+   looping boundary cells, same
+\end{lstlisting}
+
+Once the nodal primitive variables $Q_{p,N}$ are computed, we can compute the face primitive
+variables $Q_{p,i}$ (faces are labeled by green in Fig. \ref{fig-alg2}) by Eqn. \ref{eq-f2n}, which
+can be used to compute the cell gradient in Eqn. \ref{eq-Green}. Notice that $Q_{p,i}$ will also be
+used when computing the viscous flux $F_{vn}$ in Eqn. \ref{eq-lh1}. \paraspace
+
+Now let's tackle the issue of the sign of the normal vector $n_{Ii}$. The face norm can be readily
+computed knowing the nodal coordinates on the face. But the direction of this norm is still
+depending. We mandate that the {\bf face norm} always points from its \verb+left_cell+ to its
+\verb+right_cell+. This face norm is stored in the type \verb+face+, denoted as $n_i$. We add the
+\verb+vecn+ attributes to the type \verb+face+ to store the face norm:
+
+\begin{lstlisting}{language=[90]Fortran}
+   type face
+      ...
+      real :: vecn(ndim)  ! ndim is number of dimensions
+   end type face
+\end{lstlisting}
+
+We need not to separately store face norms $n_{Ii}$ for each cell $I$, as we already know $n_i$, and
+$n_i$ and $n_{Ii}$ only differ by the sign. We note that when computing the gradient via Eqn.
+\ref{eq-Green}, the gradient becomes a summation. We can elegantly deal with the sign of face norms
+by choosing to loop over faces but not the cells, as follows:
+
+\begin{lstlisting}{language=[90]Fortran}
+   subroutine cell_gradient
+      cells % gradient = zero
+      loop faces
+         for each face cf
+         find the associated nodes by cf % f2n
+         average nodal primitives as face primitives qvf
+         cl => cf % left_cell
+         cr => cf % right_cell
+         a = cf % area
+         
+         loop i = 1, 2, 3
+            cl % gradient(:,i) = cl % gradient(:,i) + 
+                                 qvf * cf % vecn(i) * a
+            cr % gradient(:,i) = cr % gradient(:,i) - 
+                                 qvf * cf % vecn(i) * a
+         end loop
+      end loop
+      cells % gradient = cells % gradient / cells % vol
+   end subroutine cell_gradient
+\end{lstlisting}
+
+Note that for the \verb+left_cell+ we use the plus sign in the summation, but for the
+\verb+right_cell+ we use the minus sign. This is because for the left cell, $n_i$ and $n_{Ii}$ have
+the same sign, as $n_i$ points {\bf from left cell to right cell} and $n_{Ii}$ points {\bf out of
+cell}. This is the opposite for the right cell. \paraspace
+
+\subsubsection{Face Gradient}
+
+At the last of this section, we discuss the computation of gradient of primitive variables at each
+face $i$, which will be used in the computation of viscous flux $F_{vn}$ in Eqn. \ref{eq-lh1}. We
+take a similar approach as the LMS method in the cell gradient computation. First we compute for
+each face $i$, three directional vectors as shown in Fig. \ref{fig-alg3}. This is illustrated in 3D
+as an example, and in 2D, we only need to construct two directional vectors for each face $i$. If
+the face is quadrilateral, the first two directional vectors would be a ``cross'' connecting the
+diagonal nodes belonging to face $i$. The third directional vector connects the left and right cell
+of face $i$ (indexed as $il$ and $ir$). If the face is triangle, the first two directional vectors
+are two edges of the triangle (randomly chosen), and the third directional vector still connects the
+left and right cell.
+
+\begin{figure}[H]
+   \centering
+   \includegraphics[height=2in]{Algorithm3.png}
+   \caption{Illustration of face gradient computations. (a) Quadrilateral face and (b) Triangle
+   face.}
+   \label{fig-alg3}
+\end{figure}
+
+Now similar to Eqn. \ref{eq-lms1}, we can write down the following approximation (again, take the
+pressure gradient as an example):
+
+\begin{align}\label{eq-lmsface1}
+   \begin{split}
+      &\begin{bmatrix}
+         \Delta x_{i1} & \Delta y_{i1} & \Delta z_{i1} \\
+         \Delta x_{i2} & \Delta y_{i2} & \Delta z_{i2} \\
+         \Delta x_{i3} & \Delta y_{i3} & \Delta z_{i3} \\
+      \end{bmatrix} \begin{bmatrix}\partial_x p \\ \partial_y p \\ \partial_z p\end{bmatrix} \approx
+      \begin{bmatrix}\Delta p_{i1} \\\Delta p_{i2} \\\Delta p_{i3} 
+         \end{bmatrix} \\ &\textrm{where} \quad \begin{bmatrix}\Delta x_{ij} & \Delta y_{ij} &
+      \Delta z_{ij}\end{bmatrix} = d_{ij}^T, j = 1,2,3
+   \end{split}
+\end{align}
+
+Here the term $\Delta p_{ij}$ are taken to be the pressure difference between the starting and
+ending point of the directional vectors. For example, $\Delta p_{i3} = p_{ir} - p_{il}$, etc. Note
+that the nodal primitive variables should already been computed by the weighted inverse distance
+average algorithm discussed previously. We note that Eqn. \ref{eq-lmsface} is not an over-determined
+system and can be solved by a direct inversion:
+
+\begin{align}\label{eq-lmsface2}
+   \begin{bmatrix}\partial_x p \\ \partial_y p \\ \partial_z p\end{bmatrix} = 
+      \begin{bmatrix}
+         \Delta x_{i1} & \Delta y_{i1} & \Delta z_{i1} \\
+         \Delta x_{i2} & \Delta y_{i2} & \Delta z_{i2} \\
+         \Delta x_{i3} & \Delta y_{i3} & \Delta z_{i3} \\
+      \end{bmatrix}^{-1} \begin{bmatrix}\Delta p_{i1} \\\Delta p_{i2} \\\Delta p_{i3}\end{bmatrix}
+\end{align}
+
+We shall precompute the matrix (inverted) on the RHS of Eqn. \ref{eq-lmsface2} and store it in the
+type \verb+face+ by the attributes \verb+avec+:
+
+\begin{lstlisting}{language=[90]Fortran}
+   type face
+      ...
+      real :: avec(ndim,ndim)
+   end type face
+\end{lstlisting}
+
+By doing this, we only need to compute the matrix multiplication in Eqn. \ref{eq-lmsface2} to obtain
+the gradient at face $i$.
+
 \paraspace
-\section{Construction of Flux Function}
+\section{Face Flux Computation}
 
 \section{Implicit Temporal Discretization}
+
+\section{Boundary Conditions}
 
 \section{Preconditioning: Implementation}
 
 \section{Solving Linear Systems}
 
-\section{Boundary Conditions}
+\chapter{Awkward Level-Set GEMS}
+
+\section{The Level-Set Function}
+
+\section{Hamilton-Jacobi Equations}
+
+\section{Ghost Fluid Method}
+
+\section{Lagrangian Particle Tracking*}
 
 \chapter{Benchmark Tests}
 
@@ -1860,15 +2104,6 @@ With these connectivity structures, we can design the pipeline of gradients comp
 
 \section{Decay of Isotropic Turbulence*}
 
-\chapter{Awkward Level-Set GEMS}
-
-\section{The Level-Set Function}
-
-\section{Hamilton-Jacobi Equations}
-
-\section{Ghost Fluid Method}
-
-\section{Lagrangian Particle Tracking*}
 
 
 

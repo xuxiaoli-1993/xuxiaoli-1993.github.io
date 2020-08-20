@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="UTF-8">
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <title>Xuxiao's Software </title>
+   </head>
+
+   <body>
+      <header>
+         <h2 style="text-align:center">Software</h2>
+         <p style="font-size:16pt">I am currently maintaining an in-house Computational Fluid
+         Dynamics (CFD) legacy code, the General Equation Mesh Solver (GEMS). Based on this engine,
+         I created the Awkward Level-Set (ALS) module to make GEMS capable of solving problems for
+         multi-phase flow with free surface, as well as fluid-solid interfaction. Now for a lack of
+         a better name, I call it ALSGEMS. The document section is a tutorial I wrote about this
+         solver. Check the gallary section for some exemplary simulation results.</p>
+         <hr color="red" size="2">
+      </header>
+
+      <main>
+         <h3>Documents</h3>
+         <ul>
+            <li style="font-size:18pt"> <a href="./myCFDTutorial/XL.pdf"
+                  target="_blank">CFD with GEMS</a> </li>
+         </ul>
+         <h3>Gallery</h3>
+         <br />
+
+         <p style="font-size:14pt; font-weight:bold; text-align:center">1D Riemann Problem</p>
+         <figure class="myfig">
+            <video width="1200" src="1DRP.mov" alt="1D Riemann Problem"
+                                              controls class="myvideo"></video>
+         </figure>
+         <hr class="myhr">
+
+         <p style="font-size:14pt; font-weight:bold; text-align:center">2D Riemann Problem</p>
+         <figure class="myfig">
+            <video width="1000" src="2DRP.mov" alt="2D Riemann Problem"
+                                              controls class="myvideo"></video>
+         </figure>
+         <hr class="myhr">
+
+         <p style="font-size:14pt; font-weight:bold; text-align:center">Vortex Propagation (4
+         Partitions)</p>
+         <figure class="myfig">
+            <video width="600" src="vortexProp.mov" alt="Vortex Propagation"
+                                              controls class="myvideo"></video>
+         </figure>
+         <hr class="myhr">
+
+         <p style="font-size:14pt; font-weight:bold; text-align:center">Airfoil Problem</p>
+         <figure class="myfig">
+            <img width="800" src="airfoil.png" alt="airfoil problem" class="myimg"/>
+         </figure>
+         <hr class="myhr">
+
+         <p style="font-size:14pt; font-weight:bold; text-align:center">Flow Around Cylinder: Vortex
+         Shedding</p>
+         <figure class="myfig">
+            <video width="600" src="FlowAroundCylinder.mov" alt="Flow Around Cylinder"
+                                              controls class="myvideo"></video>
+         </figure>
+         <hr class="myhr">
+
+         <p style="font-size:14pt; font-weight:bold; text-align:center">Wake Interaction</p>
+         <figure class="myfig">
+            <video width="200" src="WakeInteraction.mov" alt="Wake Interaction"
+                                              controls class="myvideo"></video>
+         </figure>
+         <hr class="myhr">
+
+         <p style="font-size:14pt; font-weight:bold; text-align:center">Rising Bubble and Falling
+         Droplet</p>
+         <figure class="myfig">
+            <video width="400" src="RisingBubble.mov" alt="RisingBubble"
+                                              controls class="myvideo"></video>
+            <video width="400" src="FallingDroplet.mov" alt="Falling Droplet"
+                                              controls class="myvideo"></video>
+         </figure>
+
+      </main>
+
+   </body>
+
+</html>
