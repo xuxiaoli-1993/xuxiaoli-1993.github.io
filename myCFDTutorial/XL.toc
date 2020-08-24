@@ -19,17 +19,21 @@
 \contentsline {subsubsection}{Cell Gradient, Method 2: Gauss-Green Approach}{40}{Item.24}
 \contentsline {subsubsection}{Face Gradient}{44}{lstnumber.-24.160}
 \contentsline {section}{\numberline {3.3}Face Flux Computation}{45}{section.3.3}
-\contentsline {section}{\numberline {3.4}Implicit Temporal Discretization}{45}{section.3.4}
-\contentsline {section}{\numberline {3.5}Boundary Conditions}{45}{section.3.5}
-\contentsline {section}{\numberline {3.6}Preconditioning: Implementation}{45}{section.3.6}
-\contentsline {section}{\numberline {3.7}Solving Linear Systems}{45}{section.3.7}
-\contentsline {chapter}{\numberline {4}Awkward Level-Set GEMS}{46}{chapter.4}
-\contentsline {section}{\numberline {4.1}The Level-Set Function}{46}{section.4.1}
-\contentsline {section}{\numberline {4.2}Hamilton-Jacobi Equations}{46}{section.4.2}
-\contentsline {section}{\numberline {4.3}Ghost Fluid Method}{46}{section.4.3}
-\contentsline {section}{\numberline {4.4}Lagrangian Particle Tracking*}{46}{section.4.4}
-\contentsline {chapter}{\numberline {5}Benchmark Tests}{47}{chapter.5}
-\contentsline {section}{\numberline {5.1}One-Dimensional Euler Equation}{47}{section.5.1}
-\contentsline {section}{\numberline {5.2}Propagation of Vortex}{47}{section.5.2}
-\contentsline {section}{\numberline {5.3}Flow Around a Cylinder}{47}{section.5.3}
-\contentsline {section}{\numberline {5.4}Decay of Isotropic Turbulence*}{47}{section.5.4}
+\contentsline {subsubsection}{Construction of Left and Right States}{45}{section.3.3}
+\contentsline {subsubsection}{Roe's Approximate Riemann Solver}{47}{equation.3.3.17}
+\contentsline {subsubsection}{Some Computational Details of Viscous Flux}{51}{equation.3.3.31}
+\contentsline {subsubsection}{Face Loop for Assigning Fluxes to Cells}{53}{equation.3.3.36}
+\contentsline {section}{\numberline {3.4}Implicit Temporal Discretization}{54}{section.3.4}
+\contentsline {section}{\numberline {3.5}Boundary Conditions}{54}{section.3.5}
+\contentsline {section}{\numberline {3.6}Preconditioning: Implementation}{54}{section.3.6}
+\contentsline {section}{\numberline {3.7}Solving Linear Systems}{54}{section.3.7}
+\contentsline {chapter}{\numberline {4}Awkward Level-Set GEMS}{55}{chapter.4}
+\contentsline {section}{\numberline {4.1}The Level-Set Function}{55}{section.4.1}
+\contentsline {section}{\numberline {4.2}Hamilton-Jacobi Equations}{55}{section.4.2}
+\contentsline {section}{\numberline {4.3}Ghost Fluid Method}{55}{section.4.3}
+\contentsline {section}{\numberline {4.4}Lagrangian Particle Tracking*}{55}{section.4.4}
+\contentsline {chapter}{\numberline {5}Benchmark Tests}{56}{chapter.5}
+\contentsline {section}{\numberline {5.1}One-Dimensional Euler Equation}{56}{section.5.1}
+\contentsline {section}{\numberline {5.2}Propagation of Vortex}{56}{section.5.2}
+\contentsline {section}{\numberline {5.3}Flow Around a Cylinder}{56}{section.5.3}
+\contentsline {section}{\numberline {5.4}Decay of Isotropic Turbulence*}{56}{section.5.4}

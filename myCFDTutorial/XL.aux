@@ -24,27 +24,27 @@
 \newlabel{c1s1}{{1.1}{4}{Definition of Basic Mesh}{section.1.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.1}{\ignorespaces Illustration of mesh. (a) Definition of the calculation domain. (b) A discretization of the calculation domain (mesh).\relax }}{4}{figure.caption.3}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig-mesh1}{{1.1}{4}{Illustration of mesh. (a) Definition of the calculation domain. (b) A discretization of the calculation domain (mesh).\relax }{figure.caption.3}{}}
+\newlabel{figmesh1}{{1.1}{4}{Illustration of mesh. (a) Definition of the calculation domain. (b) A discretization of the calculation domain (mesh).\relax }{figure.caption.3}{}}
 \@writefile{lol}{\contentsline {lstlisting}{language=[90]Fortran}{5}{lstlisting.1.-1}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Finite Volume Mesh}{7}{section.1.2}}
 \newlabel{c1s2}{{1.2}{7}{Finite Volume Mesh}{section.1.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.2}{\ignorespaces Construction of faces to make the finite volume mesh.\relax }}{7}{figure.caption.4}}
-\newlabel{fig-mesh2}{{1.2}{7}{Construction of faces to make the finite volume mesh.\relax }{figure.caption.4}{}}
+\newlabel{figmesh2}{{1.2}{7}{Construction of faces to make the finite volume mesh.\relax }{figure.caption.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.3}Partitioning of Mesh}{9}{section.1.3}}
 \newlabel{c1s3}{{1.3}{9}{Partitioning of Mesh}{section.1.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.3}{\ignorespaces Partitioning of calculation domain\relax }}{9}{figure.caption.5}}
-\newlabel{fig-mesh3}{{1.3}{9}{Partitioning of calculation domain\relax }{figure.caption.5}{}}
+\newlabel{figmesh3}{{1.3}{9}{Partitioning of calculation domain\relax }{figure.caption.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.4}{\ignorespaces Splitting of the domain and re-indexing.\relax }}{11}{figure.caption.6}}
-\newlabel{fig-mesh4}{{1.4}{11}{Splitting of the domain and re-indexing.\relax }{figure.caption.6}{}}
+\newlabel{figmesh4}{{1.4}{11}{Splitting of the domain and re-indexing.\relax }{figure.caption.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.4}Periodic Boundary Condition}{13}{section.1.4}}
 \newlabel{c1s4}{{1.4}{13}{Periodic Boundary Condition}{section.1.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.5}{\ignorespaces Re-define the boundary conditions. (a) Set two pairs of walls as 2 batches of periodic BC. (b) The mesh corresponding to the setup in (a).\relax }}{14}{figure.caption.7}}
-\newlabel{fig-mesh5}{{1.5}{14}{Re-define the boundary conditions. (a) Set two pairs of walls as 2 batches of periodic BC. (b) The mesh corresponding to the setup in (a).\relax }{figure.caption.7}{}}
+\newlabel{figmesh5}{{1.5}{14}{Re-define the boundary conditions. (a) Set two pairs of walls as 2 batches of periodic BC. (b) The mesh corresponding to the setup in (a).\relax }{figure.caption.7}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.6}{\ignorespaces Demonstration of the treatment of periodic BC.\relax }}{16}{figure.caption.8}}
-\newlabel{fig-mesh6}{{1.6}{16}{Demonstration of the treatment of periodic BC.\relax }{figure.caption.8}{}}
+\newlabel{figmesh6}{{1.6}{16}{Demonstration of the treatment of periodic BC.\relax }{figure.caption.8}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.5}Practical Guide}{17}{section.1.5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1.7}{\ignorespaces Flow chart of generating and using mesh files.\relax }}{18}{figure.caption.9}}
-\newlabel{fig-mesh7}{{1.7}{18}{Flow chart of generating and using mesh files.\relax }{figure.caption.9}{}}
+\newlabel{figmesh7}{{1.7}{18}{Flow chart of generating and using mesh files.\relax }{figure.caption.9}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {1.1}{\ignorespaces List of key input parameters in pgrid.f90.\relax }}{20}{table.caption.10}}
 \newlabel{tb-mesh1}{{1.1}{20}{List of key input parameters in pgrid.f90.\relax }{table.caption.10}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {2}Fundamentals of Fluid Mechanics}{22}{chapter.2}}
@@ -53,88 +53,124 @@
 \newlabel{c2}{{2}{22}{Fundamentals of Fluid Mechanics}{chapter.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Viewpoints of Describing Fluid Mechanics}{22}{section.2.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces Material region and control volume. Black-dashed and red-circled region are the two material region at two time moments. The gray area overlaps with the material region at $t_1$ and represents the control volume which is fixed regardless of time.\relax }}{22}{figure.caption.11}}
-\newlabel{fig-fund1}{{2.1}{22}{Material region and control volume. Black-dashed and red-circled region are the two material region at two time moments. The gray area overlaps with the material region at $t_1$ and represents the control volume which is fixed regardless of time.\relax }{figure.caption.11}{}}
-\newlabel{eq-massMR}{{2.1}{22}{Viewpoints of Describing Fluid Mechanics}{equation.2.1.1}{}}
+\newlabel{figfund1}{{2.1}{22}{Material region and control volume. Black-dashed and red-circled region are the two material region at two time moments. The gray area overlaps with the material region at $t_1$ and represents the control volume which is fixed regardless of time.\relax }{figure.caption.11}{}}
+\newlabel{eqmassMR}{{2.1}{22}{Viewpoints of Describing Fluid Mechanics}{equation.2.1.1}{}}
 \citation{panton2013incompressible}
-\newlabel{eq-massCV}{{2.2}{23}{Viewpoints of Describing Fluid Mechanics}{equation.2.1.2}{}}
-\newlabel{eq-Leib}{{2.3}{23}{Viewpoints of Describing Fluid Mechanics}{equation.2.1.3}{}}
+\newlabel{eqmassCV}{{2.2}{23}{Viewpoints of Describing Fluid Mechanics}{equation.2.1.2}{}}
+\newlabel{eqLeib}{{2.3}{23}{Viewpoints of Describing Fluid Mechanics}{equation.2.1.3}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Governing equations}{24}{section.2.2}}
-\newlabel{eq-mom}{{2.4}{24}{Governing equations}{equation.2.2.4}{}}
-\newlabel{eq-eng}{{2.5}{24}{Governing equations}{equation.2.2.5}{}}
+\newlabel{eqmom}{{2.4}{24}{Governing equations}{equation.2.2.4}{}}
+\newlabel{eqeng}{{2.5}{24}{Governing equations}{equation.2.2.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Constitutive Relations}{25}{section.2.3}}
+\newlabel{eqstrainrate}{{2.6}{26}{Constitutive Relations}{equation.2.3.6}{}}
+\newlabel{eqviscousstress}{{2.7}{26}{Constitutive Relations}{equation.2.3.7}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Differential Governing Equations}{26}{section.2.4}}
-\newlabel{eq-Gaussthm}{{2.6}{26}{Differential Governing Equations}{equation.2.4.6}{}}
-\newlabel{eq-massDf}{{2.7}{26}{Differential Governing Equations}{equation.2.4.7}{}}
-\newlabel{eq-momTs}{{2.8}{26}{Differential Governing Equations}{equation.2.4.8}{}}
-\newlabel{eq-momDf}{{2.9}{26}{Differential Governing Equations}{equation.2.4.9}{}}
-\newlabel{eq-engDf}{{2.10}{27}{Differential Governing Equations}{equation.2.4.10}{}}
+\newlabel{eqGaussthm}{{2.8}{26}{Differential Governing Equations}{equation.2.4.8}{}}
+\newlabel{eqmassDf}{{2.9}{26}{Differential Governing Equations}{equation.2.4.9}{}}
+\newlabel{eqmomTs}{{2.10}{27}{Differential Governing Equations}{equation.2.4.10}{}}
+\newlabel{eqmomDf}{{2.11}{27}{Differential Governing Equations}{equation.2.4.11}{}}
+\newlabel{eqengDf}{{2.12}{27}{Differential Governing Equations}{equation.2.4.12}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.5}Matrix Representation}{27}{section.2.5}}
-\newlabel{eq-matgov1}{{2.11}{27}{Matrix Representation}{equation.2.5.11}{}}
-\newlabel{eq-matgov2}{{2.12}{27}{Matrix Representation}{equation.2.5.12}{}}
-\newlabel{eq-matgov3}{{2.13}{27}{Matrix Representation}{equation.2.5.13}{}}
+\newlabel{eqmatgov1}{{2.13}{27}{Matrix Representation}{equation.2.5.13}{}}
+\newlabel{eqmatgov2}{{2.14}{27}{Matrix Representation}{equation.2.5.14}{}}
 \citation{li2006unified}
-\newlabel{eq-matgov}{{2.14}{28}{Matrix Representation}{equation.2.5.14}{}}
-\newlabel{eq-matgovDf}{{2.15}{28}{Matrix Representation}{equation.2.5.15}{}}
-\newlabel{eq-govready}{{2.16}{28}{Matrix Representation}{equation.2.5.16}{}}
+\newlabel{eqmatgov3}{{2.15}{28}{Matrix Representation}{equation.2.5.15}{}}
+\newlabel{eqmatgov}{{2.16}{28}{Matrix Representation}{equation.2.5.16}{}}
+\newlabel{eqmatgovDf}{{2.17}{28}{Matrix Representation}{equation.2.5.17}{}}
+\newlabel{eqgovready}{{2.18}{29}{Matrix Representation}{equation.2.5.18}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.6}Preconditioning: Motivation}{29}{section.2.6}}
-\newlabel{eq-1DEuler}{{2.17}{29}{Preconditioning: Motivation}{equation.2.6.17}{}}
-\newlabel{eq-1DEulerP1}{{2.18}{29}{Preconditioning: Motivation}{equation.2.6.18}{}}
-\newlabel{eq-1DEulerP2}{{2.19}{30}{Preconditioning: Motivation}{equation.2.6.19}{}}
-\newlabel{eq-1DEulerCh}{{2.20}{30}{Preconditioning: Motivation}{equation.2.6.20}{}}
-\newlabel{eq-wavespeed}{{2.21}{30}{Preconditioning: Motivation}{equation.2.6.21}{}}
-\newlabel{eq-soundspeed}{{2.22}{31}{Preconditioning: Motivation}{equation.2.6.22}{}}
-\newlabel{eq-1DEulerss}{{2.23}{32}{Preconditioning: Motivation}{equation.2.6.23}{}}
+\newlabel{eq1DEuler}{{2.19}{29}{Preconditioning: Motivation}{equation.2.6.19}{}}
+\newlabel{eq1DEulerP1}{{2.20}{29}{Preconditioning: Motivation}{equation.2.6.20}{}}
+\newlabel{eq1DEulerP2}{{2.21}{30}{Preconditioning: Motivation}{equation.2.6.21}{}}
+\newlabel{eq1DEulerCh}{{2.22}{30}{Preconditioning: Motivation}{equation.2.6.22}{}}
+\newlabel{eqwavespeed}{{2.23}{31}{Preconditioning: Motivation}{equation.2.6.23}{}}
+\newlabel{eqsoundspeed}{{2.24}{31}{Preconditioning: Motivation}{equation.2.6.24}{}}
+\newlabel{eq1DEulerss}{{2.25}{32}{Preconditioning: Motivation}{equation.2.6.25}{}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {3}Algorithm}{33}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {3.1}Spatial and Explicit Temporal Discretization}{33}{section.3.1}}
-\newlabel{eq-govalg}{{3.1}{33}{Spatial and Explicit Temporal Discretization}{equation.3.1.1}{}}
-\newlabel{eq-disc1}{{3.2}{33}{Spatial and Explicit Temporal Discretization}{equation.3.1.2}{}}
-\newlabel{eq-disc2}{{3.3}{33}{Spatial and Explicit Temporal Discretization}{equation.3.1.3}{}}
+\newlabel{eqgovalg}{{3.1}{33}{Spatial and Explicit Temporal Discretization}{equation.3.1.1}{}}
+\newlabel{eqdisc1}{{3.2}{33}{Spatial and Explicit Temporal Discretization}{equation.3.1.2}{}}
+\newlabel{eqdisc2}{{3.3}{33}{Spatial and Explicit Temporal Discretization}{equation.3.1.3}{}}
 \citation{toro2013riemann}
-\newlabel{eq-disct1}{{3.4}{34}{Spatial and Explicit Temporal Discretization}{equation.3.1.4}{}}
-\newlabel{eq-disct2}{{3.5}{35}{Spatial and Explicit Temporal Discretization}{equation.3.1.5}{}}
-\newlabel{eq-exp1}{{3.6}{35}{Spatial and Explicit Temporal Discretization}{equation.3.1.6}{}}
-\newlabel{eq-lh1}{{3.7}{35}{Spatial and Explicit Temporal Discretization}{equation.3.1.7}{}}
+\newlabel{eqdisct1}{{3.4}{34}{Spatial and Explicit Temporal Discretization}{equation.3.1.4}{}}
+\newlabel{eqdisct2}{{3.5}{35}{Spatial and Explicit Temporal Discretization}{equation.3.1.5}{}}
+\newlabel{eqexp1}{{3.6}{35}{Spatial and Explicit Temporal Discretization}{equation.3.1.6}{}}
+\newlabel{eqlh1}{{3.7}{35}{Spatial and Explicit Temporal Discretization}{equation.3.1.7}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.2}Gradient Computation}{37}{section.3.2}}
 \@writefile{toc}{\contentsline {subsubsection}{Cell Gradient, Method 1: Least Mean Square}{37}{section.3.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Illustration of cell gradient computation.\relax }}{37}{figure.caption.12}}
-\newlabel{fig-cellg}{{3.1}{37}{Illustration of cell gradient computation.\relax }{figure.caption.12}{}}
+\newlabel{figcellg}{{3.1}{37}{Illustration of cell gradient computation.\relax }{figure.caption.12}{}}
 \citation{trefethen1997numerical}
 \citation{golub2013matrix}
-\newlabel{eq-lms1}{{3.8}{38}{Cell Gradient, Method 1: Least Mean Square}{equation.3.2.8}{}}
-\newlabel{eq-lms2}{{3.9}{38}{Cell Gradient, Method 1: Least Mean Square}{equation.3.2.9}{}}
-\newlabel{eq-lms3}{{3.10}{38}{Cell Gradient, Method 1: Least Mean Square}{equation.3.2.10}{}}
+\newlabel{eqlms1}{{3.8}{38}{Cell Gradient, Method 1: Least Mean Square}{equation.3.2.8}{}}
+\newlabel{eqlms2}{{3.9}{38}{Cell Gradient, Method 1: Least Mean Square}{equation.3.2.9}{}}
+\newlabel{eqlms3}{{3.10}{38}{Cell Gradient, Method 1: Least Mean Square}{equation.3.2.10}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Constructing Neighbor Structure}{39}{lstnumber.-14.71}}
 \@writefile{toc}{\contentsline {subsubsection}{Cell Gradient, Method 2: Gauss-Green Approach}{40}{Item.24}}
-\newlabel{eq-Green}{{3.11}{40}{Cell Gradient, Method 2: Gauss-Green Approach}{equation.3.2.11}{}}
-\newlabel{eq-f2n}{{3.12}{41}{Cell Gradient, Method 2: Gauss-Green Approach}{equation.3.2.12}{}}
+\newlabel{eqGreen}{{3.11}{40}{Cell Gradient, Method 2: Gauss-Green Approach}{equation.3.2.11}{}}
+\newlabel{eqf2n}{{3.12}{41}{Cell Gradient, Method 2: Gauss-Green Approach}{equation.3.2.12}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Illustration of nodal interpolation by the mesh in one of the partitions.\relax }}{41}{figure.caption.13}}
-\newlabel{fig-alg2}{{3.2}{41}{Illustration of nodal interpolation by the mesh in one of the partitions.\relax }{figure.caption.13}{}}
+\newlabel{figalg2}{{3.2}{41}{Illustration of nodal interpolation by the mesh in one of the partitions.\relax }{figure.caption.13}{}}
 \@writefile{toc}{\contentsline {subsubsection}{Face Gradient}{44}{lstnumber.-24.160}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.3}{\ignorespaces Illustration of face gradient computations. (a) Quadrilateral face and (b) Triangle face.\relax }}{44}{figure.caption.14}}
-\newlabel{fig-alg3}{{3.3}{44}{Illustration of face gradient computations. (a) Quadrilateral face and (b) Triangle face.\relax }{figure.caption.14}{}}
-\newlabel{eq-lmsface1}{{3.13}{44}{Face Gradient}{equation.3.2.13}{}}
-\newlabel{eq-lmsface2}{{3.14}{44}{Face Gradient}{equation.3.2.14}{}}
+\newlabel{figalg3}{{3.3}{44}{Illustration of face gradient computations. (a) Quadrilateral face and (b) Triangle face.\relax }{figure.caption.14}{}}
+\newlabel{eqlmsface1}{{3.13}{44}{Face Gradient}{equation.3.2.13}{}}
+\newlabel{eqlmsface2}{{3.14}{44}{Face Gradient}{equation.3.2.14}{}}
+\citation{toro2013riemann}
+\citation{toro2013riemann}
+\newlabel{eqlmsface3}{{3.15}{45}{Face Gradient}{equation.3.2.15}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3.3}Face Flux Computation}{45}{section.3.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.4}Implicit Temporal Discretization}{45}{section.3.4}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.5}Boundary Conditions}{45}{section.3.5}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.6}Preconditioning: Implementation}{45}{section.3.6}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.7}Solving Linear Systems}{45}{section.3.7}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Awkward Level-Set GEMS}{46}{chapter.4}}
+\@writefile{toc}{\contentsline {subsubsection}{Construction of Left and Right States}{45}{section.3.3}}
+\citation{hirsch1988numerical}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.4}{\ignorespaces Construction of left and right states. 2D rectangle cells are used for illustration but the geometry can be generalized.\relax }}{46}{figure.caption.15}}
+\newlabel{figlrstates}{{3.4}{46}{Construction of left and right states. 2D rectangle cells are used for illustration but the geometry can be generalized.\relax }{figure.caption.15}{}}
+\newlabel{eqlimiter}{{3.16}{46}{Construction of Left and Right States}{equation.3.3.16}{}}
+\newlabel{eqbarth}{{3.17}{47}{Construction of Left and Right States}{equation.3.3.17}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Roe's Approximate Riemann Solver}{47}{equation.3.3.17}}
+\newlabel{eqpseudoRP}{{3.18}{47}{Roe's Approximate Riemann Solver}{equation.3.3.18}{}}
+\newlabel{eqpseudoRPP1}{{3.19}{48}{Roe's Approximate Riemann Solver}{equation.3.3.19}{}}
+\newlabel{eqGamma3D}{{3.20}{48}{Roe's Approximate Riemann Solver}{equation.3.3.20}{}}
+\newlabel{eqAcn}{{3.21}{48}{Roe's Approximate Riemann Solver}{equation.3.3.21}{}}
+\newlabel{eqpseudoRPP2}{{3.22}{48}{Roe's Approximate Riemann Solver}{equation.3.3.22}{}}
+\newlabel{eqRoeave}{{3.23}{48}{Roe's Approximate Riemann Solver}{equation.3.3.23}{}}
+\newlabel{eqjacobtrans}{{3.24}{49}{Roe's Approximate Riemann Solver}{equation.3.3.24}{}}
+\newlabel{eqChari}{{3.25}{49}{Roe's Approximate Riemann Solver}{equation.3.3.25}{}}
+\newlabel{eqAnl1}{{3.26}{50}{Roe's Approximate Riemann Solver}{equation.3.3.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.5}{\ignorespaces $n-t$ Diagram of the solution structure for a system of linear wave equation. 5 characteristic lines are shown for the system in Eqn. \ref  {eqpseudoRPP2}. For convenience of discussion, we assume $\lambda _1 < \lambda _2 < \cdots  < \lambda _5$.\relax }}{50}{figure.caption.16}}
+\newlabel{figNTDiag}{{3.5}{50}{$n-t$ Diagram of the solution structure for a system of linear wave equation. 5 characteristic lines are shown for the system in Eqn. \ref {eqpseudoRPP2}. For convenience of discussion, we assume $\lambda _1 < \lambda _2 < \cdots < \lambda _5$.\relax }{figure.caption.16}{}}
+\newlabel{eqAnl2}{{3.27}{50}{Roe's Approximate Riemann Solver}{equation.3.3.27}{}}
+\newlabel{eqFlux1}{{3.28}{50}{Roe's Approximate Riemann Solver}{equation.3.3.28}{}}
+\citation{li2006unified}
+\newlabel{eqFlux2}{{3.29}{51}{Roe's Approximate Riemann Solver}{equation.3.3.29}{}}
+\newlabel{eqFlux3}{{3.30}{51}{Roe's Approximate Riemann Solver}{equation.3.3.30}{}}
+\newlabel{eqFluxAD}{{3.31}{51}{Roe's Approximate Riemann Solver}{equation.3.3.31}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Some Computational Details of Viscous Flux}{51}{equation.3.3.31}}
+\newlabel{eqFvnexpand}{{3.32}{51}{Some Computational Details of Viscous Flux}{equation.3.3.32}{}}
+\newlabel{eqFvnEng}{{3.33}{52}{Some Computational Details of Viscous Flux}{equation.3.3.33}{}}
+\newlabel{eqFvnRij}{{3.34}{52}{Some Computational Details of Viscous Flux}{equation.3.3.34}{}}
+\newlabel{eqGradLinear}{{3.35}{52}{Some Computational Details of Viscous Flux}{equation.3.3.35}{}}
+\newlabel{eqVisMat}{{3.36}{53}{Some Computational Details of Viscous Flux}{equation.3.3.36}{}}
+\@writefile{toc}{\contentsline {subsubsection}{Face Loop for Assigning Fluxes to Cells}{53}{equation.3.3.36}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.4}Implicit Temporal Discretization}{54}{section.3.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.5}Boundary Conditions}{54}{section.3.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.6}Preconditioning: Implementation}{54}{section.3.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.7}Solving Linear Systems}{54}{section.3.7}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Awkward Level-Set GEMS}{55}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}The Level-Set Function}{46}{section.4.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Hamilton-Jacobi Equations}{46}{section.4.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Ghost Fluid Method}{46}{section.4.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Lagrangian Particle Tracking*}{46}{section.4.4}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Benchmark Tests}{47}{chapter.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}The Level-Set Function}{55}{section.4.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Hamilton-Jacobi Equations}{55}{section.4.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Ghost Fluid Method}{55}{section.4.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Lagrangian Particle Tracking*}{55}{section.4.4}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Benchmark Tests}{56}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}One-Dimensional Euler Equation}{47}{section.5.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Propagation of Vortex}{47}{section.5.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Flow Around a Cylinder}{47}{section.5.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {5.4}Decay of Isotropic Turbulence*}{47}{section.5.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}One-Dimensional Euler Equation}{56}{section.5.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Propagation of Vortex}{56}{section.5.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Flow Around a Cylinder}{56}{section.5.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {5.4}Decay of Isotropic Turbulence*}{56}{section.5.4}}
 \bibstyle{IEEEtran}
 \bibdata{./ref.bib}
 \bibcite{panton2013incompressible}{{1}{}{{}}{{}}}
@@ -142,7 +178,8 @@
 \bibcite{toro2013riemann}{{3}{}{{}}{{}}}
 \bibcite{trefethen1997numerical}{{4}{}{{}}{{}}}
 \bibcite{golub2013matrix}{{5}{}{{}}{{}}}
-\newlabel{LastPage}{{}{48}{}{page.48}{}}
-\xdef\lastpage@lastpage{48}
-\xdef\lastpage@lastpageHy{48}
+\bibcite{hirsch1988numerical}{{6}{}{{}}{{}}}
+\newlabel{LastPage}{{}{57}{}{page.57}{}}
+\xdef\lastpage@lastpage{57}
+\xdef\lastpage@lastpageHy{57}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers

@@ -43,4 +43,9 @@ L.~N. Trefethen and D.~Bau~III, \emph{Numerical linear algebra}.\hskip 1em plus
 G.~Golub and C.~Van~Loan, ``Matrix computations 4th edition the johns hopkins
   university press,'' \emph{Baltimore, MD}, 2013.
 
+\bibitem{hirsch1988numerical}
+C.~Hirsch, ``Numerical computation of internal and external flows, volume 1:
+  Fundamentals of numerical discretization,'' \emph{John Wiley and Sons},
+  vol.~9, p.~10, 1988.
+
 \end{thebibliography}
