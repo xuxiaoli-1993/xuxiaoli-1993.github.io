@@ -233,6 +233,7 @@ way convenient for finite volume method. As we will see, additional data types c
 based on the basic mesh and be used to facilitate finite-volume computation. 
 \paraspace
 
+\clearpage
 \section{Finite Volume Mesh} \label{c1s2}
 
 We establish the data type \verb+face+ from the basic mesh to form the ``finite volume mesh''. The
@@ -336,6 +337,7 @@ Notice that the information about BC's can be fully described by the \verb+bc(:)
 \verb+itype+ in \verb+face+.
 \paraspace
 
+\clearpage
 \section{Partitioning of Mesh} \label{c1s3}
 
 Now we have got a finite volume mesh, with three essential data types, \verb+node+, \verb+cell+, and
@@ -507,6 +509,7 @@ summarize the information contained in each mesh file:
 \end{enumerate}
 \paraspace
 
+\clearpage
 \section{Periodic Boundary Condition} \label{c1s4}
 
 The treatment of periodic BC deserves a separate section to describe. The difficulty in treating
@@ -624,6 +627,7 @@ partitioning. This is because we periodic BC communication will first fill in al
 cells, some of which can then be sent out via the partitioning communication.
 \paraspace
 
+\clearpage
 \section{Practical Guide}
 We shall give some practical instructions in the section regarding the generation and use of mesh
 files. The action items are summarized by the flow chart shown in Fig. \ref{figmesh7}. 
@@ -724,7 +728,7 @@ A list of parameters that needs to be given in \verb+pgrid.f90+ are given in Tab
    \caption{List of key input parameters in pgrid.f90.}
    \label{tb-mesh1}
    \renewcommand{\arraystretch}{1.2}
-   \begin{tabularx}{\textwidth}{lX}
+   \begin{tabular}{p{6cm}p{8cm}}
       \mytoprule
       \bf variable name & \bf meaning \\ \mymiddlerule
       \verb+gridfile+ & the address of FE mesh files \\
@@ -740,7 +744,7 @@ A list of parameters that needs to be given in \verb+pgrid.f90+ are given in Tab
       \verb+lab_period,iax+ & pair of periodic BC label and along which direction the periodicity is\\
       \verb+ngeom+ & which mesh geometry to specify in TECPLOT file (1=triangle, etc.)\\
       \mybottomrule
-   \end{tabularx}
+   \end{tabular}
 \end{table}
 
 Couple of notes, (1) the ideal partitioning algorithm should the \verb+METIS+ algorithm which
@@ -860,6 +864,7 @@ Leibnitz's theorem states that for any quantity $Q$:
 In the context of fluid mechanics, $Q$ can be mass, momentum and energy.
 \paraspace
 
+\clearpage
 \section{Governing equations}
 
 For now on, we will be focusing on using control volume to describe the conservation equations
@@ -934,6 +939,7 @@ conservation of chemical species. That being said, we limit our discussion to th
 equations in this chapter.
 \paraspace
 
+\clearpage
 \section{Constitutive Relations}
 
 There are essentially five equations from Eqn. \ref{eqmassCV}, \ref{eqmom}, and \ref{eqeng}.
@@ -1021,6 +1027,7 @@ as functions of the primitive variables $(p,V,T)$. The body force $f$ may be the
 now we can simply view it as a constant as for the gravitational force.
 \paraspace
 
+\clearpage
 \section{Differential Governing Equations}
 
 In this section we brief discuss the differential form of governing equations. Although this form is
@@ -1085,6 +1092,7 @@ Now we have the set of differential equations, Eqn. \ref{eqmassDf}, \ref{eqmomDf
 energy.
 \paraspace
 
+\clearpage
 \section{Matrix Representation}
 
 In this section, we will prepare the set of governing equations in integral form, Eqn.
@@ -1205,6 +1213,7 @@ That is, expressing every term as functions of the primitive variable $Q_p$. Her
 to as the {\bf conservative jacobian} which connects primitive variable and conservative variable.
 \paraspace
 
+\clearpage
 \section{Preconditioning: Motivation}
 
 In this section, we introduce some analysis on the system of governing equations Eqn.
@@ -1577,17 +1586,19 @@ In Eqn. \ref{eqexp1}, the {\bf known} variables will be the primitive variables 
 at time $n$ and $n-1$, i.e., $Q_{p,I}^n$ and $Q_{p,I}^{n-1}$. The face-related variables (with
 subscript $i$) can be interpolated/extrapolated based on the cell primitive variables. The {\bf
 unknown} variables we aim to solve is the cell primitive variables at the next time step $n+1$,
-$Q_{p,I}^{n+1}$. We can manoeuvre Eqn. \ref{eqexp1} such that all the unknowns are put on the LHS and
-all the knowns are put on the RHS:
+$Q_{p,I}^{n+1}$. We can maneuver Eqn. \ref{eqexp1} such that all the unknowns are put on the LHS and
+all the terms known are put on the RHS:
 
 \begin{align}\label{eqlh1}
    \begin{split}
       & \L(\vec{Q}_p^n) \Delta \vec{Q}_p^n = \R(\vec{Q}_p^n), \\ & \textrm{where} \; \L_{II} =
       \frac{\Gamma(Q_{p,I}^n)\Omega_I}{\Delta t}, \; \L_{IJ} = 0 \; (I \neq J), \; \Delta \Q_p^n =
       \Q_p^{n+1} - \Q_p^n, \; \textrm{and } \\
-      & \R_I = -\left(-\frac{\Gamma(Q_{p,I}^n) \Delta Q_{p,I}^{n-1}\Omega_I}{\Delta t} + \sum_{i \in
+      & \R_I = -\left(-\frac{\Gamma(Q_{p,I}^n) (Q_{p,I}^n - Q_{p,I}^{n-1})\Omega_I}{2\Delta t} +
+         \right.\\
+      &\left.\sum_{i \in
             I_{sf}}\left[\mathcal{F}(Q_{pL,i}^n, Q_{pR,i}^n, n_{Ii}) - F_{vn}(Q_{p,i}^n, (\nabla
-\mathop{\otimes} Q_p)_i^n, n_{Ii})\right]\sigma_i\right) \\ & + S(Q_{p,I}^n)\Omega_I
+\mathop{\otimes} Q_p)_i^n, n_{Ii})\right]\sigma_i\right) + S(Q_{p,I}^n)\Omega_I
    \end{split}
 \end{align}
 
@@ -1655,6 +1666,7 @@ will depend on the order of the temporal discretization. In the case of second o
 the attribute \verb+dm+ stores the diagonal terms of the LHS matrix $\L_{II}$ and the attribute
 \verb+res+ stores the residual for the cell, $\R_I$. \paraspace
 
+\clearpage
 \section{Gradient Computation}
 
 From now on, our discussion will be built on the key equation \ref{eqlh1} which is that a LHS
@@ -2111,7 +2123,7 @@ and store it in the type \verb+face+ by the attributes \verb+avec+:
 By doing this, we only need to compute the matrix multiplication in Eqn. \ref{eqlmsface2} to obtain
 the gradient at face $i$.
 
-\paraspace
+\clearpage
 \section{Face Flux Computation}
 
 With the gradient (cell and face) calculated as discussed in the previous section, we are ready to
@@ -2157,7 +2169,7 @@ This is a {\bf first-order} approximation and is often not adequate for desired 
 second-order} approximation would be:
 
 \begin{align*}
-   Q_{p,iL} = (\nabla \op Q_p)_{il} \cdot r_{il}, \quad Q_{p,iR} = (\nabla \op Q_p)_{ir} \cdot r_{ir}
+   Q_{p,iL} = Q_{p,il} + (\nabla \op Q_p)_{il} \cdot r_{il}, \quad Q_{p,iR} = Q_{p,ir} + (\nabla \op Q_p)_{ir} \cdot r_{ir}
 \end{align*}
 
 which is basically an interpolation with cell gradient of $I$ and $J$.
@@ -2181,8 +2193,8 @@ local extrema (maxima and minima), which tends to cause numerical oscillations, 
 apply the {\bf limiter operator}, $\Psi$, when constructing the left/right states:
 
 \begin{align}\label{eqlimiter}
-   Q_{p,iL} = \Psi_{il} [(\nabla \op Q_p)_{il} \cdot r_{il}], \quad Q_{p,iR} = \Psi_{ir} [(\nabla \op
-   Q_p)_{ir} \cdot r_{ir}]
+   Q_{p,iL} = Q_{p,il} + \Psi_{il} [(\nabla \op Q_p)_{il} \cdot r_{il}], \quad Q_{p,iR} = Q_{p,ir} +
+   \Psi_{ir} [(\nabla \op Q_p)_{ir} \cdot r_{ir}]
 \end{align}
 
 The limiter operator will multiply a coefficients on each component of the vector it operates on. 
@@ -2468,20 +2480,20 @@ dissipation is used to improve the stability of the numerical scheme and it will
 mesh size decreases ($Q_{pR} -  Q_{pL}$ decreases). We can write the flux function generally as:
 
 \begin{align}\label{eqFluxAD}
-   \F = \frac{1}{2}(F_{cn}(Q_{pL}) + F_{cn}(Q_{pR})) - \frac{1}{2}\mathcal{A}_D (Q_{pR}
+   \F = \frac{1}{2}(F_{cn}(Q_{pL}) + F_{cn}(Q_{pR})) - \frac{1}{2}A_D (Q_{pR}
    - Q_{pL})
 \end{align}
 
-where the matrix $\mathcal{A}_D$ represents the amount of artifial dissipation in the flux function.
+where the matrix $A_D$ represents the amount of artifial dissipation in the flux function.
 \paraspace
 
 To summarize the computation of $\F$, we first compute the convective part of Eqn. \ref{eqFlux3}
 with the contructed left and right states. Then we calculate the Roe's average of the left and right
 states $\tilde{Q}_p$ using Eqn. \ref{eqRoeave}. Finally, the artifial dissipation matrix
-$\mathcal{A}_D = \Gamma M |\Lambda| M^{-1}$can be computed using $\tilde{Q}_p$. In computing the
+$A_D = \Gamma M |\Lambda| M^{-1}$can be computed using $\tilde{Q}_p$. In computing the
 artifial dissipation matrix, we will be using Eqn. \ref{eqGamma3D} and \ref{eqAcn}. Notice that
 in these expression, the derivatives $\rho_p$, $\rho_T$, $h_p$, $h_T$, etc. are still functions of
-the primitive variables. Therefore, all the terms related to $\mathcal{A}_D$ can be computed based
+the primitive variables. Therefore, all the terms related to $A_D$ can be computed based
 on the Roe's average $\tilde{Q}_p$.
 
 \subsubsection{Some Computational Details of Viscous Flux}
@@ -2689,8 +2701,274 @@ add up the \verb+faceflux+ and \verb+cr % res+ must subtract the \verb+faceflux+
 \paraspace
 
 
+\clearpage
 \section{Implicit Temporal Discretization}
 
+In this section, let's consider an alternative way of temporal discretization. Let's examine Eqn.
+\ref{eqexp1}: the first term in the LHS is the temporal evolution of primitive/conservative
+variables. The second and third term are the convective and viscous flux, evaluated at time step
+$n$. The RHS is the source term evaluated at time step $n$. We note that the primitive variable at
+the next time step $n+1$ can be directly updated with the convective flux, viscous flux and source
+term evaluated at time step $n$. This is referred to as the explicit temporal discretization. In the
+{\bf implicit temporal discretization}, the above-mentioned terms are evaluated at time step $n+1$,
+which can be expressed as:
+
+\begin{align}\label{eqimpExpand}
+   \begin{split}
+      \Gamma(Q_{p,I}^n) \frac{2Q_{p,I}^{n+1} - 3Q_{p,I}^n + Q_{p,I}^{n-1}}{2\Delta t} \Omega_I +
+      &\sum_{i \in I_{sf}} \F(Q_{pL,i}^{n+1}, Q_{pR,i}^{n+1}, n_{Ii}) \sigma_i - \\ &\sum_{i \in
+      I_{sf}} F_{vn}(Q_{p,i}^{n+1}, (\nabla \mathop{\otimes} Q_p)_i^{n+1}, n_{Ii}) \sigma_i =
+      S(Q_{p,I}^{n+1})
+      \Omega_I
+   \end{split}
+\end{align}
+
+We use the {\bf linearization} to approximate the terms in time step $n+1$:
+
+\begin{align}\label{eqlinapp}
+   \begin{split}
+      &\F^{n+1} \approx \F^n + \left(\frac{\partial \F}{\partial
+      Q_{pl,i}}\right)^n \Delta Q_{pl,i}^n + \left(\frac{\partial \F}{\partial Q_{pr,i}}\right)^n \Delta
+      Q_{pr,i}^n \\ & F_{vn}^{n+1} \approx F_{vn}^n + \left(\frac{\partial F_{vn}}{\partial
+      Q_{pl,i}}\right)^n \Delta Q_{pl,i}^n +
+      \left(\frac{\partial F_{vn}}{\partial Q_{pr,i}}\right)^n \Delta Q_{pr,i}^n \\ & S^{n+1}
+      \approx S^n + \left(\frac{\partial S}{\partial Q_{p,I}}\right)^n \Delta Q_{p,I}^n
+      \\ &\textrm{where } \Delta Q_{pl,i}^n = Q_{pl,i}^{n+1} - Q_{pl,i}^n, \; \Delta Q_{pr,i}^n =
+      Q_{pr,i}^{n+1} - Q_{pr,i}^n, \; \textrm{and } \Delta Q_{p,I}^n = Q_{p,I}^{n+1} - Q_{p,I}^n
+   \end{split}
+\end{align}
+
+In Eqn. \ref{eqlinapp}, $\F^n$, $F_{vn}^n$ and $S^n$ are still evaluated with the corresponding
+terms at time step $n$ as in Eqn. \ref{eqexp1}. The terms with Jacobian matrices can be understood
+as the first-order terms from a Taylor series expansion. $\F$, $F_{vn}$ are viewed as functions of
+$Q_{pl,i}$ and $Q_{pr,i}$ (primitive variables from the left and right cells of face $i$). $S$ is
+viewed as a function of $Q_{p,I}$ (primitive variables of cell $I$). We note that technically, $\F$
+is a function of the left and right states, and $F_{vn}$ is a function of the face primitive
+variable and its gradient. However, Eqn. \ref{eqlinapp} is only a ``first-order'' approximation.
+Indeed, $\F$ and $F_{vn}$ should be related to more cells surrounding face $i$ besides only the left
+and right cells of face $i$. Theoretically, there can be higher-order terms on the RHS of Eqn.
+\ref{eqlinapp}, but as we will discuss later, the approximation of Eqn. \ref{eqlinapp} needs not be
+meticulously accurate, and the first-order approximation is found adequate in practice.
+\paraspace
+
+Now let's make the following notations on the jacobian matrices:
+
+\begin{align}\label{eqfacejacob}
+   \begin{split}
+      &\F^{n+1} \approx \F^n + A_{cl,i}^n \Delta Q_{pl,i}^n + A_{cr,i}^n \Delta Q_{pr,i}^n \\
+      &F_{vn}^{n+1} \approx F_{vn}^n + A_{vl,i}^n \Delta Q_{pl,i}^n + A_{vr,i}^n \Delta Q_{pr,i}^n \\
+      &S^{n+1} = S^n + A_{S,I}^n \Delta Q_{p,I}^n
+   \end{split}
+\end{align}
+
+The computation of the matrices $A_{cl,i}^n$, $A_{cr,i}^n$, $A_{vl,i}^n$, $A_{vr,i}^n$ and
+$A_{S,I}^n$ will be detailed later. Now, substitute Eqn. \ref{eqfacejacob} into Eqn.
+\ref{eqimpExpand} to obtain:
+
+\begin{align}\label{eqimpExpand2}
+   \begin{split}
+   &\left(\left(\frac{\Gamma (Q_{p,I}^n)}{\Delta t} - A_{S,I}^n\right) \Omega_I\right) \Delta
+   Q_{p,I}^n + \sum_{i \in I_{sf}} \left[ (A_{cl,i}^n - A_{vl,i}^n) \Delta Q_{pl,i}^n + ( A_{cr,i}^n
+   - A_{vr,i}^n) \Delta Q_{pr,i}^n \right] \sigma_i \\
+   &= -\left(-\frac{\Gamma(Q_{p,I}^n) (Q_{p,I}^n - Q_{p,I}^{n-1})\Omega_I}{2\Delta t} +
+         \right.\\
+      &\left.\sum_{i \in
+            I_{sf}}\left[\mathcal{F}(Q_{pL,i}^n, Q_{pR,i}^n, n_{Ii}) - F_{vn}(Q_{p,i}^n, (\nabla
+\mathop{\otimes} Q_p)_i^n, n_{Ii})\right]\sigma_i\right) + S(Q_{p,I}^n)\Omega_I
+   \end{split}
+\end{align}
+
+Let's break down this long equation into tangible parts: The LHS can be grouped into two terms. The
+first term (before the summation) is the temporal evolution of the primitive variable (with $\Delta
+t$ subtracted the {\bf source jacobian} $A_{S,I}^n$. The subtraction is due to that the source is
+located on the RHS of Eqn. \ref{eqimpExpand}. The second term on the LHS is the summation stemming
+from the {\bf face-flux jacobians}. Note that the convective flux jacobian $A_{cl,i}^n$ and
+$A_{cr,i}^n$ are with the plus sign in the summation, while the viscous flux jacobian $A_{vl,i}^n$
+and $A_{vr,i}^n$ are with the minus sign. The RHS of Eqn. \ref{eqimpExpand} is exactly the residual
+$\R$ in Eqn. \ref{eqlh1} evaluated at time step $n$. Notice that the source jacobian and face-flux
+jacobian are the extra terms on the LHS due to the implicit temporal discretization and the
+linearization approximation in Eqn. \ref{eqfacejacob}. \paraspace
+
+We point out that Eqn. \ref{eqimpExpand2} is written only for cell $I$, with the unknown variable
+$\Delta Q_{p,I}^n = Q_{p,I}^{n+1} - Q_{p,I}^n$ to be solved to update the primitive variables. The
+same equation can be written for other cells in the calculation domain, e.g., cell $J$, with $\Delta
+Q_{p,J}^n$ being the unknown to be solved. Note that the unknowns for different cells, e.g.,
+$\Delta Q_{p,I}^n$ and $\Delta Q_{p,J}^n$, can be related to other via the terms with $\Delta
+Q_{pl,i}^n$ and $\Delta Q_{pr,i}^n$ on the LHS of Eqn. \ref{eqimpExpand2}. Therefore, writing down
+Eqn. \ref{eqimpExpand2} for all the cells, we obtain a huge linear system with following form:
+
+\begin{align}\label{eqlh2}
+   \begin{split}
+      & \L(\vec{Q}_p^n) \Delta \vec{Q}_p^n = \R(\vec{Q}_p^n), \\ & \textrm{where} \; \L_{II} =
+      \left(\frac{\Gamma(Q_{p,I}^n)}{\Delta t} - A_{S,I}^n\right)\Omega_I + \sum_{i \in I_{sf}}
+      (A_{c\alpha, i}^n - A_{v\alpha, i}^n) \sigma_i \\ &\L_{IJ} = (A_{c\beta,
+         i}^n - A_{v\beta, i}^n) \sigma_i,  \textrm{ if } J = i\beta \textrm{ and } \L_{IJ} = 0
+         \textrm{ otherwise, }\; \textrm{ for } I \neq J \\ & \R_I = -\left(-\frac{\Gamma(Q_{p,I}^n)
+   (Q_{p,I}^n - Q_{p,I}^{n-1})\Omega_I}{2\Delta t} + \right.\\ &\left.\sum_{i \in
+   I_{sf}}\left[\mathcal{F}(Q_{pL,i}^n, Q_{pR,i}^n, n_{Ii}) - F_{vn}(Q_{p,i}^n, (\nabla
+   \mathop{\otimes} Q_p)_i^n, n_{Ii})\right]\sigma_i\right) + S(Q_{p,I}^n)\Omega_I
+   \end{split}
+\end{align}
+
+The $\alpha$ and $\beta$ represent either left cell $l$ or right cell $r$:
+
+\begin{align*}
+   \alpha = \begin{cases}
+      l, \; \textrm{ if }I = il \\
+      r, \; \textrm{ if }I = ir
+      \end{cases} \quad \beta = \begin{cases}
+      l, \; \textrm{ if } I \neq il \\
+      r, \; \textrm{ if } I \neq ir
+   \end{cases}
+\end{align*}
+
+In Eqn. \ref{eqlh2}, the $\L$ matrix is a $N_c \times N_c$ block matrix where $N_c$ is the number of
+cells. Each block is a $N_q \times N_q$ small matrix where $N_q$ is the number of variable in
+primitive variable $Q_p$ (in this case $N_q$ is 5). $\vec{Q}_p^n$ is a block vector of length $N_c$
+and each block is a small vector with length $N_q$. Finally, the RHS $\R$ is also a block vector of
+length $N_c$. Notice that the LHS matrix $\L$ and the residual $\R$ can be calculated based on terms
+at previous time steps. By solving the linear system, the unknown variable $\vec{Q}_p^n$ is
+obtained. \paraspace
+
+Let's examine how the LHS matrix $\L$ in Eqn. \ref{eqlh2} can be derived from Eqn.
+\ref{eqimpExpand2}. The diagonal terms $\L_{II}$ has two parts. The first part comes directly from
+the first term on the LHS of Eqn. \ref{eqimpExpand2} (with $\Delta Q_{p,I}^n$). The second part
+comes from the summation with the face-flux jacobians on the LHS of Eqn. \ref{eqimpExpand2}. The
+summation in Eqn. \ref{eqimpExpand2} loops over all the surrounding faces of cell $I$. When looping
+face $i$, both the face-flux jacobians from the left cell of face $i$ and the right cell of face $i$
+contributes to the summation. If cell $I$ is the left cell of face $i$, then $\Delta Q_{pl,i}^n =
+\Delta Q_{p,I}^n$, and the left cell jacobians $A_{cl,i}^n$ and $A_{vl,i}^n$ go into the diagonal
+term $\L_{II}$. In this case, the right cell of face $i$, denoted as cell $J = ir$ is related to
+cell $I$ via the off-diagonal term $\L_{IJ}$. Therefore, the right cell jacobians $A_{cr,i}^n$ and
+$A_{vr,i}^n$ go into the $\L_{IJ}$. Repeat this thought process for every surrounding faces of cell
+$I$, and for each face, we add the corresponding face-flux jacobians to either $\L_{II}$ or
+$\L_{IJ}$ according to the left/right position between face $i$ and cell $I$.
+
+\subsubsection{Computation of Face-flux Jacobians}
+
+We need to find the face-flux jacobians to fill out the LHS matrix $\L$ in Eqn. \ref{eqlh2}. To do
+that, the face flux $\F$ and $F_{vn}$ will be approximated as functions of $Q_{p,il}$ and
+$Q_{p,ir}$. Then, we take the corresponding derivatives to make an approximation about the face-flux
+jacobians $(A_{cl,i}, A_{cr,i})$ and $(A_{vl,i}, A_{vr,i})$. \paraspace
+
+For the convective flux, Eqn. \ref{eqFlux3} is the expression to compute $\F$ based on the left and
+right state. When taking the derivatives, we can use the chain rule by first taking the derivative
+of $\F$ with respect to, e.g., $Q_{pL}$ and then taking the derivative of $Q_{pL}$ with respect
+to, e.g., $Q_{pl}$. Now, we will assume that $Q_{pl}$ and $Q_{pL}$ only differ by a constant which
+is justified by Eqn. \ref{eqlimiter}. Basically, we are assuming the left/right state is the
+primitive variable in left/right cell plus a constant term (related to limiter and cell gradient).
+Therefore, we can assume:
+
+\begin{align*}
+   \frac{\partial \F}{\partial Q_{pl}} = \frac{\partial \F}{\partial Q_{pL}}, \quad \frac{\partial
+   \F}{\partial Q_{pr}} = \frac{\partial \F}{\partial Q_{pR}}
+\end{align*}
+
+Now, go back to Eqn. \ref{eqFlux3}, we already know the expression of $F_{cn}$ in Eqn.
+\ref{eqgovalg} (also Eqn. \ref{eqpseudoRP}) and the derivative of $F_{cn}$ with respect to the
+primitive variable is given in Eqn. \ref{eqAcn}. Next, we assume the artifial dissipation matrix
+$A_D$ in Eqn. \ref{eqFlux3} is a constant matrix, which is in line with the linearization
+approximation for the Roe's Riemann solver. Then, the face-flux jacobians can be expressed as:
+
+\begin{align}\label{eqAclr}
+   \begin{split}
+      &A_{cl} = \frac{\partial \F}{\partial Q_{pl}} = \frac{1}{2}A_{cn}(Q_{pL}) + \frac{1}{2}
+      A_D(\tilde{Q}_p) \\ &A_{cr} = \frac{\partial \F}{\partial Q_{pr}} = \frac{1}{2}A_{cn}(Q_{pR}) -
+      \frac{1}{2} A_D(\tilde{Q}_p)
+   \end{split}
+\end{align}
+
+Note that the convective flux jacobian $A_{cn}$ is still evaluated with the left/right state, and
+the artifial dissipation matrix $A_D$ is evaluated with the Roe's average which is compuated using
+left and right states in Eqn. \ref{eqRoeave}. \paraspace
+
+For viscous flux $F_{vn}$, we start from Eqn. \ref{eqFvnexpand} and combine Eqn. \ref{eqFvnRij} and
+\ref{eqGradLinear}, $F_{vn}$ can be expressed as:
+
+\begin{align}\label{eqFvnexpand2}
+   \begin{split}
+      F_{vn} = (R_{xx}n_x + R_{yx}n_y + R_{zx}n_z) \sum_{j=1}^3 a_{xj} \Delta Q_{p,j} \\
+      + (R_{xy}n_x + R_{yy}n_y + R_{zy}n_z) \sum_{j=1}^3 a_{yj} \Delta Q_{p,j} \\
+      + (R_{xz}n_x + R_{yz}n_y + R_{zz}n_z) \sum_{j=1}^3 a_{zj} \Delta Q_{p,j}
+   \end{split}
+\end{align}
+
+Note that the summations stand for the gradient of $Q_p$ at face, which is based on Eqn.
+\ref{eqlmsface3}. The definition of $\Delta Q_{p,j}$, with $j = 1, 2, 3$ are found in Fig.
+\ref{figalg3}. We will only consider $\Delta Q_{p,1} = Q_{pr} - Q_{pl}$ as the variable and treat
+$\Delta Q_{p,2}$ and $\Delta Q_{p,3}$ as constants. We can then $F_{vn}$ expressed as some linear
+combination of $\Delta Q_{p,j}$:
+
+\begin{align*}
+   \begin{split}
+      F_{vn} = &(R_{nx}a_{x1} + R_{ny}a_{y1} + R_{nz}a_{z1}) \Delta Q_{p,1} \\
+               &+ (R_{nx}a_{x2} + R_{ny}a_{y2} + R_{nz}a_{z2}) \Delta Q_{p,2} \\
+               &+ (R_{nx}a_{x3} + R_{ny}a_{y3} + R_{nz}a_{z3}) \Delta Q_{p,3} \textrm{    where} \\
+               &R_{nx} = R_{xx} n_x + R_{yx} n_y + R_{zx} n_z \\
+               &R_{ny} = R_{xy} n_x + R_{yy} n_y + R_{zy} n_z \\
+               &R_{nz} = R_{xz} n_x + R_{yz} n_y + R_{zz} n_z
+   \end{split}
+\end{align*}
+
+Now, if the viscous matrices $R_{ij}$ can be assumed as constants, we can express the viscous flux
+jacobians as:
+
+\begin{align}\label{eqAvlr}
+   \begin{split}
+      &A_{vr} = \frac{\partial F_{vn}}{Q_{pr}} = R_{nx}a_{x1} + R_{ny}a_{y1} + R_{nz}a_{z1} \\
+      &A_{vl} = \frac{\partial F_{vn}}{Q_{pl}} = -(R_{nx}a_{x1} + R_{ny}a_{y1} + R_{nz}a_{z1})
+   \end{split}
+\end{align}
+
+where the viscous matrices $R_{ij}$ are calculated based on the nodal-averaged face primitive
+variable $Q_{p,i}$ (Eqn. \ref{eqf2n}). The approximation in Eqn. \ref{eqAvlr} for the viscous flux
+jacobians is almost adequate. However, one may argue that the last row of $R_{ij}$ contains terms
+related to the velocity $(u,v,w)$ and cannot be assumed as constants. This concern is valid, as we
+can see in Eqn. \ref{eqFvnexpand}, the last term of $F_{vn}$ is related to both the face gradient
+and the velocity at the face. One may modify Eqn. \ref{eqAvlr} by adding extra terms on the last row
+of the matrices (column 2 to 4) to account for the velocity dependence of the ``work done by surface
+stress''. One particular choice is to add the vector $\tau \cdot n$ to the last row, column 2 to 4
+of both $A_{vl}$ and $A_{vr}$. This treatment takes the gradient-dependence terms as constants and
+take the derivative of the last term of $F_{vn}$ with respect to the velocity $(u,v,w)$. We want to
+emphasize that when computing the face-flux jacobian matrices, we are only approximating them and
+one should not be obessed with the accuracy of such approximation. As we have seen, Eqn.
+\ref{eqlinapp} is only a linear approximation, and therefore, cannot guarantee Eqn.
+\ref{eqimpExpand} be satisfied with the face fluxes and source term evaluated at time step $n+1$. We
+will introduce later the {\bf dual time scheme} to minimize the effect of the errors in face-flux
+jacobians. \paraspace
+
+Finally, we briefly mention the compuation of the source jacobian $A_{S,I}$, which can be calculated
+by directly taking the derivative of $Q_{p,I}$ with respect to $S(Q_{p,I})$. Let's use the source
+term from gravity as an example. The gravity source term can be expressed as:
+
+\begin{align*}
+   S = [0, 0, \rho g_y, 0, \rho g_y v]^T
+\end{align*}
+
+The source jacobian can be obtained by taking the derivatives:
+
+\begin{align*}
+   A_S = \frac{\partial S}{\partial Q_p} = \begin{bmatrix}
+      0 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 0 & 0 \\
+      \rho_p g_y & 0 & 0 & 0 & \rho_T g_y \\
+      0 & 0 & 0 & 0 & 0 \\
+      \rho_p g_y v & 0 & \rho g_y & 0 & \rho_T g_y v
+   \end{bmatrix}
+\end{align*}
+
+Remember that the source jacobian is used for the linear approximation:
+
+\begin{align*}
+   S(Q_{p,I}^{n+1}) \approx S(Q_{p,I}^n) + A_S(Q_{p,I}^n) \Delta Q_{p,I}^n
+\end{align*}
+
+\subsubsection{Storage of Face-flux Jacobians}
+
+\subsubsection{Dual Time Scheme}
+
+
+\clearpage
 \section{Boundary Conditions}
 
 \section{Preconditioning: Implementation}
@@ -2730,8 +3008,3 @@ add up the \verb+faceflux+ and \verb+cr % res+ must subtract the \verb+faceflux+
 \bibliographystyle{IEEEtran}
 \bibliography{./ref.bib}
 \end{document}
-
-
-
-
-

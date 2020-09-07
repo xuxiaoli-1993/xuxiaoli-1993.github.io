@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{tabularx,ragged2e}
+\newcolumntype{C}{>{\Centering\arraybackslash}X} % centered "X" column
+\begin{document} 
+
+\begin{table}[!ht]
+   \setlength\extrarowheight{2pt} % for a bit of visual "breathing space"
+   \begin{tabularx}{\textwidth}{|C|C|C|}
+      \hline
+      \textbf{Column 1} & \textbf{Column 2} & \textbf{Column 3}  \\\hline
+      This is a very long text which has to be broken into the next line & This is a very long text which has to be broken into the next line & This is a very long text which has to be broken into the next line  \\
+      \hline
+      This is a very long text which has to be broken into the next line & This is a very long text which has to be broken into the next line & This is a very long text which has to be broken into the next line  \\
+      \hline
+      This is a very long text which has to be broken into the next line & This is a very long text which has to be broken into the next line & This is a very long text which has to be broken into the next line  \\
+      \hline
+   \end{tabularx}
+   \caption{This is the caption}
+\end{table}
+\end{document}

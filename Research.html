@@ -3,128 +3,109 @@
    <head>
       <meta charset="UTF-8">
       <link rel="stylesheet" type="text/css" href="style.css">
-      <title>Xuxiao's Research Projects </title>
+      <title>Xuxiao's Research </title>
    </head>
 
    <body>
       <header>
-         <h2 style="text-align:center">Research Statement</h2>
-         <p style="font-size:18pt">In metal additive manufacturing (MAM), the metal (typically in powder form) is
-         repeated melted by an energy source (e.g., laser) and solidified (when disengaged from the
-         laser) to become the 3-dimensional build.
-         My research is to simulate the physical phenomena in this process with computational
-         techniques. The simualtion, by "reproducing" the physical phenomena, can contribute to the
-         maturation of MAM in two ways:
-         (1) the underlying science can be quantitatively understood, which informs better process
-         design. (2) the simulation can partially replace the trial-and-error tests to expedite the
-         optimization of process parameters. </p>
-         <hr color="red" size="2">
+         <h3>Overview</h3>
+         <p> 
+         Metal Additive Manufacturing (MAM) is an emerging technology
+         whose potential of achieving flexible geometry for metallic parts has revolutionizing
+         impact on the manufacturing industry. Similar to many newly-developed manufacturing
+         techniques, the maturation of MAM is hindered by two principal issues. First, the
+         underlying science, especially during the building process of MAM, is not well understood,
+         which brings the second issue, that the relationships between the Process, Structure,
+         Property, and Performance (PSPP mapping) are not well understood. Not rarely, the success
+         of a build relies on time-costly trial-and-error experiments that find the optimal
+         selection of process parameters in large parameter space. Unfortunately, the optimal
+         parameters cannot transfer among different materials and machines. The quality and
+         consistency of MAM-built parts still need to be improved for demanding applications,
+         e.g., aerospace and aeronautics.
+         </p>
+
+         <p>
+         My research is to develop computational models to simulate the MAM process and the
+         microstructure evolution in the MAM-built part. Quantitative information that is
+         difficult to extract by experiments can be obtained by the models, e.g., the
+         three-dimensional temperature, fluid flow, pressure, grain sizes, and texture. This
+         quantitative information facilitates the understanding of the fundamental science in MAM
+         and consequently advances the knowledge of PSPP mapping for MAM.
+         </p>
+
+         <p>
+         Specifically, I develop a multi-physics process model to simulate as closely as possible the
+         complex and intertwined physical phenomena in a MAM process. The temperature in the built
+         part as a function of time and space is extracted from the process model, which is then fed
+         into a structure model. The structure model simulates the grain nucleation and growth and
+         predicts the grain size and morphology in the built part. These models are developed based
+         on principles of fluid mechanics, thermodynamics, heat transfer, and some particular
+         aspects of material science.
+         </p>
       </header>
 
       <main>
          <h3>Background</h3>
-         <h4>1. Process Physics</h4>
-         <p>Metal Additive Manufacturing (MAM) is an emerging manufacturing technique which has the
-         potentail to revolutionalize the manufaturing industry credited to its capabilities of
-         producing parts with flexbile geometries. Typically, an energy source (laser, electron beam, etc.) melts metal powders to form a molten pool. When the
-         laser is disengaged from the metal, the molten pool cools down to form the solid part.
-         This process can be repeated layer-by-layer, and only the powders undergoing the
-         melting-solification process will contribute to the bulk part. Therefore, the build
-         geometry can be easily manipulated by controlling the interaction between the laser and the
-         powders.</p>
          <figure class="myfig">
-            <video width="800" src="LPBF-demo.mov" alt="Demonstration of Laser Powder Bed Fusion"
-                                                   controls class="myvideo"></video>
-            <figcaption style="font-size:14pt">In Laser Powder Bed Fusion (LPBF) process, a scanning laser melts a
+            <video width="600" 
+                   src="LPBF-demo.mov" 
+                   alt="Demonstration of Laser Powder Bed Fusion"
+                   controls class="myvideo">
+            </video>
+            <figcaption style="font-size:14pt">
+               In Laser Powder Bed Fusion (LPBF) process, a scanning laser melts a
                pre-deposted powder bed layer-by-layer to build 3-dimensional build. Source of the
-               video: <a
+               video: 
+               <a
                   href=https://manufacturing.llnl.gov/additive-manufacturing/metal-additive-manufacturing
-                  target="_blank" class="mylink">Lawrence Livermore National Laboratory</a>.</figcaption>
+                  target="_blank" class="mylink">Lawrence Livermore National Laboratory</a>.
+            </figcaption>
          </figure>
 
-         <p>Despite the straightforward concept of MAM, the underlying physics in a typical MAM
-         process is not fully understood. Recently, in-situ observations have revealed the complexity
-         of the multi-physcis phenomena.</p>
-
          <figure class="myfig">
-            <video width="600" src="Powder_Spattering.mp4" alt="Powder Spattering in Laser Powder
-                Bed Fusion" loop controls class="myvideo"></video>
-            <figcaption style="font-size:14pt">High-speed optical imaging reveals that powders are entrained towards, and
-               subsequently ejected from the laser-illuminated region in LPBF processes. Source of the
-               video: <a
+            <video width="400" 
+                   src="Powder_Spattering.mp4" 
+                   alt="High-speed Optical Video of Laser Powder Bed Fusion" 
+                   controls class="myvideo">
+            </video>
+            <figcaption style="font-size:14pt">
+               High-speed optical imaging reveals that powders are entrained towards, and
+               subsequently ejected from the laser-illuminated region in LPBF processes. Source of
+               the video: 
+               <a
                   href=https://www.sciencedirect.com/science/article/pii/S1359645417308170
-                  target="_blank" class="mylink">Bidare, P., et al. Acta Materialia (2018)</a>.</figcaption>
+                  target="_blank" class="mylink">Bidare, P., et al. Acta Materialia (2018)</a>.
+            </figcaption>
          </figure>
 
-         <p>Let's first consider the interaction of laser and a bare metal plate (no powder
-         involved). This "simpler" setup resembles that of a laser welding process. The in-situ
-         high-speed X-ray imaging technique reveals more details on the multiphysics phenemena,
-         specificaly, the metal vaporization and the formation of keyhole.</p>
-
          <figure class="myfig">
-            <video width="600" src="Science-2019-pulsePlate.mov" alt="Pulse Welding" controls class="myvideo"></video>
-            <figcaption style="font-size:14pt">High-speed X-ray video for a stationary laser illuminating on a bare plate
-               made of Ti-6Al-4V. The depression zone is referred to as the "Keyhole" where the
-               local metal vaporization exerts a recoil pressure on the molten pool. Interestingly,
-               the keyhole is subject to a seemingly periodic oscillation. At this point of time,
-               this phenomenon has not been fully understood. Source of the video:
-               <a href=https://science.sciencemag.org/content/363/6429/849.abstract
-                  target="_blank" class="mylink">Cunningham, R, et al. Science (2019)</a>.</figcaption>
+            <video width="600" 
+                   src="XrayDemo.mov" 
+                   alt="High-speed X-ray Video of Laser Powder Bed Fusion" 
+                   controls class="myvideo">
+            </video>
+            <figcaption style="font-size:14pt">
+               High-speed X-ray imaging shows the depression of molten pool created by the vapor
+               plume. The latter triggers the spattering of powders.Source of the video: 
+               <a
+                  href=https://science.sciencemag.org/content/363/6429/849.abstract
+                  target="_blank" class="mylink">Cunningham, R, et al. Science (2019)</a>.
+            </figcaption>
          </figure>
 
-         <p>When a layer of powder is deposited on the metal substrate, the laser-metal interaction
-         is further complicated. The metal vaporization form a vapor jet which then entrains the
-         surrounding powders towards the laser-illuminated region. This is known as a classic fluid
-         mechanics phenomenon referred to as the "entrainment". Once entrained, the powders have the
-         chance of being incorporated into the molten pool or ejected away by the vapor jet.</p>
          <figure class="myfig">
-            <video width="600" src="Zhao-2017-P340.mov" alt="Pulse Powder" controls class="myvideo"></video>
-            <figcaption style="font-size:14pt">High-speed X-ray video for a stationary laser illuminating on a
-               pre-deposited powder bed. As we can see the powder-gas interaction is dynamic and difficult to quantify by
-               experiments. Fortunately, multiphysics simulation is ready tool to complement with
-               experiments to deepen our understandings regarding these complex physics. Source of the video: 
-               <a href=https://www.nature.com/articles/s41598-017-03761-2
-                  target="_blank" class="mylink">Zhao, C., et al. Scientific Report (2017)</a>.</figcaption>
-         </figure>
-
-         <p>Moving on to the case where the laser can be moved relative to the metal. The laser
-         heating still triggers the metal vaporization and the formation of keyhole. However, the
-         keyhole dynamics is more complicated than the stationary laser cases. The "front keyhole
-         wall" refers to the inclined keyhole surface which is relatively stable. The "rear keyhole
-         wall" is the keyhole surface that is dynamically oscillating, displaying drastically different dynamics than the
-         front keyhole wall. At this point of time, this dynamic behavior is not fully understood,
-         but is crutial to the development of powder bed fusion process.</p>
-         <figure class="myfig">
-            <video width="800" src="Science-2019-Scanning.mov" alt="Scanning on Plate" loop controls class="myvideo"></video>
-            <figcaption style="font-size:14pt">High-speed X-ray video for a moving laser scanning on a bare metal plate
-               (top) and on a pre-deposited powder bed (bottom). As can be seen, the keyhole
-               dynamics with or without powder seem to be similar. One interesting question is how
-               the powder can (or may not) affect the dynamics of the molten pool/keyhole. Source of the video: 
-               <a href=https://science.sciencemag.org/content/363/6429/849.abstract
-                  target="_blank" class="mylink">Cunningham, R, et al. Science (2019)</a>.</figcaption>
-         </figure>
-
-         <p>The process physics of MAM is an active ongoing research area.
-         The state-of-the-art experimental and mutliphysics simulation techniques keep revealing
-         these physical phenomena at both finer spatial and temporal scale. The
-         development and certification of MAM will be highly dependent on these scientific findings.</p>
-
-         <h4>2. Structural Features (Grain Structure)</h4>
-         <p>Due to the unique process physics, the thermal history that the metal material
-         experiences in MAM is also unique. This thermal history then determines the distinctive microstructure
-         of the metal upon its solidification. Specifically, "exotic" grain structures have been
-         identified for a variety of alloy materials. E.g., alluminum based (Al-10Si-Mg), iron based
-         (stainless steel AISI 316), and titanium based (Ti-6Al-4V) alloys. The uniqueness of the
-         thermal history of MAM lies in that the solidification rate is extremly fast and
-         directional. Since the laser only heats a specific location for a short period of time (~
-         tens of micronseconds), the metal material experiences a surge of temperature (melting and
-         vaporization) followed by a rapid solidification which follows the direction of the laser.
-         Indeed, it is the fast and directional solidification that causes the unique grain
-         structures in MAM.</p>
-
-         <figure class="myfig">
-            <img width="1000" src="grain_structure_demo.png" alt="grain structure demonstration" class="myimg"/>
-            <figcaption style="font-size:14pt">Typical grain structures from MAM processes. </figcaption>
+            <img width="800" 
+                 src="grain_structure_demo.png"
+                 alt="grain structure demonstration"
+                 class="myimg"/>
+            <figcaption style="font-size:14pt">
+               Typical grain structures at cross sections of MAM-built. There is a wide variety of
+               grain structures that can be achieved depending on different process parameters. The
+               grains can be very coarse and columnar (most left), or fine and equiaxed (most
+               right). The two middle figures show coexistence of columnar and equiaxed grains,
+               where typically, equiaxed grains are "sandwiched" between two layers of columnar
+               grains.
+            </figcaption>
          </figure>
 
 

@@ -39,7 +39,7 @@ li {
 .column {
    float: left;
    width: 50 %;
-   margin: 10px;
+   margin: 25px;
 }
 
 .row:after {
