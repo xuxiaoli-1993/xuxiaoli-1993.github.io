@@ -1550,8 +1550,8 @@ The time discretization given by Eqn. \ref{eqdisct1} is of only first order in t
 difference approximation. A second order approximation can be written as:
 
 \begin{align}\label{eqdisct2}
-   \Gamma(Q_{p,I})\frac{\partial Q_{p,I}}{\partial t} \approx \Gamma(Q_{p,I}^n) \frac{2Q_{p,I}^{n+1} -
-   3Q_{p,I}^n + Q_{p,I}^{n-1}}{2\Delta t}
+   \Gamma(Q_{p,I})\frac{\partial Q_{p,I}}{\partial t} \approx \Gamma(Q_{p,I}^n) \frac{3Q_{p,I}^{n+1} -
+   4Q_{p,I}^n + Q_{p,I}^{n-1}}{2\Delta t}
 \end{align}
 
 For the second order approximation, $Q_p$ at time moment $n$ and $(n-1)$ is given to compute $Q_p$
@@ -1575,7 +1575,7 @@ $n$, resulting in the fully discretized equation as:
 
 \begin{align}\label{eqexp1}
    \begin{split}
-      \Gamma(Q_{p,I}^n) \frac{2Q_{p,I}^{n+1} - 3Q_{p,I}^n + Q_{p,I}^{n-1}}{2\Delta t} \Omega_I +
+      \Gamma(Q_{p,I}^n) \frac{3Q_{p,I}^{n+1} - 4Q_{p,I}^n + Q_{p,I}^{n-1}}{2\Delta t} \Omega_I +
       &\sum_{i \in I_{sf}} \mathcal{F}(Q_{pL,i}^n, Q_{pR,i}^n, n_{Ii}) \sigma_i - \\ &\sum_{i \in
       I_{sf}} F_{vn}(Q_{p,i}^n, (\nabla \mathop{\otimes} Q_p)_i^n, n_{Ii}) \sigma_i = S(Q_{p,I}^n)
       \Omega_I
@@ -1592,7 +1592,7 @@ all the terms known are put on the RHS:
 \begin{align}\label{eqlh1}
    \begin{split}
       & \L(\vec{Q}_p^n) \Delta \vec{Q}_p^n = \R(\vec{Q}_p^n), \\ & \textrm{where} \; \L_{II} =
-      \frac{\Gamma(Q_{p,I}^n)\Omega_I}{\Delta t}, \; \L_{IJ} = 0 \; (I \neq J), \; \Delta \Q_p^n =
+      \frac{3\Gamma(Q_{p,I}^n)\Omega_I}{2\Delta t}, \; \L_{IJ} = 0 \; (I \neq J), \; \Delta \Q_p^n =
       \Q_p^{n+1} - \Q_p^n, \; \textrm{and } \\
       & \R_I = -\left(-\frac{\Gamma(Q_{p,I}^n) (Q_{p,I}^n - Q_{p,I}^{n-1})\Omega_I}{2\Delta t} +
          \right.\\
@@ -2715,7 +2715,7 @@ which can be expressed as:
 
 \begin{align}\label{eqimpExpand}
    \begin{split}
-      \Gamma(Q_{p,I}^n) \frac{2Q_{p,I}^{n+1} - 3Q_{p,I}^n + Q_{p,I}^{n-1}}{2\Delta t} \Omega_I +
+      \Gamma(Q_{p,I}^n) \frac{3Q_{p,I}^{n+1} - 4Q_{p,I}^n + Q_{p,I}^{n-1}}{2\Delta t} \Omega_I +
       &\sum_{i \in I_{sf}} \F(Q_{pL,i}^{n+1}, Q_{pR,i}^{n+1}, n_{Ii}) \sigma_i - \\ &\sum_{i \in
       I_{sf}} F_{vn}(Q_{p,i}^{n+1}, (\nabla \mathop{\otimes} Q_p)_i^{n+1}, n_{Ii}) \sigma_i =
       S(Q_{p,I}^{n+1})
@@ -2767,7 +2767,7 @@ $A_{S,I}^n$ will be detailed later. Now, substitute Eqn. \ref{eqfacejacob} into 
 
 \begin{align}\label{eqimpExpand2}
    \begin{split}
-   &\left(\left(\frac{\Gamma (Q_{p,I}^n)}{\Delta t} - A_{S,I}^n\right) \Omega_I\right) \Delta
+   &\left(\left(\frac{3\Gamma (Q_{p,I}^n)}{2\Delta t} - A_{S,I}^n\right) \Omega_I\right) \Delta
    Q_{p,I}^n + \sum_{i \in I_{sf}} \left[ (A_{cl,i}^n - A_{vl,i}^n) \Delta Q_{pl,i}^n + ( A_{cr,i}^n
    - A_{vr,i}^n) \Delta Q_{pr,i}^n \right] \sigma_i \\
    &= -\left(-\frac{\Gamma(Q_{p,I}^n) (Q_{p,I}^n - Q_{p,I}^{n-1})\Omega_I}{2\Delta t} +
@@ -2800,7 +2800,7 @@ Eqn. \ref{eqimpExpand2} for all the cells, we obtain a huge linear system with f
 \begin{align}\label{eqlh2}
    \begin{split}
       & \L(\vec{Q}_p^n) \Delta \vec{Q}_p^n = \R(\vec{Q}_p^n), \\ & \textrm{where} \; \L_{II} =
-      \left(\frac{\Gamma(Q_{p,I}^n)}{\Delta t} - A_{S,I}^n\right)\Omega_I + \sum_{i \in I_{sf}}
+      \left(\frac{3\Gamma(Q_{p,I}^n)}{2\Delta t} - A_{S,I}^n\right)\Omega_I + \sum_{i \in I_{sf}}
       (A_{c\alpha, i}^n - A_{v\alpha, i}^n) \sigma_i \\ &\L_{IJ} = (A_{c\beta,
          i}^n - A_{v\beta, i}^n) \sigma_i,  \textrm{ if } J = i\beta \textrm{ and } \L_{IJ} = 0
          \textrm{ otherwise, }\; \textrm{ for } I \neq J \\ & \R_I = -\left(-\frac{\Gamma(Q_{p,I}^n)

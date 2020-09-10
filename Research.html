@@ -52,9 +52,9 @@
                    alt="Demonstration of Laser Powder Bed Fusion"
                    controls class="myvideo">
             </video>
-            <figcaption style="font-size:14pt">
-               In Laser Powder Bed Fusion (LPBF) process, a scanning laser melts a
-               pre-deposted powder bed layer-by-layer to build 3-dimensional build. Source of the
+            <figcaption style="font-size:12pt">
+               Laser Powder Bed Fusion (LPBF) is a typical MAM process. A scanning laser melts a
+               pre-deposited powder bed layer-by-layer to build 3-dimensional build. Source of the
                video: 
                <a
                   href=https://manufacturing.llnl.gov/additive-manufacturing/metal-additive-manufacturing
@@ -68,7 +68,7 @@
                    alt="High-speed Optical Video of Laser Powder Bed Fusion" 
                    controls class="myvideo">
             </video>
-            <figcaption style="font-size:14pt">
+            <figcaption style="font-size:12pt">
                High-speed optical imaging reveals that powders are entrained towards, and
                subsequently ejected from the laser-illuminated region in LPBF processes. Source of
                the video: 
@@ -79,73 +79,113 @@
          </figure>
 
          <figure class="myfig">
-            <video width="600" 
+            <video width="400" 
                    src="XrayDemo.mov" 
                    alt="High-speed X-ray Video of Laser Powder Bed Fusion" 
                    controls class="myvideo">
             </video>
-            <figcaption style="font-size:14pt">
-               High-speed X-ray imaging shows the depression of molten pool created by the vapor
-               plume. The latter triggers the spattering of powders.Source of the video: 
+            <figcaption style="font-size:12pt">
+               High-speed X-ray imaging dissects a cross section illuminated by laser in LPBF
+               processes. It shows the molten pool has a depression zone created by the recoil
+               pressure due to metal vaporization. The metal vapor triggers the spattering of
+               powders. Source of the video: 
                <a
                   href=https://science.sciencemag.org/content/363/6429/849.abstract
-                  target="_blank" class="mylink">Cunningham, R, et al. Science (2019)</a>.
+                  target="_blank" class="mylink">Cunningham, R., et al. Science (2019)</a>.
             </figcaption>
          </figure>
 
          <figure class="myfig">
-            <img width="800" 
+            <img width="600" 
                  src="grain_structure_demo.png"
                  alt="grain structure demonstration"
                  class="myimg"/>
-            <figcaption style="font-size:14pt">
+            <figcaption style="font-size:12pt">
                Typical grain structures at cross sections of MAM-built. There is a wide variety of
                grain structures that can be achieved depending on different process parameters. The
                grains can be very coarse and columnar (most left), or fine and equiaxed (most
                right). The two middle figures show coexistence of columnar and equiaxed grains,
                where typically, equiaxed grains are "sandwiched" between two layers of columnar
-               grains.
+               grains. Source of the figures (from left to right): 
+               <a href=https://onlinelibrary.wiley.com/doi/full/10.1002/adem.201300579
+                  target="_blank" class="mylink">
+                  Niendorf, T., et al. Advanced Engineering Materials (2014)</a>, 
+               <a href=https://www.sciencedirect.com/science/article/pii/S0257897211009388
+                  target="_blank" class="mylink">
+                  Dinda, G.P., et al. Surface and Coating Technology (2012)</a>, 
+               <a href=https://www.sciencedirect.com/science/article/pii/S1044580313003835
+                  target="_blank" class="mylink">
+                  Parimi, L.L., et al. Materials Characterization (2014)</a>, 
+               <a href=https://www.sciencedirect.com/science/article/pii/S0921509316305536
+                  target="_blank" class="mylink">
+                  Helmer, H., et al. Material Science & Engineering A (2016)</a>.
             </figcaption>
          </figure>
 
 
          <h3>Powder Bed Generation and Ray Tracing</h3>
-         <p>This project is aimed to set the foundations for the subsequent multiphyscis simulations
+         <p>
+         This project is aimed to set the foundations for the subsequent multiphysics simulations
          for MAM processes. In this project, a powder bed generation model is used to create the
-         structure of a powder bed as in LPBF processes. Then the initial laser-metal interaction,
-         i.e., right when the laser is turned on, is simulated using the ray-tracing algorithm. The
-         laser absorption distribution on the powder surfaces is computed, which will trigger
-         the melting and vaporization of the metal.</p>
+         structure of a powder bed as in LPBF processes. Then the initial laser-metal interaction is
+         simulated using the ray-tracing algorithm. The laser absorption distribution on the powder
+         surfaces is obtained from ray-tracing, which will trigger the melting and vaporization of
+         the metal.
+         </p>
 
-         <p>A randomly packed powder bed is generated by a
-         "rain-dropping" algorithm (<a
-                  href=https://journals.sagepub.com/doi/abs/10.1177/003754977903200102
-                  target="_blank" class="mylink">Jodrey, W., et al. Simulation (1979)</a>). The powder bed is then represented by the level-set 
-         function. Based on the level-set field, the ray-tracing algorithm is implemented to track
-         the mutliple reflections of laser beam on powder surfaces, which eventually provides the
-         absorption distribution.</p>
-         <figure class="myfig">
-            <img width="400" src="pb1.png" alt="powderbed 1" class="myimg"/>
-            <figcaption style="font-size:14pt">Typical powder bed generated with the rain-dropping algorithm. The powder size is Gaussian distributed, with 
-               a magnitude of tens of micrmeters, as in typical laser powder bed fusion processes. The powder bed thickness is
-               about 100 &mu;m.</figcaption>
-         </figure>
-
-         <!--<figure class="myfig">
-            <img width="800" src="pb2.png" alt="powderbed 2" class="myimg"/>
-            <figcaption>Capability demonstration of the powder bed model: unimodal (a) and bimodal (b) powder beds. For the bimodal powder bed
-               the large powders has a size of 15-45 &mu;m and the small powders have a size of 9-11 &mu;m.</figcaption>
-         </figure>-->
+         <p>
+         A randomly packed powder bed is generated by a "rain-dropping" algorithm 
+         (<a
+             href=https://journals.sagepub.com/doi/abs/10.1177/003754977903200102
+             target="_blank" class="mylink">Jodrey, W., et al. Simulation (1979)</a>).
+         The powder bed is then represented by the level-set function. Based on the level-set field,
+         the ray-tracing algorithm is implemented to track the multiple reflections of laser beam on
+         powder surfaces (governed by Fresnel equation), which eventually provides the absorption
+         distribution.
+         </p>
 
          <figure class="myfig">
-            <img width="1000" src="pb3.png" alt="powderbed 2" class="myimg"/>
-            <figcaption style="font-size:14pt">Ray-tracing algorithm. (a): A powder bed. (b): ray bundles are shot from top and each ray
-               is traced for its multiple reflection on powder surfaces. (c): Collect the absorbed energy from each ray and the
-               absorption distribution on the powder surface can be obtained.
+            <img width="800" src="PBRT.png" alt="powderbed" class="myimg"/>
+            <figcaption style="font-size:12pt">
+               Powder bed generation and ray-tracing algorithm. (a): A powder bed generated by the
+               PACKS algorithm. Average powder diameter is 50 micrometers. (b): Ray bundles are shot
+               from top (red rays) and each ray is traced for its multiple reflection on powder
+               surfaces. The tracing is stopped when the ray leaves the domain or its power is below
+               1 %. (c): Collect the absorbed energy from each ray and the absorption distribution
+               on the powder surface can be obtained.
             </figcaption>
          </figure>
 
-         <h3>Cellular Automata Simulation of Grain Structure</h3>
+         <h3>Cellular Automata Simulation of Grain Nucleation and Growth</h3>
+
+         <figure class="myfig">
+            <video width="400" 
+                   src="DLD_animation.mov" 
+                   alt="Direct Laser Deposition Simulation" 
+                   controls class="myvideo">
+            </video>
+            <figcaption style="font-size:12pt">
+               A simplified model considering only heat conduction simulates the deposition process
+               and the thermal history (temperature as a function of time and space) for a Direct
+               Laser Deposition (DLD) process. A sample build with two layers (each layer has
+               five scans) is shown in the video.
+            </figcaption>
+         </figure>
+
+         <figure class="myfig">
+            <img width="1000" src="CAGrainsComparison.png" alt="CA Grains" class="myimg"/>
+            <figcaption style="font-size:12pt">
+               Comparison between grain structures simulated by the Cellular Automata (CA) model and
+               those observed by the Electron Back-Scattered Diffraction (EBSD). All the cross
+               sections are from the center plane of a thin-wall build. It is found that by
+               increasing the nucleation rate in the CA simulations (from left to right), the grain
+               structures are coarse columnar (left), fine needle-like columnar (middle), and
+               "sandwich" in which layers of columnar and equiaxed grains coexist. These grain
+               structures can also be commonly observed by the EBSD experiments. This result
+               indicates that the nucleation condition in MAM processes can have significant
+               influence on the build grain structure.
+            </figcaption>
+         </figure>
       </main>
 
       <footer>
