@@ -47,7 +47,7 @@
       <main>
          <h3>Background</h3>
          <figure class="myfig">
-            <video width="600" 
+            <video width="500" 
                    src="LPBF-demo.mov" 
                    alt="Demonstration of Laser Powder Bed Fusion"
                    controls class="myvideo">
@@ -173,17 +173,35 @@
          </figure>
 
          <figure class="myfig">
+            <video width="800" 
+                   src="CADemo.mov" 
+                   alt="Demonstration of Cellular Automata Simulation" 
+                   loop controls class="myvideo">
+            </video>
+            <figcaption style="font-size:12pt">
+               Demonstration of the Cellular Automata simulation. The bottom right figure shows a
+               isometric view of the temperature field from a single scan track. This thermal
+               history is fed into the CA model to predict the grain growth. The top left video
+               shows the center plane (a X-Y plane in the bottom right figure). The red and green
+               arrows indicate locations of the horizontal section (a X-Z plane) and the cross
+               section (a Y-Z plane), shown in the bottom left and top right video, respectively.
+               The initial grains are randomly generated. It is observed that the grains are melted
+               and grows towards the scanning direction upon the solidification (epitaxial growth).
+            </figcaption>
+         </figure>
+
+         <figure class="myfig">
             <img width="1000" src="CAGrainsComparison.png" alt="CA Grains" class="myimg"/>
             <figcaption style="font-size:12pt">
                Comparison between grain structures simulated by the Cellular Automata (CA) model and
                those observed by the Electron Back-Scattered Diffraction (EBSD). All the cross
-               sections are from the center plane of a thin-wall build. It is found that by
-               increasing the nucleation rate in the CA simulations (from left to right), the grain
-               structures are coarse columnar (left), fine needle-like columnar (middle), and
-               "sandwich" in which layers of columnar and equiaxed grains coexist. These grain
-               structures can also be commonly observed by the EBSD experiments. This result
-               indicates that the nucleation condition in MAM processes can have significant
-               influence on the build grain structure.
+               sections are from the center plane of a thin-wall build (multiple layers with only
+               one scan track per layer). It is found that by increasing the nucleation rate in the
+               CA simulations (from left to right), the grain structures are coarse columnar (left),
+               fine needle-like columnar (middle), and "sandwich" in which layers of columnar and
+               equiaxed grains coexist. These grain structures can also be commonly observed by the
+               EBSD experiments. This result indicates that the nucleation condition in MAM
+               processes can have significant influence on the build grain structure.
             </figcaption>
          </figure>
       </main>
