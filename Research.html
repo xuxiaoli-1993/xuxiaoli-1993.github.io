@@ -8,7 +8,7 @@
 
    <body>
       <header>
-         <h3>Overview</h3>
+         <h3 style="text-align:center">Overview</h3>
          <p> 
          Metal Additive Manufacturing (MAM) is an emerging technology
          whose potential of achieving flexible geometry for metallic parts has revolutionizing
@@ -42,10 +42,11 @@
          on principles of fluid mechanics, thermodynamics, heat transfer, and some particular
          aspects of material science.
          </p>
+         <br><br><br>
       </header>
 
       <main>
-         <h3>Background</h3>
+         <h3 style="text-align:center">Background</h3>
          <figure class="myfig">
             <video width="500" 
                    src="LPBF-demo.mov" 
@@ -121,9 +122,10 @@
                   Helmer, H., et al. Material Science & Engineering A (2016)</a>.
             </figcaption>
          </figure>
+         <br><br><br>
 
 
-         <h3>Powder Bed Generation and Ray Tracing</h3>
+         <h3 style="text-align:center">Powder Bed Generation and Ray Tracing</h3>
          <p>
          This project is aimed to set the foundations for the subsequent multiphysics simulations
          for MAM processes. In this project, a powder bed generation model is used to create the
@@ -155,8 +157,9 @@
                on the powder surface can be obtained.
             </figcaption>
          </figure>
+         <br><br><br>
 
-         <h3>Cellular Automata Simulation of Grain Nucleation and Growth</h3>
+         <h3 style="text-align:center">Cellular Automata Simulation of Grain Nucleation and Growth</h3>
 
          <figure class="myfig">
             <video width="400" 
@@ -202,6 +205,60 @@
                equiaxed grains coexist. These grain structures can also be commonly observed by the
                EBSD experiments. This result indicates that the nucleation condition in MAM
                processes can have significant influence on the build grain structure.
+            </figcaption>
+         </figure>
+         <br><br><br>
+
+         <!-- <h3>Simulation of Keyhole Dynamics in Laser Welding Processes</h3> -->
+
+         <h3 style="text-align:center">Numerical Investigation of Powder-Gas Interaction in Laser Powder Bed Fusion</h3>
+         <br>
+
+         <figure class="myfig">
+            <img width="600" src="PGI_Methodology.png" alt="Methdology in PGI Simulation" class="myimg"/>
+            <figcaption style="font-size:12pt">
+               Schematics of the methodology for the multiphysics simulation. The laser incidence on
+               the metal-gas interface is captured by the ray-tracing algorithm. The metal phase
+               includes the molten pool, the substrate, and the particles. The gaseous phase include
+               the metal vapor and ambient gas. The interface evolution is captured via the
+               level-set function. The particles are tracked by the Lagrangian Particle Tracking
+               method. For the particle-gas interaction, the powder locations provide the boundary
+               conditions for CFD computation in the Eulerian mesh, while the CFD computation
+               provides the stress distribution on the Lagrangian points.
+            </figcaption>
+         </figure>
+
+         <figure class="myfig">
+            <video width="800" 
+                   src="PGI_SidebySide.mov" 
+                   alt="Side-by-side comparison" 
+                   loop controls class="myvideo">
+            </video>
+            <figcaption style="font-size:12pt">
+               A side-by-side comparison between multiphysics simulation and X-ray high-speed
+               imaging. Although the simulation is in 2D, it generally captures the key physical
+               phenomena in LPBF, including powder melting and merging, formation of depression zone
+               (keyhole) and metal vapor jet, the powder entrainmenent and powder ejection. The
+               laser pulse duration in the X-ray imaging is 1 ms while that in the simulation is 0.5
+               ms. The difference in the time scale of keyhole drilling can be contributed to the
+               lack of resistance by surface tension from the third dimension.
+            </figcaption>
+         </figure>
+
+         <figure class="myfig">
+            <img width="800" src="PGI_Modes.png" alt="PGI modes identification" class="myimg"/>
+            <figcaption style="font-size:12pt">
+               Characterization of the four Powder-Gas Interaction (PGI) modes occurred in a typical
+               simulation. The recoil mode is identified when the powder are initially illuminated
+               by the laser, and vaporization occurs in the top surface due to laser heating. The
+               recoil pressure drives the powder downwards to merge into the molten pool. The
+               entrainment mode is identified when the vapor jet forms, and the ambient gas is
+               driven towards the vapor jet and powders are also entrained towards the vapor jet.
+               The elevation mode is when the entrained powder just meets the vapor jet. The net
+               effect of a complex stress distribution on powder surface is to accelerate the powder
+               upwards while keeping its horizontal velocity. The expulsion mode is when the powder
+               has cut into the vapor jet and is ejected following the streamline of the vapor jet
+               at a certain divergence angle.
             </figcaption>
          </figure>
       </main>
