@@ -1,0 +1,173 @@
+\documentclass[12pt, letterpaper]{article}
+\usepackage{resume}  % use my resume style sheet
+
+% \fancyhead[L]{\footnotesize \bfseries Homework 3 \quad \bfseries CS6530 Machine Learning} % set footer
+% \fancyfoot[R]{\footnotesize \thepage} % set footer
+\fancyfoot[C]{\footnotesize \thepage \; of  \, \pageref{LastPage}}
+\geometry{head=1in, bottom=1in, left=1in, right=1in} % set margin
+\allowdisplaybreaks  % allow cross-page equations
+
+
+%--------- document starts here -------------------------
+\begin{document}
+\begin{center}
+   \textbf{\large XUXIAO LI}
+
+   801-209-6239 \textbar{} xuxiao.li@utah.edu
+
+   \href{xuxiaoli-1993.github.io}{xuxiaoli-1993.github.io}
+   \paraspace
+\end{center}
+
+\textbf{EDUCATION}
+
+\fullrule
+
+\textbf{Tongji University} 
+\hfill
+Shanghai, China
+
+\textit{B.S./Aircraft Manufacturing Engineering} \hfill Jun. 2015
+
+\vspace{6pt}
+\textbf{University of Utah} \hfill Salt Lake City, Utah
+
+\textit{M.S./Mechanical Engineering} \hfill May 2019
+
+\textit{Ph.D./Mechanical Engineering}, Advisor: Prof. Wenda Tan \hfill Expected Dec. 2020 
+\vskip 11pt
+
+\textbf{RELEVANT COURSEWORK}
+
+\fullrule
+\vspace{3pt}
+\begin{tabular}{@{} p{.4\textwidth} p{.3\textwidth} p{.4\textwidth} @{}}
+   Finite Elements & Heat Transfer & Thermodynamics \\
+   Computational Fluid Dynamics & Turbulence & Kinetics \\
+   Machine Learning & Radiation & Optics
+\end{tabular}
+\vspace{9pt}
+
+\textbf{RESEARCH EXPERIENCE}
+
+\fullrule
+\textbf{Laser Absorption by Powder Bed} \hfill 2015 -- 2016
+\begin{itemize}[leftmargin=*, labelsep=5mm]
+   \item Implemented a rain-dropping algorithm to generate randomly packed beds of powders as in
+      typical laser powder bed fusion processes.
+   \item Implemented the ray-tracing algorithm to model the multiple reflections of a laser beam on
+      the surfaces of powders.
+   \item Conducted parametric studies on the effects of powder size, powder bed thickness, and powder
+      material on the laser absorption distribution within the powder bed.
+\end{itemize}
+
+\vspace{3pt}
+
+\textbf{GEMS Maintenance} \hfill 2016 -- Now
+\begin{itemize}[leftmargin=*, labelsep=5mm]
+   \item Maintaining a legacy code (in Fortran, over 25000 lines), General Equation Mesh Solver
+      (GEMS), for solving fluid dynamics equations with unstructured mesh and MPI parallelization.
+   \item Implemented the Level-Set and Ghost Fluid Method (over 10000 lines) into separate modules.
+      Integrated the new modules into GEMS to enable multi-phase flow and fluid-solid interaction
+      computations.
+   \item Documented the methodology systematically. Designed and conducted benchmark CFD
+      simulations for the verification of GEMS and new modules.
+\end{itemize}
+
+\vspace{3pt}
+
+\textbf{Cellular Automata Simulation for Grain Nucleation and Growth} \hfill 2016 -- 2018
+\begin{itemize}[leftmargin=*, labelsep=5mm]
+   \item Developed a thermal model (based on GEMS) that simulates the heat transfer and
+      temperature field in direct laser deposition processes.
+   \item Implemented the Cellular Automata (CA) algorithm to simulate the grain nucleation and
+      growth given the temperature field from the thermal model. Parallelized the CA algorithm with
+      hybrid OpenMP and MPI.
+   \item Conducted numerical experiments on the effects of nucleation conditions on the grain size,
+      shape, and texture in the builds of direct laser deposition processes. Validated the simulation
+      results with analytical models and EBSD experiments.
+\end{itemize}
+
+\vspace{3pt}
+
+\textbf{Keyhole Dynamics in Laser Welding} \hfill 2018 -- Now
+\begin{itemize}[leftmargin=*, labelsep=5mm]
+   \item Developed a multi-physics model (based on GEMS) that simulates the laser absorption, molten
+      pool flow, evaporation/condensation kinetics, surface tension, and keyhole evolution in laser
+      welding processes.
+   \item Identified, extracted and analyzed principal quantities of interest from simulations.
+   \item Synthesized results from simulations and X-ray imaging experiments (from collaborators) and
+      provided explanations for the keyhole geometries and oscillations under varying processing
+      conditions.
+\end{itemize}
+
+\vspace{3pt}
+
+\textbf{Powder-gas Interaction in Laser Powder Bed Fusion} \hfill 2019 -- Now
+\begin{itemize}[leftmargin=*, labelsep=5mm]
+   \item Implemented a Lagrangian-point forcing scheme and the Discrete Element Method to track
+      particle motion driven by fluid-induced and collision forces. 
+   \item Incorporate particle tracking with the laser welding model to simulate the powder
+      motion in laser powder bed fusion processes.
+   \item Identified characteristic modes of powder-gas interaction based on the quantification of
+      the surrounding gas flow and gas-induced forces on powders.
+\end{itemize}
+
+
+\vspace{-3pt}
+\paraspace
+
+\textbf{PUBLICATION}
+
+\fullrule
+
+\begin{itemize}[leftmargin=*, labelsep=4mm]
+   \item \textbf{Li, X.}, Tan, W., 2016. Numerical investigation of laser absorption by metal powder
+      bed in selective laser sintering processes. Solid Freeform Fabrication Symposium 2016, Austin,
+      TX.
+
+   \item \textbf{Li, X.}, Tan, W., 2018. Numerical investigation of effects of nucleation mechanisms
+      on grain structure in metal additive manufacturing. Computational Material Science, 153, pp.
+      159-169.
+
+   \item Kouraytem, N., \textbf{Li, X.}, Cunningham, R., Zhao, C., Parab, N., Sun, T., Rollett,
+      A.D., Spear, A.D., Tan, W., 2019. Effect of laser-matter interaction on molten pool flow and
+      keyhole dynamics. Physical Review Applied, 11(6), p.064054.
+
+   \item Zhao, C., Guo, Q., \textbf{Li, X.}, Parab, N., Fezzaa, K., Tan, W., Chen, L., Sun, T.,
+      2019. Bulk-explosion-induced metal spattering during laser processing. Physical Review X,
+      9(2), p.021052.
+
+   \item \textbf{Li, X.}, Zhao, C., Sun, T., Tan, W., 2020. Revealing transient powder-gas
+      interaction in laser powder bed fusion process through multi-physics modeling and high-speed
+      synchrotron x-ray imaging. Additive Manufacturing, 35, p.101362. 
+
+   \item \textbf{Li, X.}, Tan, W., 2020. Numerical modeling of powder-gas interaction Relative to
+      laser powder bed fusion process. Journal of Manufacturing Science and Engineering, pp. 1-26.
+\end{itemize}
+\vspace{-3pt}
+\paraspace
+
+\textbf{TECHNICAL SKILLS}
+
+\fullrule
+
+\begin{itemize}[leftmargin=*, labelsep=3mm, itemsep=2pt, topsep=0pt]
+   \item \textit{Computer Pragmatics}: Linux, Vim, Git, Latex
+   \item \textit{Programming Language}: Fortran, c/c++, Python, MATLAB
+   \item \textit{Commercial Software}: Comsol, Abaqus
+   \item \textit{High-Performance Computing}: MPI, OpenMP, Intel Profiling Tools and Debugger
+\end{itemize}
+
+
+
+
+
+
+\end{document}
+
+
+
+
+
+

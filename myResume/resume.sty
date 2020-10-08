@@ -1,0 +1,109 @@
+% Xuxiao's Resume Style
+
+\usepackage{ragged2e}
+\usepackage{array}
+
+\newcolumntype{P}[1]{>{\RaggedRight\hspace{0pt}}p{#1}}
+
+
+
+% format paragraph
+\setlength{\parskip}{0pt}
+\setlength{\parindent}{0pt}
+\usepackage{setspace} % line spacing
+\singlespace
+
+% define margin
+\usepackage[margin=1in]{geometry}
+
+% font: Times New Roman
+% \usepackage{newtxtext,newtxmath}
+\usepackage{lmodern} % remove the limit of font size
+
+\usepackage{amsfonts, amsmath, amssymb} % for advanced math notations
+\usepackage{xfrac}
+\usepackage{nicefrac}
+
+% table and figures
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{booktabs} % to draw lines for tables
+\usepackage{tabularx}
+\newcommand{\mytoprule}{\specialrule{1pt}{0em}{0em}}
+\newcommand{\mybottomrule}{\specialrule{1pt}{0em}{0em}} 
+\newcommand{\mymiddlerule}{\specialrule{0.5pt}{0em}{0em}} 
+\usepackage{subcaption}
+% \usepackage{cleveref}
+
+
+\setlength{\intextsep}{10pt plus 2.0pt minus 2.0pt} % set the spacing surrouding a figure in text
+\setlength{\textfloatsep}{10pt plus 2.0pt minus 2.0pt} % set the spacing surrouding a figure on top
+
+% caption style
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf} % caption font 
+\captionsetup[sub]{font=scriptsize,labelfont=bf}
+\captionsetup[sub]{aboveskip=0pt, belowskip=0pt}
+\captionsetup[table]{belowskip=-10pt} % spacing between text and table caption
+\captionsetup[table]{aboveskip=0pt} % spacing between table caption and table
+\captionsetup[figure]{belowskip=-10pt} % spacing between figure caption and text below
+\captionsetup[figure]{aboveskip=0pt} % spacing between figure caption and figure above
+
+% Header and Footer
+\setlength{\headsep}{10pt}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhead{} % clear default header
+\fancyfoot{} % clear default footer
+
+\renewcommand{\headrulewidth}{0.0pt} % horizontal line in header
+\renewcommand{\footrulewidth}{0.0pt} % horizontal line in footer
+
+% define a new head-footer style
+\fancypagestyle{tpstyle}
+{
+    \fancyhead{} % clear header
+    \fancyfoot{} % clear header
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+
+% \usepackage[none]{hyphenat} % prevent from using hyphenated words
+\setlength{\emergencystretch}{30pt} % sloppy
+
+% Macros
+% space between paragraphs
+\def\paraspace{\vspace{11pt}}
+\def\probspace{\vspace{0.5in}}
+\def\fullrule{\nointerlineskip\vskip2pt\rule{\textwidth}{0.5pt}\vskip2pt}
+
+% color
+\usepackage{xcolor}
+
+% underline ... This is where Latex is really inconvenient!!
+\usepackage[normalem]{ulem}  % normalem is for not underlining in bib
+
+% list
+\usepackage[shortlabels]{enumitem}
+\setenumerate{itemsep=1pt, topsep=1pt, parsep=1pt}
+\setitemize{itemsep=3pt, topsep=3pt, parsep=0pt}
+
+% bibliography
+\usepackage[numbers,sort&compress]{natbib}
+
+% superscript in normal text
+\usepackage{fixltx2e}
+
+% vertical space in align (equation)
+\setlength{\jot}{3pt}
+
+% hyperlink
+\usepackage{url}
+\usepackage{hyperref}
+
+% nicefraction
+\usepackage{nicefrac}
+
+% quick commands for typing special symbols
+\usepackage{xspace}
