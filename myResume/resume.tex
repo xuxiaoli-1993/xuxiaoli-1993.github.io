@@ -11,10 +11,10 @@
 %--------- document starts here -------------------------
 \begin{document}
 
-\begin{tabular}{@{} p{.4\textwidth} p{.6\textwidth} @{}}
-   \multirow{4}{*}{{\textbf{\huge XUXIAO LI}}} & LinkedIn:
+\begin{tabular}{@{} p{.5\textwidth} p{.5\textwidth} @{}}
+   \multirow{4}{*}{{\textbf{\huge XUXIAO LI}}} & 
     \href{https://www.linkedin.com/in/xuxiaoli1993}{https://www.linkedin.com/in/xuxiaoli1993} \\
-     & Personal Website: \href{https://xuxiaoli-1993.github.io}{https://xuxiaoli-1993.github.io} \\
+     & \href{https://xuxiaoli-1993.github.io}{https://xuxiaoli-1993.github.io} \\
      & xuxiao.li@utah.edu \\
      & 8012096239
 \end{tabular}
@@ -33,11 +33,11 @@
 
 \vspace{24pt}
 
-\textbf{PhD with 5 years' experience in physics-based modeling and computation}
+\textbf{Ph.D. with five years' experience in physics-based modeling and computation}
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Expertise in computational aspects of fluid dynamics, heat transfer, and material science.
-   \item Experienced with the simulation of manufacturing processes, e.g., welding and 3D printing.
-   \item Managed both large legacy codes and commercial software.
+   \item Expertise in computational fluid dynamics, heat transfer, and material science.
+   \item Experienced with maintaining, developing, and optimizing large scientific code.
+   \item Collaborated with experimentalists and modelers, coauthored multiple journal articles.
 \end{itemize}
 
 \vspace{12pt}
@@ -46,79 +46,96 @@
 
 \fullrule
 
+\textbf{University of Utah} \hfill Salt Lake City, Utah, USA
+
+Ph.D., Mechanical Engineering  \hfill Jan. 2021
+
+M.S., Mechanical Engineering  \hfill May 2019
+
+Area of Focus: thermal-fluid science in metal additive manufacturing and laser keyhole welding.
+
+Relevant Coursework: Numerical Solution of PDE, Thermodynamics, Machine Learning.
+
+\vskip 6pt
+
 \textbf{Tongji University} 
 \hfill
 Shanghai, China
 
-\textit{B.S./Aircraft Manufacturing Engineering} \hfill June 2015
+B.S., Aircraft Manufacturing Engineering \hfill June 2015
 
-\vspace{6pt}
-\textbf{University of Utah} \hfill Salt Lake City, Utah
+\vskip 9pt
 
-\textit{M.S./Mechanical Engineering} \hfill May 2019
-
-\textit{Ph.D./Mechanical Engineering}, Advisor: Prof. Wenda Tan \hfill Expected Dec. 2020 
-\vskip 6pt
-
-\textbf{Relevant Coursework}
-
-\vspace{6pt}
-
-\begin{tabular}{@{} p{.45\textwidth} p{.3\textwidth} p{.25\textwidth} @{}}
-   Finite Elements & Heat Transfer & Thermodynamics \\
-   Computational Fluid Dynamics & Turbulence & Kinetics \\
-   Machine Learning & Radiation & Optics
-\end{tabular}
-\vspace{9pt}
+% \textbf{Relevant Coursework}
+% 
+% \vspace{6pt}
+% 
+% \begin{tabular}{@{} p{.45\textwidth} p{.3\textwidth} p{.25\textwidth} @{}}
+%    Finite Elements & Heat Transfer & Thermodynamics \\
+%    Computational Fluid Dynamics & Turbulence & Kinetics \\
+%    Machine Learning & Radiation & Optics
+% \end{tabular}
+% \vspace{3pt}
 
 \textbf{TECHNICAL SKILLS}
 
 \fullrule
 
-\begin{itemize}[leftmargin=*, labelsep=3mm, itemsep=2pt, topsep=0pt]
-   \item \textit{Computer Pragmatics}: Linux, Vim, Git, Latex
-   \item \textit{Programming Language}: Fortran, c/c++, Python, MATLAB
-   \item \textit{Commercial Software}: Comsol, Abaqus
-   \item \textit{High-Performance Computing}: MPI, OpenMP, Intel Profiling Tools and Debugger
-\end{itemize}
+\begin{tabular}{@{} l l l l l l @{}}
+   Linux & Git & Latex & Fortran & c/c++ & Python \\
+   MATLAB & Comsol & Abaqus & MPI & OpenMP & Profiling
+\end{tabular}
 
 \vspace{9pt}
-
-% \textbf{RESEARCH HIGHLIGHT}
-% 
-% \fullrule
-% \begin{figure}[H]
-%    \centering
-%    \includegraphics[height=2.75in]{GraphicalSummary.png}
-% \end{figure}
-
 
 \textbf{RESEARCH EXPERIENCE}
 
 \fullrule
 
-\textbf{Laser Absorption by Powder Bed} \hfill 2015 -- 2016
+\textbf{GEMS Maintenance} \hfill 2016 -- Present
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Implemented a rain-dropping algorithm to generate randomly packed beds of powders as in
-      typical laser powder bed fusion processes.
-   \item Implemented the ray-tracing algorithm to model the multiple reflections of a laser beam on
-      the surfaces of powders.
-   \item Conducted parametric studies on the effects of powder size, powder bed thickness, and powder
-      material on the laser absorption distribution within the powder bed.
+   \item Maintaining a legacy code (in Fortran, over 25000 lines), General Equation Mesh Solver
+      (GEMS), initially developed for turbulent reacting flow computation with unstructured mesh and
+      MPI parallelization.
+   \item Developed and integrated new modules (Level-Set and Ghost Fluid Method, over 10000 lines)
+      into GEMS to enable multi-phase, free-surface flow and fluid-solid interaction computations.
+   \item Designed and conducted simulations of over 15 benchmark fluid dynamics
+      problems for systematic verification of GEMS and the new modules.
 \end{itemize}
 
 \vspace{3pt}
 
-\textbf{GEMS Maintenance} \hfill 2016 -- Now
+\textbf{Keyhole Dynamics in Laser Welding} \hfill 2018 -- Present
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Maintaining a legacy code (in Fortran, over 25000 lines), General Equation Mesh Solver
-      (GEMS), for solving general partial differential equations with unstructured mesh and MPI
-      parallelization.
-   \item Implemented the Level-Set and Ghost Fluid Method (over 10000 lines) into separate modules,
-      and integrated the new modules into GEMS to enable multi-phase, free-surface flow and
-      fluid-solid interaction computations.
-   \item Designed and conducted simulations of over 15 benchmark fluid dynamics
-      problems for systematic verification of GEMS and the new modules.
+   \item Developed a multi-physics model (based on GEMS) that simulates the laser absorption, molten
+      pool flow, evaporation/condensation kinetics, thermal-capillary forces, and keyhole evolution
+      in laser welding processes.
+   \item Synthesized results from simulations and X-ray imaging experiments (from collaborators) to
+      make estimations on the driving forces and thermal field on the keyhole.
+   \item Provided mechanism explanations on the relationship between process parameters, keyhole
+      oscillation, and defect formation.
+\end{itemize}
+
+\vspace{3pt}
+\textbf{Powder-gas Interaction in Laser Powder Bed Fusion} \hfill 2019 -- Present
+\begin{itemize}[leftmargin=*, labelsep=5mm]
+   \item Implemented a Lagrangian-point forcing scheme and the Discrete Element Method
+      into the laser welding model to simulate the powder motion in laser powder bed fusion
+      processes.
+   \item Identified characteristic modes of powder-gas interaction based on the quantification of
+      the surrounding gas flow and gas-induced forces on powders.
+   \item Conducted simulations to identify the effects of ambient pressure on the gas flow and
+      statistics of spattered powder, e.g., ejecting angle, temperature, and velocity.
+\end{itemize}
+
+\vspace{3pt}
+
+\textbf{Machine Learning for Laser Absorption in Keyhole} \hfill Jan. -- April 2020
+\begin{itemize}[leftmargin=*, labelsep=5mm]
+   \item Extracted laser absorption distribution on keyhole's surface from the laser welding
+      model as the training and validation data sets.
+   \item Applied convolutional neural network algorithms using Tensorflow to predict laser
+      absorption for random keyhole shapes.
 \end{itemize}
 
 \vspace{3pt}
@@ -136,43 +153,29 @@ Shanghai, China
 
 \vspace{3pt}
 
-\textbf{Keyhole Dynamics in Laser Welding} \hfill 2018 -- Now
+\textbf{Laser Absorption by Powder Bed} \hfill 2015 -- 2016
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Developed a multi-physics model (based on GEMS) that simulates the laser absorption, molten
-      pool flow, evaporation/condensation kinetics, thermal-capillary forces, and keyhole evolution
-      in laser welding processes.
-   \item Synthesized results from simulations and X-ray imaging experiments (from collaborators) to
-      make estimations on the magnitude of the various driving forces on the keyhole.
-   \item Provided mechanism explanations on the relationship between process parameters, keyhole
-      oscillation, and defect formation.
-\end{itemize}
-
-\vspace{3pt}
-
-\textbf{Powder-gas Interaction in Laser Powder Bed Fusion} \hfill 2019 -- Now
-\begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Implemented a Lagrangian-point forcing scheme and the Discrete Element Method upon the
-      laser welding model to simulate the powder motion in laser powder bed fusion processes.
-   \item Identified characteristic modes of powder-gas interaction based on the quantification of
-      the surrounding gas flow and gas-induced forces on powders.
-   \item Conducted simulations to identify the effects of ambient pressure on the gas flow and
-      statistics of spattered powder, e.g., ejecting angle, temperature, and velocity.
+   \item Implemented a rain-dropping algorithm to generate randomly packed beds of powders as in
+      typical laser powder bed fusion processes.
+   \item Implemented the ray-tracing algorithm to model the multiple reflections of a laser beam on
+      the surfaces of powders.
+   \item Conducted parametric studies on the effects of powder size, powder bed thickness, and powder
+      material on the laser absorption distribution within the powder bed.
 \end{itemize}
 
 \vspace{9pt}
 
-\textbf{PUBLICATIONS}
+\textbf{SELECTED PUBLICATIONS} \hfill (full list:  
+\href{https://xuxiaoli-1993.github.io/publications.html}
+{https://xuxiaoli-1993.github.io/publications.html})
 
 \fullrule
 
-\textbf{Selected Papers} \hfill complete list at 
-\href{https://xuxiaoli-1993.github.io/publications.html}
-{https://xuxiaoli-1993.github.io/publications.html}
-
 \begin{enumerate}[leftmargin=*, labelsep=4mm]
-   \item \textbf{Li, X.}, Tan, W., 2016. Numerical investigation of laser absorption by metal powder
-      bed in selective laser sintering processes. Solid Freeform Fabrication Symposium 2016, Austin,
-      TX.
+   \item Herriott, C.F., \textbf{Li, X.}, Kouraytem, N., Tari, V., Tan, W., Anglin, B.S., Rollett, A.D.,
+      Spear, A.D., 2018. A multi-scale, multi-physics modeling framework to predict spatial
+      variation of properties in additive-manufactured metals. Modelling and Simulation in
+      Materials Science and Engineering, 27, p. 025009.
 
    \item \textbf{Li, X.}, Tan, W., 2018. Numerical investigation of effects of nucleation mechanisms
       on grain structure in metal additive manufacturing. Computational Material Science, 153, pp.
@@ -190,13 +193,10 @@ Shanghai, China
       interaction in laser powder bed fusion process through multi-physics modeling and high-speed
       synchrotron x-ray imaging. Additive Manufacturing, 35, p.101362. 
 
-   \item \textbf{Li, X.}, Tan, W., 2020. Numerical modeling of powder-gas interaction Relative to
-      laser powder bed fusion process. Journal of Manufacturing Science and Engineering, pp. 1-26.
+   \item Zhao C., Parab, N.D., \textbf{Li, X.}, Fezzaa, K., Tan, W., Rollett, A.D., Sun. T., 2020.
+      Critical instability at moving keyhole tip generates porosity in laser melting. Science,
+      accepted. 
 \end{enumerate}
-
-
-
-
 
 
 \end{document}
