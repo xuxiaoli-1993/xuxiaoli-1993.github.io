@@ -36,7 +36,7 @@
 \textbf{Ph.D. with five years' experience in physics-based modeling and computation}
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Expertise in computational fluid dynamics, heat transfer, and material science.
-   \item Experienced with maintaining, developing, and optimizing large scientific code.
+   \item Experienced with maintaining, extending, and developing large scientific code.
    \item Collaborated with experimentalists and modelers, coauthored multiple journal articles.
 \end{itemize}
 
@@ -52,9 +52,9 @@ Ph.D., Mechanical Engineering  \hfill Jan. 2021
 
 M.S., Mechanical Engineering  \hfill May 2019
 
-Area of Focus: thermal-fluid modeling of metal 3D printing.
+Area of Focus: thermal-fluid modeling of metal 3D printing and laser welding.
 
-Relevant Coursework: Numerical Solution of PDE, Thermodynamics, Machine Learning.
+Relevant Coursework: Numerical Solution of PDE, Finite Elements, Machine Learning.
 
 \vskip 6pt
 
@@ -81,9 +81,9 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
 
 \fullrule
 
-\begin{tabular}{@{} l l l l l l @{}}
-   Linux & Git & Latex & Fortran & c/c++ & Python \\
-   MATLAB & Comsol & Abaqus & MPI & OpenMP & Profiling
+\begin{tabular}{@{} l l l l l l l @{}}
+   Linux & Git & Latex & Fortran & c/c++ & Python & SLURM \\
+   MATLAB & Comsol & Abaqus & MPI & OpenMP & Tecplot & Profiling
 \end{tabular}
 
 \vspace{9pt}
@@ -92,7 +92,7 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
 
 \fullrule
 
-\textbf{CFD Code Maintenance} \hfill 2016 -- Present
+\textbf{Scientific Code Development} \hfill 2016 -- Present
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Maintaining a legacy code (in Fortran, over 25000 lines), General Equation Mesh Solver
       (GEMS), initially developed for turbulent reacting flow computation with unstructured mesh and
@@ -105,28 +105,27 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
 
 \vspace{3pt}
 
-\textbf{Keyhole Dynamics in Laser Welding} \hfill 2018 -- Present
+\textbf{Transient Dynamics in Laser Welding} \hfill 2018 -- Present
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Developed a multi-physics model (based on GEMS) that simulates the laser absorption,
       melting/solidification, evaporation/condensation, thermal-capillary forces, gas dynamics, and
-      surface evolution in laser welding processes.
+      interface instabilities in laser welding processes.
    \item Synthesized results from simulations and X-ray imaging experiments (from collaborators) to
-      quantify the driving forces and thermal field on the keyhole.
-   \item Provided mechanism explanations on the relationship between process parameters, keyhole
-      oscillation, and defect formation.
+      quantify the physical forces and thermal field on the keyhole.
+   \item Provided mechanism explanations on the relationship between process parameters (e.g., laser
+      power and scanning speed) and defect/pore formation.
 \end{itemize}
 
 \vspace{3pt}
-\textbf{Powder-gas Interaction in Laser Powder Bed Fusion} \hfill 2019 -- Present
+\textbf{Powder-gas Interaction in Metal 3D Printing} \hfill 2019 -- Present
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Implemented a Lagrangian-point forcing scheme and the Discrete Element Method
-      into the laser welding model to simulate the powder motion in laser powder bed fusion
-      processes.
+      into the laser welding model to simulate the powder motion in metal 3D printing.
+   \item Verified simulation results by fluid mechanics principles and X-ray experiments.
    \item Identified characteristic modes of powder-gas interaction based on the quantification of
       the surrounding gas flow and gas-induced forces on powders.
-   \item Verified and validated the model based on fluid mechanics principles and X-ray experiments.
-   \item Conducted simulations to identify the effects of ambient pressure on the gas flow and
-      statistics of spattered powder, e.g., ejecting angle, temperature, and velocity.
+   \item Quantified the effects of the ambient pressure on the gas flow, powder-gas interaction, and
+      powder behaviors (velocity, forces, temperature, and ejecting angle).
 \end{itemize}
 
 \vspace{3pt}
@@ -136,20 +135,20 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
    \item Extracted laser absorption distribution on keyhole's surface from the laser welding
       model as the training and validation data sets.
    \item Applied convolutional neural network algorithms using Tensorflow to predict laser
-      absorption for random keyhole shapes.
+      absorption for random keyhole shapes in laser welding.
 \end{itemize}
 
 \vspace{3pt}
 
 \textbf{Cellular Automata Simulation for Grain Nucleation and Growth} \hfill 2016 -- 2018
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Developed a process model (based on GEMS) that simulates the thermal history in direct
-      energy deposition (DED) processes.
+   \item Developed a process model that simulates the thermal history and surface evolution in direct
+      energy deposition processes.
    \item Implemented the Cellular Automata (CA) algorithm to simulate the grain nucleation and
-      growth given the temperature field from the thermal model. Parallelized the CA algorithm with
-      hybrid OpenMP and MPI.
+      growth given the thermal history from the process model. Implemented hybrid MPI and OpenMP
+      parallelization for the CA algorithm.
    \item Conducted simulations to identify nucleation conditions for tailoring distinct
-      grain morphology in DED processes.
+      grain morphology, e.g., small equiaxed grains and large columnar grains.
 \end{itemize}
 
 \vspace{3pt}
