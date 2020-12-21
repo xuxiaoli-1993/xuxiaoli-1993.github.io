@@ -296,59 +296,54 @@
          </p>
 
          <br><br><br>
-         <h3 style="text-align:center">Keyhole Dynamics of Laser Welding</h3>
+         <h3 style="text-align:center">Transient Dynamics of Laser Welding</h3>
 
-         <p style="text-align:center">Under Construction.</p>
-
-         <!--
-            <figure class="myfig">
-            <img width="600" src="PGI_Methodology.png" alt="Methdology in PGI Simulation" class="myimg"/>
-            <figcaption style="font-size:12pt">
-            Schematics of the methodology for the multiphysics simulation. The laser incidence on
-            the metal-gas interface is captured by the ray-tracing algorithm. The metal phase
-            includes the molten pool, the substrate, and the particles. The gaseous phase include
-            the metal vapor and ambient gas. The interface evolution is captured via the
-            level-set function. The particles are tracked by the Lagrangian Particle Tracking
-            method. For the particle-gas interaction, the powder locations provide the boundary
-            conditions for CFD computation in the Eulerian mesh, while the CFD computation
-            provides the stress distribution on the Lagrangian points.
-            </figcaption>
-            </figure>
-
-            <figure class="myfig">
+         <figure class="myfig">
             <video width="800" 
-            src="PGI_SidebySide.mov" 
-            alt="Side-by-side comparison" 
-            loop controls class="myvideo">
+                   src="KeyholeDynamicsComparision.mov" 
+                   alt="Keyhole Dynamics as function of scanning speed" 
+                   controls class="myvideo">
             </video>
             <figcaption style="font-size:12pt">
-            A side-by-side comparison between multiphysics simulation and X-ray high-speed
-            imaging. Although the simulation is in 2D, it generally captures the key physical
-            phenomena in LPBF, including powder melting and merging, formation of depression zone
-            (keyhole) and metal vapor jet, the powder entrainmenent and powder ejection. The
-            laser pulse duration in the X-ray imaging is 1 ms while that in the simulation is 0.5
-            ms. The difference in the time scale of keyhole drilling can be contributed to the
-            lack of resistance by surface tension from the third dimension.
+               Keyhole dynamics under varying scanning velocity (from top to bottom): 0.4 m/s, 0.6
+               m/s, and 0.8 m/s. The simulations are shown from a "side view". Isometric and top
+               views of the 0.4 m/s simulation are shown in the <a href="./index.html"
+                  target="_blank" class="mylink">Home Page</a>. The laser has a diameter of 80 um
+               and a power of 208 W. The plate material is Ti-6Al-4V. It can be observed that as the
+               laser scanning velocity is increased, the keyhole is shallower and has wider a
+               opening and less fluctuated. The fluctuation of the keyhole is typically related to
+               the formation of pores near the keyhole tip. Therefore, a slow scanning laser is more
+               prone to pore formation. The recent high-speed X-ray imaging reveals that the keyhole
+               dynamics and pore formation mechanism can have sub-micrometer, sub-microsecond
+               phenomena. See 
+               <a href="https://journals.aps.org/prx/abstract/10.1103/PhysRevX.9.021052"
+                  target="_blank" class="mylink">Zhao, C., et al. Physical Review X (2019)</a> and 
+               <a href="https://science.sciencemag.org/content/370/6520/1080"
+               target="_blank" class="mylink">Zhao, C., et al. Science (2020)</a>.
+              Anything can happen inside a keyhole!
             </figcaption>
-            </figure>
+         </figure>
 
-            <figure class="myfig">
-            <img width="800" src="PGI_Modes.png" alt="PGI modes identification" class="myimg"/>
+         <br><br><br>
+         <h3 style="text-align:center">Finite Element Analysis of Laser Bending</h3>
+         <figure class="myfig">
+            <video width="800" 
+                   src="AbaqusLaserBending.mp4" 
+                   alt="Laser bending" 
+                   controls class="myvideo">
+            </video>
             <figcaption style="font-size:12pt">
-            Characterization of the four Powder-Gas Interaction (PGI) modes occurred in a typical
-            simulation. The recoil mode is identified when the powder are initially illuminated
-            by the laser, and vaporization occurs in the top surface due to laser heating. The
-            recoil pressure drives the powder downwards to merge into the molten pool. The
-            entrainment mode is identified when the vapor jet forms, and the ambient gas is
-            driven towards the vapor jet and powders are also entrained towards the vapor jet.
-            The elevation mode is when the entrained powder just meets the vapor jet. The net
-            effect of a complex stress distribution on powder surface is to accelerate the powder
-            upwards while keeping its horizontal velocity. The expulsion mode is when the powder
-            has cut into the vapor jet and is ejected following the streamline of the vapor jet
-            at a certain divergence angle.
             </figcaption>
-            </figure>
-         -->
+         </figure>
+
+         <br><br><br>
+         <h3 style="text-align:center">Machine Learning of Laser Absorption in a Keyhole</h3>
+         <figure class="myfig">
+            <img width="800" src="MachineLearningLaserAbsorption.png" alt="Machine Learning" class="myimg"/>
+            <figcaption style="font-size:12pt">
+            </figcaption>
+         </figure>
+
       </main>
 
       <footer>
