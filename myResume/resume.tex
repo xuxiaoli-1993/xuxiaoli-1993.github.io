@@ -1,5 +1,7 @@
 \documentclass[11pt, letterpaper]{article}
 \usepackage{resume}  % use my resume style sheet
+\usepackage[none]{hyphenat}
+\usepackage{microtype}
 
 % \fancyhead[L]{\footnotesize \bfseries Homework 3 \quad \bfseries CS6530 Machine Learning} % set footer
 % \fancyfoot[R]{\footnotesize \thepage} % set footer
@@ -35,7 +37,7 @@
 
 \textbf{Ph.D. with five years' experience in physics-based modeling and computation}
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Expertise in computational fluid dynamics, heat transfer, and material science.
+   \item Expertise in computational fluid dynamics (CFD), heat transfer, and material science.
    \item Experienced with maintaining, extending, and developing large scientific code.
    \item Collaborated with experimentalists and modelers, coauthored multiple journal articles.
 \end{itemize}
@@ -92,28 +94,29 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
 
 \fullrule
 
-\textbf{Scientific Code Development} \hfill 2016 -- Present
+\textbf{CFD Code Development} \hfill 2016 -- Present
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Maintaining a legacy code (in Fortran, over 25000 lines), General Equation Mesh Solver
-      (GEMS), initially developed for turbulent reacting flow computation with unstructured mesh and
-      MPI parallelization.
-   \item Developed and integrated new modules (Level-Set and Ghost Fluid Method, over 10000 lines)
-      into GEMS to enable multi-phase, free-surface flow and fluid-solid interaction computations.
-   \item Designed and conducted simulations of over 15 benchmark fluid dynamics
-      problems for systematic verification of GEMS and the new modules.
+      (GEMS), initially developed for CFD computation with finite volume method, unstructured mesh
+      and MPI parallelization.
+   \item Developed 5 new modules (based on the level-set method, over 15000 lines) and integrated
+      them into GEMS to enable multi-phase, free-surface flow and fluid-structure interaction
+      computations.
+   \item Designed and conducted code benchmarking of GEMS and the new modules using over 15 fluid
+      dynamic test problems. 
 \end{itemize}
 
 \vspace{3pt}
 
 \textbf{Transient Dynamics in Laser Welding} \hfill 2018 -- Present
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Developed a multi-physics model (based on GEMS) that simulates the laser absorption,
-      melting/solidification, evaporation/condensation, thermal-capillary forces, gas dynamics, and
-      interface instabilities in laser welding processes.
+   \item Developed a multiphysics model that simulates the laser absorption, melting and
+      solidification, molten metal flow, evaporation and condensation, thermal-capillary forces, gas
+      dynamics, and interface evolution in laser welding processes.
    \item Synthesized results from simulations and X-ray imaging experiments (from collaborators) to
-      quantify the physical forces and thermal field on the keyhole.
-   \item Provided mechanism explanations on the relationship between process parameters (e.g., laser
-      power and scanning speed) and defect/pore formation.
+      quantify the physical forces and thermal field in the molten metal.
+   \item Provided mechanism explanations on the relationship between process parameters (laser power
+      and scanning speed) and pore (defect) formation.
 \end{itemize}
 
 \vspace{3pt}
@@ -121,34 +124,33 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Implemented a Lagrangian-point forcing scheme and the Discrete Element Method
       into the laser welding model to simulate the powder motion in metal 3D printing.
-   \item Verified simulation results by fluid mechanics principles and X-ray experiments.
-   \item Identified characteristic modes of powder-gas interaction based on the quantification of
-      the surrounding gas flow and gas-induced forces on powders.
-   \item Quantified the effects of the ambient pressure on the gas flow, powder-gas interaction, and
-      powder behaviors (velocity, forces, temperature, and ejecting angle).
+   \item Validated simulation results by fluid mechanics principles and X-ray experiments.
+   \item Identified characteristic modes of powder-gas interaction by quantifying the gas flow
+      surrounding the powder particles and the forces on particle surfaces.
+   \item Predicted the effects of the ambient pressure on the gas flow (pressure and velocity
+      field), powder-gas interaction, and powder behaviors (trajectory and temperature).
 \end{itemize}
 
 \vspace{3pt}
 
-\textbf{Machine Learning for Laser Absorption in Keyhole} \hfill Jan. -- April 2020
+\textbf{Machine Learning for Laser Absorption by Metal Surface} \hfill Jan. -- April 2020
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Extracted laser absorption distribution on keyhole's surface from the laser welding
-      model as the training and validation data sets.
-   \item Applied convolutional neural network algorithms using Tensorflow to predict laser
-      absorption for random keyhole shapes in laser welding.
+   \item Extracted laser absorption distribution on surfaces of molten metal from the laser welding
+      model, as the training and validation data sets.
+   \item Applied convolutional neural network algorithms using Tensorflow to predict the laser
+      absorption distribution for random molten metal surfaces in laser welding.
 \end{itemize}
 
 \vspace{3pt}
 
-\textbf{Cellular Automata Simulation for Grain Nucleation and Growth} \hfill 2016 -- 2018
+\textbf{Grain Structure Modeling for Metal 3D Printing} \hfill 2016 -- 2018
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Developed a process model that simulates the thermal history and surface evolution in direct
-      energy deposition processes.
-   \item Implemented the Cellular Automata (CA) algorithm to simulate the grain nucleation and
-      growth given the thermal history from the process model. Implemented hybrid MPI and OpenMP
-      parallelization for the CA algorithm.
-   \item Conducted simulations to identify nucleation conditions for tailoring distinct
-      grain morphology, e.g., small equiaxed grains and large columnar grains.
+   \item Developed a process model that simulates the thermal history and surface evolution in metal
+      3D printing processes.
+   \item Implemented a cellular automata algorithm with a hybrid MPI-OpenMP parallelization (in
+      C/C++) to simulate the grain melting, nucleation, and growth. 
+   \item Conducted simulations to identify nucleation conditions to tailor distinct grain
+      morphology, e.g., small equiaxed grains and large columnar grains.
 \end{itemize}
 
 \vspace{3pt}
@@ -156,9 +158,9 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
 \textbf{Laser Absorption by Powder Bed} \hfill 2015 -- 2016
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Implemented a rain-dropping algorithm to generate randomly packed beds of powders as in
-      typical laser powder bed fusion processes.
-   \item Implemented the ray-tracing algorithm to model the multiple reflections of a laser beam on
-      the surfaces of powders.
+      typical metal 3D printing processes.
+   \item Implemented the ray-tracing algorithm to simulate the multiple reflections of a laser beam
+      on the surfaces of powders.
    %\item Conducted parametric studies on the effects of powder size, powder bed thickness, and powder
    %   material on the laser absorption distribution within the powder bed.
 \end{itemize}
