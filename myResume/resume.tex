@@ -27,7 +27,7 @@
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Expertise in computational fluid dynamics (CFD), heat transfer, and material science.
    \item Experienced with maintaining, developing, and validating large scientific code.
-   \item Collaborated with experimentalists and modelers, coauthored 6 journal articles.
+   \item Collaborated with physicists and metrologists, coauthored 6 journal articles.
 \end{itemize}
 
 \vspace{12pt}
@@ -38,13 +38,13 @@
 
 \textbf{University of Utah} \hfill Salt Lake City, Utah, USA
 
-Ph.D., Mechanical Engineering  \hfill Jan. 2021
+Ph.D., Mechanical Engineering  \hfill May 2021
 
 M.S., Mechanical Engineering  \hfill May 2019
 
-Area of Focus: thermal-fluid and metallurgical modeling of laser welding and 3D printing.
+Area of Focus: thermal-fluid and metallurgical modeling for laser-based manufacturing.
 
-Relevant Coursework: Thermodynamics, Finite Elements, Machine Learning.
+Coursework: Thermodynamics, Finite Elements, Machine Learning.
 
 \vskip 6pt
 
@@ -52,28 +52,19 @@ Relevant Coursework: Thermodynamics, Finite Elements, Machine Learning.
 \hfill
 Shanghai, China
 
-B.S., Aircraft Manufacturing Engineering \hfill June 2015
+B.S., Aircraft Manufacturing Engineering (solid and structural mechanics) \hfill June 2015
 
 \vskip 9pt
-
-% \textbf{Relevant Coursework}
-% 
-% \vspace{6pt}
-% 
-% \begin{tabular}{@{} p{.45\textwidth} p{.3\textwidth} p{.25\textwidth} @{}}
-%    Finite Elements & Heat Transfer & Thermodynamics \\
-%    Computational Fluid Dynamics & Turbulence & Kinetics \\
-%    Machine Learning & Radiation & Optics
-% \end{tabular}
-% \vspace{3pt}
 
 \textbf{TECHNICAL SKILLS}
 
 \fullrule
 
+\vskip 3pt
+
 \begin{tabular}{@{} l l l l l l l @{}}
-   Fortran & Matlab & Linux & MPI & COMSOL & Git & Latex \\
-   C/C++ & Python & SLURM & OpenMP & Abaqus & Tecplot & Profiling
+   Fortran & Matlab & Linux & MPI & COMSOL & Git & SLURM \\
+   C/C++ & Python & Tecplot & OpenMP & Abaqus & Latex & Gmsh
 \end{tabular}
 
 \vspace{9pt}
@@ -84,13 +75,13 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
 
 \textbf{CFD Software Development} \hfill Nov. 2016 -- Present
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Maintaining a legacy code (in Fortran, over 25000 lines), General Equation Mesh Solver
-      (GEMS), developed for general partial differential equations with finite volume method,
-      unstructured mesh, and MPI parallelization.
-   \item Developed 5 new modules (level-set and finite-difference method, over 15000 lines) to
-      enable new features for multiphase flow, free-surface tracking, and fluid-structure
-      interaction.
-   \item Conducted systematic code benchmarking with over 15 test problems. Wrote documentation and
+   \item Maintaining a proprietary CFD software (in Fortran, over 25000 lines) for turbulent
+      reacting flow, featuring the finite volume method, unstructured mesh, and MPI parallelization.
+   \item Developed 5 new modules (level-set and finite-difference method, over 15000 lines) to grow
+      capabilities for multiphase flow, free-surface tracking, and fluid-structure interaction.
+   \item Identified and solved numerical issues such as boundary condition definition, the
+      discretization accuracy, and parallel communication bottlenecks.
+   \item Conducted systematic benchmarking with over 15 test problems. Wrote documentation and
       trained lab members to use the code for different applications.
 \end{itemize}
 
@@ -98,30 +89,39 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
 
 \textbf{Transient Dynamics in Laser Welding} \hfill Nov. 2018 -- Oct. 2020
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Developed a multiphysics model that simulates the laser absorption, melting and
-      solidification, molten metal flow, evaporation and condensation, thermal-capillary forces, gas
-      dynamics, and interface evolution in laser welding processes.
-   \item Synthesized data from X-ray imaging experiments (collaboration) to validate, calibrate, and
-      improve the model. Quantified the physical forces and thermal field in the molten metal.
-   \item Provided mechanism explanations on the relationship between process parameters (laser power
-      and scanning speed) and pore (defect) formation.
+   \item Developed a multiphysics model that simulates the laser-metal interaction, melting and
+      evaporation, molten pool flow, and gas dynamics in laser welding.
+   \item Coordinated with physicists and metrologists to quantitatively compare the simulation with
+      X-ray imaging data. Improved the model after analyzing the discrepancies.
+   \item Quantified the thermal field and fluid dynamics to understand the pore (defect) formation.
+      Provided design guidance (e.g., optimizing process parameters) to mitigate defects.
 \end{itemize}
 
 \vspace{3pt}
 \textbf{Powder-gas Interaction in Laser Powder Bed Fusion} \hfill Sep. 2019 -- Dec. 2020
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Implemented a Lagrangian particle tracking module and integrated it into the welding model
-      to simulate the powder motion in laser powder bed fusion processes.
-   % \item Validated simulation results by first-principle of fluid mechanics and X-ray experiments.
-   \item Identified characteristic modes of powder-gas interaction by quantifying the gas flow
-      surrounding the powder particles and the forces on particle surfaces.
-   \item Predicted the effects of the ambient pressure on the gas flow, powder-gas interaction, and
-      powder behaviors (velocity, temperature, and ejecting angle).
+   \item Integrated a discrete element method module into the welding model to simulate the
+      interaction between micron-size  powders and high-speed gas flow in metal 3D printing.
+   \item Developed scripts to automate repetitive simulations. Verified the model with lift
+      coefficients and Strouhal number. Validated the model with X-ray imaging data.
+   \item Developed scripts to post-process large data ($>$ 5 TB). Characterized the modes of
+      powder-gas interaction to improve the understanding of powder spattering (defects).
+   \item Utilized simulations to investigate the applicability of a novel process design, i.e.,
+      changing the ambient pressure in the build chamber. Predicted the effects of powder-gas
+      behaviors.
 \end{itemize}
 
 \vspace{3pt}
 
-\textbf{Machine Learning for Laser Absorption by Metal Surface} \hfill Jan. 2020 -- April 2020
+%\textbf{Finite Element Analysis for Laser Bending} \hfill Sep. 2019 -- Dec. 2019
+%\begin{itemize}[leftmargin=*, labelsep=5mm]
+%   \item Developed a thermo-mechanical model using Abaqus to simulate the thermal stress and strain
+%      evolution in the laser bending of aluminum plates.
+%   \item Conducted parametric studies for process design to achieve maximum bending angle with
+%      minimum power input.
+%\end{itemize}
+
+\textbf{Deep Learning for Laser Absorption by Metal Surface} \hfill Jan. 2020 -- April 2020
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Extracted laser absorption distribution on the surface of molten metal from the laser
       welding model, as the training and validation data sets.
@@ -170,6 +170,10 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
       Critical instability at moving keyhole tip generates porosity in laser melting. Science,
       370(6520), pp.1080-1086.
 
+   \item \textbf{Li, X.}, Tan, W., 2020. Numerical modeling of powder-gas interaction relative to
+      laser powder bed fusion process. Journal of Manufacturing Science and Engineering, 143(5), pp.
+      054502.
+
    \item Kouraytem, N., \textbf{Li, X.}, Cunningham, R., Zhao, C., Parab, N., Sun, T., Rollett,
       A.D., Spear, A.D., Tan, W., 2019. Effect of laser-matter interaction on molten pool flow and
       keyhole dynamics. Physical Review Applied, 11(6), p.064054.
@@ -182,10 +186,10 @@ B.S., Aircraft Manufacturing Engineering \hfill June 2015
       on grain structure in metal additive manufacturing. Computational Material Science, 153,
       pp.159-169.
 
-   \item Herriott, C.F., \textbf{Li, X.}, Kouraytem, N., Tari, V., Tan, W., Anglin, B.S., Rollett, A.D.,
-      Spear, A.D., 2018. A multi-scale, multi-physics modeling framework to predict spatial
-      variation of properties in additive-manufactured metals. Modelling and Simulation in
-      Materials Science and Engineering, 27, p. 025009.
+   %\item Herriott, C.F., \textbf{Li, X.}, Kouraytem, N., Tari, V., Tan, W., Anglin, B.S., Rollett, A.D.,
+   %   Spear, A.D., 2018. A multi-scale, multi-physics modeling framework to predict spatial
+   %   variation of properties in additive-manufactured metals. Modelling and Simulation in
+   %   Materials Science and Engineering, 27, p. 025009.
 \end{enumerate}
 
 
