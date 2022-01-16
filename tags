@@ -1,6 +1,42 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
-!_TAG_PROGRAM_NAME	Exuberant Ctags	//
-!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.8	//
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+.catalog	style.css	/^.catalog {$/;"	c
+.catalog-item	style.css	/^.catalog-item {$/;"	c
+.column	style.css	/^.column {$/;"	c
+.homefig	style.css	/^.homefig {$/;"	c
+.myfig	style.css	/^.myfig {$/;"	c
+.myheadshot	style.css	/^.myheadshot {$/;"	c
+.myhr	style.css	/^.myhr {$/;"	c
+.myimg	style.css	/^.myimg {$/;"	c
+.mylink:link	style.css	/^.mylink:link {$/;"	c
+.mylink:visited	style.css	/^.mylink:visited {$/;"	c
+.myvideo	style.css	/^.myvideo {$/;"	c
+.row:after	style.css	/^.row:after {$/;"	c
+Background	Research.html	/^         <h3 style="text-align:center">Background<\/h3>$/;"	j
+Cellular Automata Simulation of Grain Nucleation and Growth	Research.html	/^         <h3 style="text-align:center">Cellular Automata Simulation of Grain Nucleation and Grow/;"	j
+Conference Papers	publications.html	/^      <h2 style="text-align:center">Conference Papers<\/h2> $/;"	i
+Documents	software.html	/^         <h3>Documents<\/h3>$/;"	j
+Finite Element Analysis of Laser Bending	Research.html	/^         <h3 style="text-align:center">Finite Element Analysis of Laser Bending<\/h3>$/;"	j
+Gallery	software.html	/^         <h3>Gallery<\/h3>$/;"	j
+Journal Articles	publications.html	/^      <h2 style="text-align:center">Journal Articles<\/h2> $/;"	i
+Machine Learning of Laser Absorption in a Keyhole	Research.html	/^         <h3 style="text-align:center">Machine Learning of Laser Absorption in a Keyhole<\/h3>$/;"	j
+Overview	Research.html	/^         <h3 style="text-align:center">Overview<\/h3>$/;"	j
+Powder Bed Generation and Ray Tracing	Research.html	/^         <h3 style="text-align:center">Powder Bed Generation and Ray Tracing<\/h3>$/;"	j
+Powder-Gas Interaction in Laser Powder Bed Fusion	Research.html	/^         <h3 style="text-align:center">Powder-Gas Interaction in Laser Powder Bed Fusion<\/h3>$/;"	j
+Software	software.html	/^         <h2 style="text-align:center">Software<\/h2>$/;"	i
+Transient Dynamics of Laser Welding	Research.html	/^         <h3 style="text-align:center">Transient Dynamics of Laser Welding<\/h3>$/;"	j
+Xuxiao Li	index.html	/^               <h1 class="myh1">Xuxiao Li<\/h1>$/;"	h
+body	style.css	/^body {$/;"	s
+footer	style.css	/^footer {$/;"	s
+h1	style.css	/^h1 {$/;"	s
+h2	style.css	/^h2 {$/;"	s
+h3	style.css	/^h3 {$/;"	s
+li	style.css	/^li {$/;"	s
+李绪逍	chinese_version.html	/^               <h1 class="myh1">李绪逍<\/h1>$/;"	h
