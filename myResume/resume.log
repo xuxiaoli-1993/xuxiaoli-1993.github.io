@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2022.1.16)  16 JAN 2022 14:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2022.1.16)  16 JAN 2022 16:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -726,18 +726,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Overfull \hbox (15.19084pt too wide) in paragraph at lines 18--19
-[]|\OT1/lmr/m/n/10.95 (-20) LinkedIn: []https://www.linkedin.com/in/xuxiaoli199
-3[]| 
- []
-
-
 Overfull \hbox (11.99998pt too wide) in paragraph at lines 16--23
 [][] 
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 2
-7.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 8
+6.
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ) [1
@@ -749,23 +743,23 @@ Package rerunfilecheck Info: File `resume.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 12114 strings out of 481252
- 195670 string characters out of 5915888
- 557529 words of memory out of 5000000
- 28719 multiletter control sequences out of 15000+600000
- 427887 words of font info for 80 fonts, out of 8000000 for 9000
+ 12115 strings out of 481252
+ 195723 string characters out of 5915888
+ 556529 words of memory out of 5000000
+ 28722 multiletter control sequences out of 15000+600000
+ 432110 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 98i,11n,102p,308b,447s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 98i,11n,102p,308b,443s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/en
 c/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ts1.enc}</usr/shar
 e/texmf/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf/fonts/type1/public/l
 m/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/tex
 mf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr9
-.pfb>
-Output written on resume.pdf (2 pages, 111402 bytes).
+.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb>
+Output written on resume.pdf (2 pages, 127592 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 45 compressed objects within 1 object stream
- 9 named destinations out of 1000 (max. 500000)
- 14337 words of extra memory for PDF output out of 14400 (max. 10000000)
+ 58 PDF objects out of 1000 (max. 8388607)
+ 47 compressed objects within 1 object stream
+ 8 named destinations out of 1000 (max. 500000)
+ 16385 words of extra memory for PDF output out of 17280 (max. 10000000)
 

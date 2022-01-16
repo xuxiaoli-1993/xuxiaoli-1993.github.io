@@ -13,7 +13,7 @@
 %--------- document starts here -------------------------
 \begin{document}
 
-\begin{tabular}{@{} p{.5\textwidth} p{.5\textwidth} @{}}
+\begin{tabular}{@{} p{.4\textwidth} p{.6\textwidth} @{}}
    \multirow{4}{*}{{\textbf{\huge XUXIAO LI}}} & 
     LinkedIn: \href{https://www.linkedin.com/in/xuxiaoli1993}{https://www.linkedin.com/in/xuxiaoli1993} \\
      & Personal Website: \href{https://xuxiaoli-1993.github.io}{https://xuxiaoli-1993.github.io} \\
@@ -23,14 +23,14 @@
 
 \vspace{24pt}
 
-\textbf{Ph.D. with 5 years' experience in physics-based modeling and computation}
-\begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Expertise in computational fluid dynamics (CFD), heat transfer, and material science.
-   \item Experienced with maintaining, developing, and validating large scientific code.
-   \item Collaborated with physicists and metrologists, coauthored 6 journal articles.
-\end{itemize}
+% \textbf{Ph.D. with 5 years' experience in physics-based modeling and computation}
+% \begin{itemize}[leftmargin=*, labelsep=5mm]
+%    \item Expertise in computational fluid dynamics (CFD), heat transfer, and material science.
+%    \item Experienced with maintaining, developing, and validating large scientific code.
+%    \item Collaborated with physicists and metrologists, coauthored 6 journal articles.
+% \end{itemize}
 
-\vspace{12pt}
+% \vspace{12pt}
 
 \textbf{EDUCATION}
 
@@ -42,9 +42,10 @@ Ph.D., Mechanical Engineering  \hfill May 2021
 
 M.S., Mechanical Engineering  \hfill May 2019
 
-Area of Focus: thermal-fluid and metallurgical modeling for laser-based manufacturing.
+Area of Focus: thermal-fluid and metallurgical modeling for laser-based 3D printing.
 
-Coursework: Thermodynamics, Finite Elements, Machine Learning.
+Coursework: Computational Fluid Dynamics (CFD), Thermodynamics, Heat Transfer, Numerical Solution of
+PDE, Physical Metallurgy, Machine Learning.
 
 \vskip 6pt
 
@@ -52,7 +53,9 @@ Coursework: Thermodynamics, Finite Elements, Machine Learning.
 \hfill
 Shanghai, China
 
-B.S., Aircraft Manufacturing Engineering (solid and structural mechanics) \hfill June 2015
+B.S., Aircraft Manufacturing Engineering \hfill June 2015
+
+Coursework: Solid and Structral Mechanics, Control Theory, Aerodynamics.
 
 \vskip 9pt
 
@@ -60,26 +63,46 @@ B.S., Aircraft Manufacturing Engineering (solid and structural mechanics) \hfill
 
 \fullrule
 
-\vskip 3pt
+\textit{Programming}: Fortran, C, C++, Python, Matlab, Java.
 
-\begin{tabular}{@{} l l l l l l l @{}}
-   Fortran & Matlab & Linux & MPI & COMSOL & Git & SLURM \\
-   C/C++ & Python & Tecplot & OpenMP & Abaqus & Latex & Gmsh
-\end{tabular}
+\textit{High-Performance Computing}: MPI, OpenMP, Linux/Bash, GDB, Valgrind, Intel Profiler.
+
+\textit{Software}: StarCCM+, Abaqus, COMSOL, Tecplot, Paraview, Gmsh. 
+
+% \vskip 3pt
+
+% \begin{tabular}{@{} l l l l l l l @{}}
+%    Fortran & Matlab & Linux & MPI & COMSOL & Git & SLURM \\
+%    C/C++ & Python & Tecplot & OpenMP & Abaqus & Latex & Gmsh
+% \end{tabular}
 
 \vspace{9pt}
 
-\textbf{RESEARCH EXPERIENCE}
+\textbf{WORK EXPERIENCE}
 
 \fullrule
 
-\textbf{CFD Software Development} \hfill Nov. 2016 -- Present
+\textbf{Global Engineering \& Materials, Inc., Research Engineer} \hfill May 2021 -- Present
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Maintaining a proprietary CFD software (in Fortran, over 25000 lines) for turbulent
-      reacting flow, featuring the finite volume method, unstructured mesh, and MPI parallelization.
+   \item Developed CFD process models for liquid composite molding and additive friction stir
+      deposition with StarCCM+ (porous media, volume-of-fluid, and non-Newtonian flow).
+   \item Coordinated meetings with team members to check status, collect data, and assign tasks.
+      Assisted proposal writing for government-funded programs.
+\end{itemize}
+
+\vspace{9pt}
+
+\textbf{Ph.D. RESEARCH EXPERIENCE}
+
+\fullrule
+
+\textbf{CFD Software Development} \hfill Nov. 2016 -- May 2021
+\begin{itemize}[leftmargin=*, labelsep=5mm]
+   \item Maintained an in-house CFD code, GEMS (in Fortran, over 25000 lines), for both compressible
+      and incompressible flows, featuring the finite volume method, unstructured mesh, and MPI.
    \item Developed 5 new modules (level-set and finite-difference method, over 15000 lines) to grow
       capabilities for multiphase flow, free-surface tracking, and fluid-structure interaction.
-   \item Identified and solved numerical issues such as boundary condition definition, the
+   \item Identified and solved numerical issues such as boundary condition definition,
       discretization accuracy, and parallel communication bottlenecks.
    \item Conducted systematic benchmarking with over 15 test problems. Wrote documentation and
       trained lab members to use the code for different applications.
@@ -89,10 +112,10 @@ B.S., Aircraft Manufacturing Engineering (solid and structural mechanics) \hfill
 
 \textbf{Transient Dynamics in Laser Welding} \hfill Nov. 2018 -- Oct. 2020
 \begin{itemize}[leftmargin=*, labelsep=5mm]
-   \item Developed a multiphysics model that simulates the laser-metal interaction, melting and
-      evaporation, molten pool flow, and gas dynamics in laser welding.
-   \item Coordinated with physicists and metrologists to quantitatively compare the simulation with
-      X-ray imaging data. Improved the model after analyzing the discrepancies.
+   \item Developed a multiphysics model (based on GEMS) that simulates the laser-metal interaction,
+      melting and evaporation, molten pool flow, and gas dynamics in laser welding.
+   \item Coordinated with experimentalists to compare the simulation with
+      X-ray imaging data.
    \item Quantified the thermal field and fluid dynamics to understand the pore (defect) formation.
       Provided design guidance (e.g., optimizing process parameters) to mitigate defects.
 \end{itemize}
@@ -101,14 +124,13 @@ B.S., Aircraft Manufacturing Engineering (solid and structural mechanics) \hfill
 \textbf{Powder-gas Interaction in Laser Powder Bed Fusion} \hfill Sep. 2019 -- Dec. 2020
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Integrated a discrete element method module into the welding model to simulate the
-      interaction between micron-size  powders and high-speed gas flow in metal 3D printing.
-   \item Developed scripts to automate repetitive simulations. Verified the model with lift
+      interaction between micron-size powders and high-speed gas flow in metal 3D printing.
+   \item Developed scripts to automate over 150 simulations. Verified the model with lift
       coefficients and Strouhal number. Validated the model with X-ray imaging data.
-   \item Developed scripts to post-process large data ($>$ 5 TB). Characterized the modes of
-      powder-gas interaction to improve the understanding of powder spattering (defects).
-   \item Utilized simulations to investigate the applicability of a novel process design, i.e.,
-      changing the ambient pressure in the build chamber. Predicted the effects of powder-gas
-      behaviors.
+   \item Post-process large data ($>$ 5 TB). Characterized the modes of powder-gas interaction to
+      improve the understanding of powder spattering (defects).
+   \item Numerically investigated the applicability of a novel process design, i.e., changing the
+      ambient pressure in the build chamber. Predicted the design's effects on powder-gas behaviors.
 \end{itemize}
 
 \vspace{3pt}
@@ -131,10 +153,10 @@ B.S., Aircraft Manufacturing Engineering (solid and structural mechanics) \hfill
 
 \vspace{3pt}
 
-\textbf{Metallurgical Modeling for Direct Laser Deposition} \hfill Nov. 2016 -- May 2018
+\textbf{Metallurgical Modeling for Direct Energy Deposition} \hfill Nov. 2016 -- May 2018
 \begin{itemize}[leftmargin=*, labelsep=5mm]
    \item Developed a process model that simulates the thermal history and surface evolution in
-      direct laser deposition processes.
+      direct energy deposition processes.
    \item Implemented a cellular automata algorithm with a hybrid MPI-OpenMP parallelization (in
       C/C++) to simulate the grain melting, nucleation, and growth. 
    \item Conducted simulations to identify nucleation conditions to tailor distinct grain
@@ -162,6 +184,10 @@ B.S., Aircraft Manufacturing Engineering (solid and structural mechanics) \hfill
 \fullrule
 
 \begin{enumerate}[leftmargin=*, labelsep=4mm]
+   \item \textbf{Li, X.}, Guo, Q., Chen L., Tan, W., 2021. Quantitative investigation of gas flow,
+      powder-gas interaction, and powder behavior under different ambient pressure levels in laser
+      powder bed fusion.  International Journal of Machine Tools and Manufacture, 170, 103797.
+
    \item \textbf{Li, X.}, Zhao, C., Sun, T., Tan, W., 2020. Revealing transient powder-gas
       interaction in laser powder bed fusion process through multi-physics modeling and high-speed
       synchrotron x-ray imaging. Additive Manufacturing, 35, p.101362. 
@@ -170,17 +196,17 @@ B.S., Aircraft Manufacturing Engineering (solid and structural mechanics) \hfill
       Critical instability at moving keyhole tip generates porosity in laser melting. Science,
       370(6520), pp.1080-1086.
 
-   \item \textbf{Li, X.}, Tan, W., 2020. Numerical modeling of powder-gas interaction relative to
-      laser powder bed fusion process. Journal of Manufacturing Science and Engineering, 143(5), pp.
-      054502.
+   % \item \textbf{Li, X.}, Tan, W., 2020. Numerical modeling of powder-gas interaction relative to
+   %    laser powder bed fusion process. Journal of Manufacturing Science and Engineering, 143(5), pp.
+   %    054502.
 
    \item Kouraytem, N., \textbf{Li, X.}, Cunningham, R., Zhao, C., Parab, N., Sun, T., Rollett,
       A.D., Spear, A.D., Tan, W., 2019. Effect of laser-matter interaction on molten pool flow and
       keyhole dynamics. Physical Review Applied, 11(6), p.064054.
 
-   \item Zhao, C., Guo, Q., \textbf{Li, X.}, Parab, N., Fezzaa, K., Tan, W., Chen, L., Sun, T.,
-      2019. Bulk-explosion-induced metal spattering during laser processing. Physical Review X,
-      9(2), p.021052.
+   % \item Zhao, C., Guo, Q., \textbf{Li, X.}, Parab, N., Fezzaa, K., Tan, W., Chen, L., Sun, T.,
+   %    2019. Bulk-explosion-induced metal spattering during laser processing. Physical Review X,
+   %    9(2), p.021052.
 
    \item \textbf{Li, X.}, Tan, W., 2018. Numerical investigation of effects of nucleation mechanisms
       on grain structure in metal additive manufacturing. Computational Material Science, 153,
